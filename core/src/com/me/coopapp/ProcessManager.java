@@ -27,19 +27,19 @@ public class ProcessManager {
 	
 	public void Setup() {
 		
-		SQLiteUoW createDAL = new SQLiteUoW(connection);
+		Setup createDAL = new Setup(connection);
 		
 		//Configure app
 		
-		//Get database
-		
-		
-		//If new setup create new settings 
-		if(createDAL.isTableExists() == false) {
-			createDAL.createDatabaseFromFile();
+		//Load settings
+		if(createDAL.isTableExists()) {
+			
 		}
 		
-		//Else load settings
+		//If new setup create new settings 
+		else if(createDAL.isTableExists() == false) {
+			createDAL.createDatabaseFromFile();
+		} 
 	
 	}
 	

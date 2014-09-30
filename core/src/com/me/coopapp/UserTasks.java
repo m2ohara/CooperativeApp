@@ -2,13 +2,16 @@ package com.me.coopapp;
 import java.sql.*;
 import java.util.*;
 
+import org.sqlite.SQLiteConnection;
+
 public class UserTasks implements IUnitOfWork {
 	
 	private ArrayList<IEntity> Tasks;
-	private Connection conn;
+	private static SQLiteConnection conn;
 	
-	public UserTasks() {
+	public UserTasks(SQLiteConnection _conn) {
 		Tasks = new ArrayList<IEntity>();
+		conn = _conn;
 	}
 
 	@Override
@@ -30,19 +33,18 @@ public class UserTasks implements IUnitOfWork {
 	//Transaction behaviour
 	static class UserTransaction implements IUnitOfWork.ITransaction {
 		
-//		private static Connection conn;
 		private static Statement stmt;
 		private static String Query;
 
 		@Override
 		public void setTransaction(String query) {
-//			try {
-//				stmt = conn.createStatement();
-//				Query = query;
-//			}
-//			catch(SQLException e) {
-//			
-//			}
+			try {
+				stmt = conn.createStatement();
+				Query = query;
+			}
+			catch(SQLException e) {
+			
+			}
 		}
 		
 		@Override

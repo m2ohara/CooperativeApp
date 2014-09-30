@@ -11,15 +11,13 @@ import org.sqlite.SQLiteConnection;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
-public class SQLiteUoW implements IUnitOfWork {
+public class Setup implements IUnitOfWork {
 	
 	private SQLiteConnection connection;
-	private String connectionString = "";
 	
 	//TO DO: Set up dependency injection
-	public SQLiteUoW(SQLiteConnection conn) {
+	public Setup(SQLiteConnection conn) {
 		connection = conn;
-		connectionString = conn.url();
 	}
 
 	@Override

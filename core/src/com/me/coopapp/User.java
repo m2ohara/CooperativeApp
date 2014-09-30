@@ -25,6 +25,12 @@ public class User implements IEntity {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Object GetById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

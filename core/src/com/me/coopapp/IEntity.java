@@ -5,5 +5,7 @@ public interface IEntity {
 	public void Update();
 	
 	public Object Get();
+	
+	public Object GetById(int id);
 
 }
