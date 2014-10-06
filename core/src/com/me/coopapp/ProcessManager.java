@@ -1,6 +1,7 @@
 package com.me.coopapp;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import org.sqlite.SQLiteConnection;
 
@@ -12,6 +13,7 @@ public class ProcessManager {
 	private static User userState;
 	private static Screen screen;
 	private SQLiteConnection connection;
+	public static ArrayList<Task> Tasks = new ArrayList<Task>();
 	
 	private ProcessManager() {
 		userState = User.getUser();
@@ -39,6 +41,10 @@ public class ProcessManager {
 		//If new setup create new settings 
 		else if(createDAL.isTableExists() == false) {
 			createDAL.createDatabaseFromFile();
+			
+			//Display setup screen
+			
+			
 		} 
 	
 	}
@@ -53,7 +59,6 @@ public class ProcessManager {
 		
 		//Render 
 		batch.draw(screen.texture, 0, 0);
-		
 	}
 	
 	public void UserState() {

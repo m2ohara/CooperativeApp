@@ -2,14 +2,17 @@ package com.me.coopapp;
 
 public class User implements IEntity {
 	
-	private static User userInstance = new User();
+	private static User userInstance;
 	
 	private User() {
 		//Get persisted data
 	}
 	
 	//Retrieve single instance of class
-	public static User getUser() {
+	public static User getUser() {		
+		if(userInstance == null) {
+			userInstance = new User();
+		}
 		return userInstance;
 	
 	}
@@ -30,6 +33,17 @@ public class User implements IEntity {
 	public Object GetById(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void Insert() {
+		String query = "INSERT VALUES ('User XXX', 'Setup') INTO USER";
+	}
+
+	@Override
+	public void Execute() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

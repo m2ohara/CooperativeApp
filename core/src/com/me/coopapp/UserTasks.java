@@ -7,18 +7,17 @@ import org.sqlite.SQLiteConnection;
 public class UserTasks implements IUnitOfWork {
 	
 	private ArrayList<IEntity> Tasks;
-	private static SQLiteConnection conn;
 	
-	public UserTasks(SQLiteConnection _conn) {
+	public UserTasks() {
 		Tasks = new ArrayList<IEntity>();
-		conn = _conn;
 	}
 
 	@Override
 	public IUnitOfWork startTransaction(ITransaction transaction) {
 		
+		//For each task
 		for(IEntity task : Tasks) {
-			task.Get();
+			transaction.setTransaction("");
 		}
 		
 		return null;
@@ -39,7 +38,7 @@ public class UserTasks implements IUnitOfWork {
 		@Override
 		public void setTransaction(String query) {
 			try {
-				stmt = conn.createStatement();
+				stmt = SQLConnection.connection.createStatement();
 				Query = query;
 			}
 			catch(SQLException e) {
