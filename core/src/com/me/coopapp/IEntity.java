@@ -4,14 +4,18 @@ import org.sqlite.SQLiteConnection;
 
 public interface IEntity {
 	
-	public void Insert();
+	public String Insert();
 	
-	public void Update();
+	public String Update();
 	
-	public Object Get();
+	public String Delete();
 	
-	public Object GetById(int id);
+	public String Get();
 	
-	public void Execute();
+	public String GetById(int id);
+	
+	public String Execute();
+	
+	public String GetAction();
 
 }

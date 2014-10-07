@@ -11,25 +11,13 @@ import org.sqlite.SQLiteConnection;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
-public class Setup implements IUnitOfWork {
+public class Setup {
 	
 	private SQLiteConnection connection;
 	
 	//TO DO: Set up dependency injection
 	public Setup(SQLiteConnection conn) {
 		connection = conn;
-	}
-
-	@Override
-	public void Commit() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public IUnitOfWork startTransaction(ITransaction transaction) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	public boolean isTableExists() {
@@ -55,6 +43,8 @@ public class Setup implements IUnitOfWork {
 	//Create database
 	public int createDatabaseFromFile() {
 		
+		Statement createDBStatement = null;
+		
 		//Get sql from file
 		FileHandle createDBFile = Gdx.files.internal("sampleDB.sql");
 		String fileSQL = createDBFile.readString();
@@ -65,14 +55,21 @@ public class Setup implements IUnitOfWork {
 		try {
 			
 			//Create database tables
-			Statement createDBStatement = connection.createStatement();
+			createDBStatement = connection.createStatement();
 			result = createDBStatement.executeUpdate(fileSQL);
-
-			createDBStatement.close();
 		}
 		catch(SQLException ex) {
 		//TO DO: Log error
 			System.out.println("Error creating database: "+ex);
+		}
+		finally {
+			try {
+				createDBStatement.close();
+				connection.close();
+			}
+			catch(SQLException e) {
+				
+			}
 		}
 		
 		return result;

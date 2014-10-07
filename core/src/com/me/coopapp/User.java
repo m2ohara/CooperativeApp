@@ -3,6 +3,7 @@ package com.me.coopapp;
 public class User implements IEntity {
 	
 	private static User userInstance;
+	public String action = "";
 	
 	private User() {
 		//Get persisted data
@@ -18,32 +19,46 @@ public class User implements IEntity {
 	}
 
 	@Override
-	public void Update() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Object Get() {
+	public String Update() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object GetById(int id) {
+	public String Get() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void Insert() {
+	public String GetById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String Insert() {
 		String query = "INSERT VALUES ('User XXX', 'Setup') INTO USER";
+		
+		return query;
 	}
 
 	@Override
-	public void Execute() {
+	public String Execute() {
 		// TODO Auto-generated method stub
-		
+		return null;
+	}
+
+	@Override
+	public String Delete() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String GetAction() {
+		// TODO Auto-generated method stub
+		return action;
 	}
 	
 	

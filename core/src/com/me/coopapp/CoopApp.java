@@ -1,6 +1,7 @@
 package com.me.coopapp;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.sqlite.SQLiteConnection;
@@ -15,7 +16,7 @@ public class CoopApp extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	
-	private ProcessManager process = ProcessManager.getProcessManager();
+	private ProcessManager processor = ProcessManager.getProcessManager();
 	public SQLiteConnection connection;
 	
 	//TO DO: resolve connection dependency
@@ -27,9 +28,20 @@ public class CoopApp extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		
-		process = ProcessManager.getProcessManager();	
-		process.SetConnection(connection);
-		process.Setup();
+		processor = ProcessManager.getProcessManager();	
+		//Set db connection
+		processor.SetConnection(connection);
+		SQLConnection.connection = connection;
+		try {
+			SQLConnection.metaData = connection.getMetaData();
+		}
+		catch(SQLException e) {
+			
+		}
+		processor.Setup();
+		
+		//Start logic thread
+		new Thread(processor).start();
 	}
 
 	@Override
@@ -38,7 +50,13 @@ public class CoopApp extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		batch.begin();
-		process.ScreenState(batch);
+		processor.ScreenState(batch);
 		batch.end();
+	}
+	
+	public void dispose() {
+		if(processor != null) {
+			processor.dispose();
+		}
 	}
 }

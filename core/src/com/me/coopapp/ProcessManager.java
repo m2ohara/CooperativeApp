@@ -7,7 +7,7 @@ import org.sqlite.SQLiteConnection;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class ProcessManager {
+public class ProcessManager implements Runnable {
 	
 	private static ProcessManager processInstance = new ProcessManager();
 	private static User userState;
@@ -35,17 +35,17 @@ public class ProcessManager {
 		
 		//Load settings
 		if(createDAL.isTableExists()) {
-			
+			userState.action = "Get";
 		}
 		
 		//If new setup create new settings 
 		else if(createDAL.isTableExists() == false) {
+			
 			createDAL.createDatabaseFromFile();
-			
-			//Display setup screen
-			
-			
+			userState.action = "Insert";
 		} 
+		
+		Tasks.add(new Task(userState));
 	
 	}
 	
@@ -61,11 +61,14 @@ public class ProcessManager {
 		batch.draw(screen.texture, 0, 0);
 	}
 	
-	public void UserState() {
+	private void UserState() {
 		//Process current user state
+		for(Task t : Tasks) {
+			t.Perform();
+		}
 	}
 	
-	public void GameState() {
+	private void GameState() {
 		//Process current game state
 	}
 	
@@ -75,6 +78,31 @@ public class ProcessManager {
 	
 	public Connection GetConnection() {
 		return connection;
+	}
+	
+	public void process() {
+		
+		UserState();
+		
+		GameState();
+		
+	}
+
+	@Override
+	public void run() {
+		
+		process();
+		try {
+			this.wait(1000);
+		}
+		catch(Exception e) {
+			
+		}
+		
+	}
+	
+	public void dispose() {
+		this.dispose();
 	}
 
 }

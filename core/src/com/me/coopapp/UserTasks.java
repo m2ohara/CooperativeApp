@@ -37,13 +37,13 @@ public class UserTasks implements IUnitOfWork {
 
 		@Override
 		public void setTransaction(String query) {
-			try {
-				stmt = SQLConnection.connection.createStatement();
-				Query = query;
-			}
-			catch(SQLException e) {
-			
-			}
+//			try {
+////				stmt = SQLConnection.connection.createStatement();
+//				Query = query;
+//			}
+//			catch(SQLException e) {
+//			
+//			}
 		}
 		
 		@Override
