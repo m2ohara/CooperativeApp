@@ -20,6 +20,7 @@ public class Setup {
 		connection = conn;
 	}
 	
+	//Check if database is setup
 	public boolean isTableExists() {
 		
 		boolean hasFirstTable = false;

@@ -29,19 +29,19 @@ public class ProcessManager implements Runnable {
 	
 	public void Setup() {
 		
-		Setup createDAL = new Setup(connection);
+		Setup setupState = new Setup(connection);
 		
 		//Configure app
 		
 		//Load settings
-		if(createDAL.isTableExists()) {
+		if(setupState.isTableExists()) {
 			userState.action = "Get";
 		}
 		
 		//If new setup create new settings 
-		else if(createDAL.isTableExists() == false) {
+		else if(setupState.isTableExists() == false) {
 			
-			createDAL.createDatabaseFromFile();
+			setupState.createDatabaseFromFile();
 			userState.action = "Insert";
 		} 
 		

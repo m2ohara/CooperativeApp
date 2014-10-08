@@ -32,7 +32,7 @@ public class Screen {
 		}
 		//Get start screen if null
 		else {
-			texture = new Texture("StartTexture.jpg");
+			texture = new Texture("badlogic.jpg");
 		}
 	}
 	
