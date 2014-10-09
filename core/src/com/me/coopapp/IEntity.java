@@ -1,7 +1,5 @@
 package com.me.coopapp;
 
-import org.sqlite.SQLiteConnection;
-
 public interface IEntity {
 	
 	public String Insert();

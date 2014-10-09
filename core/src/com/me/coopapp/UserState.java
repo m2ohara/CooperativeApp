@@ -4,14 +4,14 @@ import java.sql.Statement;
 
 import org.sqlite.SQLiteConnection;
 
-public class Task {
+public class UserState implements ITask {
 	
 	private IEntity entity;
 	public String imageName;
 	private SQLiteConnection conn;
 	private Statement statement;
 	
-	public Task(IEntity _entity) {
+	public UserState(IEntity _entity) {
 		entity = _entity;
 	}
 	

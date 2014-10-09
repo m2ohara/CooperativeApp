@@ -2,21 +2,24 @@ package com.me.coopapp;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Observable;
 
 import org.sqlite.SQLiteConnection;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class ProcessManager implements Runnable {
+public class ProcessManager extends Observable implements Runnable {
 	
 	private static ProcessManager processInstance = new ProcessManager();
-	private static User userState;
-	private static Screen screen;
+	private static User userEntity;
 	private SQLiteConnection connection;
-	public static ArrayList<Task> Tasks = new ArrayList<Task>();
+	public ArrayList<ITask> UserTasks = new ArrayList<ITask>();
+	public ArrayList<ITask> GameTasks = new ArrayList<ITask>();
+	public ArrayList<ITask> ScreenTasks = new ArrayList<ITask>();
 	
 	private ProcessManager() {
-		userState = User.getUser();
+		userEntity = User.getUser();
+		Screen.getScreenInstance();
 	}
 	
 	//Retrieve single instance of this class
@@ -33,51 +36,50 @@ public class ProcessManager implements Runnable {
 		
 		//Configure app
 		
-		//Load settings
+		//If already setup load settings
 		if(setupState.isTableExists()) {
-			userState.action = "Get";
+			userEntity.action = "Get";
 		}
 		
 		//If new setup create new settings 
 		else if(setupState.isTableExists() == false) {
 			
+			//Setup data base
 			setupState.createDatabaseFromFile();
-			userState.action = "Insert";
+			userEntity.action = "Insert";
+			
+			//Setup registration screen
+			Screen.getScreenInstance().type = Types.ScreenTypes.registerTexture;
+			ScreenTasks.add(Screen.getScreenInstance());
 		} 
-		
-		Tasks.add(new Task(userState));
+		//Perform appropriate user action
+		UserTasks.add(new UserState(userEntity));
 	
 	}
 	
-	public void ScreenState(SpriteBatch batch) {
-		//Default screen
-		ScreenTypes screenType = ScreenTypes.startTexture;
+	private void ScreenState() {
 		
 		//Process current screen state
-		screen = Screen.getScreenInstance();
-		screen.update(screenType);
-		
-		//Render 
-		batch.draw(screen.texture, 0, 0);
+		for(ITask t : ScreenTasks) {
+			t.Perform();
+			ScreenTasks.remove(t);
+		}
 	}
 	
 	private void UserState() {
 		//Process current user state
-		for(Task t : Tasks) {
+		for(ITask t : UserTasks) {
 			t.Perform();
+			UserTasks.remove(t);
 		}
 	}
 	
 	private void GameState() {
 		//Process current game state
-	}
-	
-	public void SetConnection(SQLiteConnection conn) {
-		connection = conn;
-	}
-	
-	public Connection GetConnection() {
-		return connection;
+		for(ITask t : GameTasks) {
+			t.Perform();
+			GameTasks.remove(t);
+		}
 	}
 	
 	public void process() {
@@ -86,6 +88,8 @@ public class ProcessManager implements Runnable {
 		
 		GameState();
 		
+		ScreenState();
+		
 	}
 
 	@Override
@@ -93,7 +97,7 @@ public class ProcessManager implements Runnable {
 		
 		process();
 		try {
-			this.wait(1000);
+			this.wait(100);
 		}
 		catch(Exception e) {
 			
@@ -103,6 +107,15 @@ public class ProcessManager implements Runnable {
 	
 	public void dispose() {
 		this.dispose();
+	}
+	
+	//TODO: Resolve connection
+	public void SetConnection(SQLiteConnection conn) {
+		connection = conn;
+	}
+	
+	public Connection GetConnection() {
+		return connection;
 	}
 
 }

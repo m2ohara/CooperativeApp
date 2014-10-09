@@ -29,7 +29,7 @@ public class CoopApp extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		
 		processor = ProcessManager.getProcessManager();	
-		//Set db connection
+		//TODO: Resolve Set db connection
 		processor.SetConnection(connection);
 		SQLConnection.connection = connection;
 		try {
@@ -50,7 +50,7 @@ public class CoopApp extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		batch.begin();
-		processor.ScreenState(batch);
+		batch.draw(Screen.getScreenInstance().texture, Screen.getScreenInstance().x, Screen.getScreenInstance().y);
 		batch.end();
 	}
 	
