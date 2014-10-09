@@ -74,6 +74,12 @@ public class UserState implements ITask {
 	public void setImageName(String _imageName) {
 		imageName = _imageName;
 	}
+
+	@Override
+	public void Dispose() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

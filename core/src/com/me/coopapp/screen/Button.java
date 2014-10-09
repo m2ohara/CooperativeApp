@@ -27,7 +27,7 @@ public class Button {
 	
 	private void setButton() {
 		
-		buttonAtlas = new TextureAtlas(Gdx.files.internal("ButtonsPack/Output/Buttons.pack"));
+		buttonAtlas = new TextureAtlas(Gdx.files.internal("Buttons.pack"));
 		skin.addRegions(buttonAtlas);
 		style.font = font;
 		style.up = skin.getDrawable("BtnSetup2");

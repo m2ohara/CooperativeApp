@@ -14,9 +14,6 @@ public class Screen implements ITask {
 	
 	
 	private Screen() {
-		//Default screen
-		texture = new Texture("StartTexture.jpg");
-		setRelativePosition();
 	}
 	
 	public static Screen getScreenInstance() {
@@ -65,6 +62,12 @@ public class Screen implements ITask {
 	@Override
 	public void Perform() {
 		set(type);
+	}
+
+	@Override
+	public void Dispose() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

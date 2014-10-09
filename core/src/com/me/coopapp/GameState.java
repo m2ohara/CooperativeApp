@@ -26,8 +26,14 @@ public class GameState implements ITask {
 		stage.act(Gdx.graphics.getDeltaTime());
 	}
 	
-	public void SetActors() {
-		stage.addActor(actor);
+	public void SetActors(Actor actorToAdd) {
+		stage.addActor(actorToAdd);
+	}
+
+	@Override
+	public void Dispose() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

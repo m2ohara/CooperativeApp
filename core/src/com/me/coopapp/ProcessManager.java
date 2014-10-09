@@ -7,6 +7,7 @@ import java.util.Observable;
 import org.sqlite.SQLiteConnection;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.me.coopapp.screen.Button;
 
 public class ProcessManager extends Observable implements Runnable {
 	
@@ -47,39 +48,46 @@ public class ProcessManager extends Observable implements Runnable {
 			//Setup data base
 			setupState.createDatabaseFromFile();
 			userEntity.action = "Insert";
-			
-			//Setup registration screen
-			Screen.getScreenInstance().type = Types.ScreenTypes.registerTexture;
-			ScreenTasks.add(Screen.getScreenInstance());
 		} 
 		//Perform appropriate user action
-		UserTasks.add(new UserState(userEntity));
+//		UserTasks.add(new UserState(userEntity));
+		
+		//Setup registration screen
+		Screen.getScreenInstance().type = Types.ScreenTypes.registerTexture;
+		ScreenTasks.add(Screen.getScreenInstance());
+		
+		//Add actors
+		GameState.getGameState().SetActors(new Button("").button );
+		GameTasks.add(GameState.getGameState());
+		
+		//Start logic thread
+		new Thread(this).start();
 	
 	}
 	
-	private void ScreenState() {
+	public void ScreenState() {
 		
 		//Process current screen state
 		for(ITask t : ScreenTasks) {
 			t.Perform();
-			ScreenTasks.remove(t);
 		}
+		ScreenTasks.clear();
 	}
 	
 	private void UserState() {
 		//Process current user state
 		for(ITask t : UserTasks) {
 			t.Perform();
-			UserTasks.remove(t);
 		}
+		UserTasks.clear();
 	}
 	
 	private void GameState() {
 		//Process current game state
 		for(ITask t : GameTasks) {
 			t.Perform();
-			GameTasks.remove(t);
 		}
+		GameTasks.clear();
 	}
 	
 	public void process() {
@@ -88,7 +96,7 @@ public class ProcessManager extends Observable implements Runnable {
 		
 		GameState();
 		
-		ScreenState();
+//		ScreenState();
 		
 	}
 

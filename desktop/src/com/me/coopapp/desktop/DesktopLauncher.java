@@ -8,6 +8,7 @@ public class DesktopLauncher {
 	
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.height = 900;
 		CoopApp app = new CoopApp();
 		new LwjglApplication(app, config);
 		

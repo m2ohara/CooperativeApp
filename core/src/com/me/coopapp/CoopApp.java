@@ -28,6 +28,8 @@ public class CoopApp extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		
+		Screen.getScreenInstance().set(Types.ScreenTypes.startTexture);
+		
 		processor = ProcessManager.getProcessManager();	
 		//TODO: Resolve Set db connection
 		processor.SetConnection(connection);
@@ -39,15 +41,14 @@ public class CoopApp extends ApplicationAdapter {
 			
 		}
 		processor.Setup();
-		
-		//Start logic thread
-		new Thread(processor).start();
 	}
 
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		processor.ScreenState();
 		
 		batch.begin();
 		batch.draw(Screen.getScreenInstance().texture, Screen.getScreenInstance().x, Screen.getScreenInstance().y);
