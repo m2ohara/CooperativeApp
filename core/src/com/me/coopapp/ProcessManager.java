@@ -20,7 +20,7 @@ public class ProcessManager extends Observable implements Runnable {
 	
 	private ProcessManager() {
 		userEntity = User.getUser();
-		Screen.getScreenInstance();
+		ScreenState.getScreenInstance();
 	}
 	
 	//Retrieve single instance of this class
@@ -31,7 +31,7 @@ public class ProcessManager extends Observable implements Runnable {
 		return processInstance;
 	}
 	
-	public void Setup() {
+	public void processSetup() {
 		
 		Setup setupState = new Setup(connection);
 		
@@ -50,14 +50,14 @@ public class ProcessManager extends Observable implements Runnable {
 			userEntity.action = "Insert";
 		} 
 		//Perform appropriate user action
-//		UserTasks.add(new UserState(userEntity));
+		UserTasks.add(new UserState(userEntity));
 		
-		//Setup registration screen
-		Screen.getScreenInstance().type = Types.ScreenTypes.registerTexture;
-		ScreenTasks.add(Screen.getScreenInstance());
+		//TO DO: Place in new setup condition. Setup registration screen
+		ScreenState.getScreenInstance().type = Types.ScreenTypes.registerTexture;
+		ScreenTasks.add(ScreenState.getScreenInstance());
 		
-		//Add actors
-		GameState.getGameState().SetActors(new Button("").button );
+		//TODO: Refactor into game state. Add actors
+//		GameState.getGameState().SetActors(new Button("").button );
 		GameTasks.add(GameState.getGameState());
 		
 		//Start logic thread
@@ -65,7 +65,7 @@ public class ProcessManager extends Observable implements Runnable {
 	
 	}
 	
-	public void ScreenState() {
+	public void processScreenState() {
 		
 		//Process current screen state
 		for(ITask t : ScreenTasks) {
@@ -74,7 +74,7 @@ public class ProcessManager extends Observable implements Runnable {
 		ScreenTasks.clear();
 	}
 	
-	private void UserState() {
+	private void processUserState() {
 		//Process current user state
 		for(ITask t : UserTasks) {
 			t.Perform();
@@ -82,7 +82,7 @@ public class ProcessManager extends Observable implements Runnable {
 		UserTasks.clear();
 	}
 	
-	private void GameState() {
+	private void processGameState() {
 		//Process current game state
 		for(ITask t : GameTasks) {
 			t.Perform();
@@ -92,9 +92,9 @@ public class ProcessManager extends Observable implements Runnable {
 	
 	public void process() {
 		
-		UserState();
+		processUserState();
 		
-		GameState();
+		processGameState();
 		
 //		ScreenState();
 		

@@ -30,17 +30,17 @@ public class Button {
 		buttonAtlas = new TextureAtlas(Gdx.files.internal("Buttons.pack"));
 		skin.addRegions(buttonAtlas);
 		style.font = font;
-		style.up = skin.getDrawable("BtnSetup2");
-		style.down = skin.getDrawable("BtnSetup2-down");
+		style.up = skin.getDrawable("SetUpBtn2");
+		style.down = skin.getDrawable("SetUpBtn2-down");
 		button = new TextButton(text, style);
 	}
 	
 	private void setWidth() {
-		button.setWidth(0);
+		button.setWidth(202);
 	}
 	
 	private void setHeight() {
-		button.setHeight(0);
+		button.setHeight(76);
 	}
 
 }

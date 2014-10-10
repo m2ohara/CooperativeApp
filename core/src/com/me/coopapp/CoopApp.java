@@ -28,7 +28,7 @@ public class CoopApp extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		
-		Screen.getScreenInstance().set(Types.ScreenTypes.startTexture);
+		ScreenState.getScreenInstance().set(Types.ScreenTypes.startTexture);
 		
 		processor = ProcessManager.getProcessManager();	
 		//TODO: Resolve Set db connection
@@ -40,7 +40,8 @@ public class CoopApp extends ApplicationAdapter {
 		catch(SQLException e) {
 			
 		}
-		processor.Setup();
+		processor.processSetup();
+//		Gdx.input.setInputProcessor(GameState.stage);
 	}
 
 	@Override
@@ -48,10 +49,11 @@ public class CoopApp extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		processor.ScreenState();
+		processor.processScreenState();
+		GameState.stage.draw();
 		
 		batch.begin();
-		batch.draw(Screen.getScreenInstance().texture, Screen.getScreenInstance().x, Screen.getScreenInstance().y);
+		batch.draw(ScreenState.getScreenInstance().texture, ScreenState.getScreenInstance().x, ScreenState.getScreenInstance().y);
 		batch.end();
 	}
 	

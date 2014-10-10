@@ -3,9 +3,9 @@ package com.me.coopapp;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
-public class Screen implements ITask {
+public class ScreenState implements ITask {
 	
-	private static Screen screenInstance = null;
+	private static ScreenState screenInstance = null;
 	public Texture texture;
 	public float x;
 	public float y;
@@ -13,12 +13,12 @@ public class Screen implements ITask {
 	public Types.ScreenTypes type;
 	
 	
-	private Screen() {
+	private ScreenState() {
 	}
 	
-	public static Screen getScreenInstance() {
+	public static ScreenState getScreenInstance() {
 		if(screenInstance == null) {
-			screenInstance = new Screen();
+			screenInstance = new ScreenState();
 		}
 		return screenInstance;
 	}
