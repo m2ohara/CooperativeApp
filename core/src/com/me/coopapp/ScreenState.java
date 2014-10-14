@@ -2,6 +2,8 @@ package com.me.coopapp;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.me.coopapp.gamestate.GameState;
 
 public class ScreenState implements ITask {
 	
@@ -62,12 +64,19 @@ public class ScreenState implements ITask {
 	@Override
 	public void Perform() {
 		set(type);
+		GameState.stage.addActor(new Image(texture));
 	}
 
 	@Override
 	public void Dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Object getTaskItems() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

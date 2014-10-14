@@ -6,10 +6,14 @@ import java.util.Observable;
 
 import org.sqlite.SQLiteConnection;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.me.coopapp.gamestate.GameState;
+import com.me.coopapp.gamestate.GameStateItem;
+import com.me.coopapp.gamestate.GameStateItem.WaitingState;
 import com.me.coopapp.screen.Button;
 
-public class ProcessManager extends Observable implements Runnable {
+public class ProcessManager extends Thread {
 	
 	private static ProcessManager processInstance = new ProcessManager();
 	private static User userEntity;
@@ -17,6 +21,8 @@ public class ProcessManager extends Observable implements Runnable {
 	public ArrayList<ITask> UserTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> GameTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> ScreenTasks = new ArrayList<ITask>();
+	
+	public ArrayList<Object> gdxItems = new ArrayList<Object>();
 	
 	private ProcessManager() {
 		userEntity = User.getUser();
@@ -56,12 +62,11 @@ public class ProcessManager extends Observable implements Runnable {
 		ScreenState.getScreenInstance().type = Types.ScreenTypes.registerTexture;
 		ScreenTasks.add(ScreenState.getScreenInstance());
 		
-		//TODO: Refactor into game state. Add actors
-//		GameState.getGameState().SetActors(new Button("").button );
+		Button b = new Button();
+		GameStateItem gItem = new GameStateItem(b);
+		gItem.state = GameStateItem.WaitingState.GdxInstantiate;
+		GameState.getGameState().items.add(gItem);
 		GameTasks.add(GameState.getGameState());
-		
-		//Start logic thread
-		new Thread(this).start();
 	
 	}
 	
@@ -86,8 +91,22 @@ public class ProcessManager extends Observable implements Runnable {
 		//Process current game state
 		for(ITask t : GameTasks) {
 			t.Perform();
+			
+			performGdxOutcome(t);
 		}
-		GameTasks.clear();
+//		GameTasks.clear();
+	}
+	
+	private void performGdxOutcome(ITask t) {
+		//Check task outcome
+		ArrayList<GameStateItem> GameItems = (ArrayList<GameStateItem>)t.getTaskItems();
+		for(GameStateItem item : GameItems) {
+			//If item needs to be instantiated in GL context
+			if(item.state == WaitingState.GdxInstantiate && item.stateOutcome != null) {
+				gdxItems.add(item.stateOutcome);
+				item.state = WaitingState.GlgSet;
+			}
+		}
 	}
 	
 	public void process() {
@@ -96,25 +115,56 @@ public class ProcessManager extends Observable implements Runnable {
 		
 		processGameState();
 		
-//		ScreenState();
+		syncToGdxThread();
 		
 	}
 
 	@Override
 	public void run() {
 		
-		process();
-		try {
-			this.wait(100);
-		}
-		catch(Exception e) {
-			
+		while(true) {
+			process();
+			try {
+				//TO DO: Sync sleep period with frame rate
+				Thread.sleep(10);
+			}
+			catch(Exception e) {
+				
+			}
 		}
 		
 	}
 	
 	public void dispose() {
 		this.dispose();
+	}
+	
+	//This takes place in the Gdx thread
+	private void syncToGdxThread() {
+		
+	    Gdx.app.postRunnable(new Runnable() {
+	        @Override
+	        public void run() {
+	           performGdxProcess();
+	        }
+	     });
+	}
+	
+	private void performGdxProcess() {
+		
+		if(!gdxItems.isEmpty()) {
+			for(Object item : gdxItems) {
+				
+				//Initialise any items needing GL context
+				if(item instanceof GLContextItem) {
+					((GLContextItem) item).initialiseItem();
+				}
+				
+				//Set items needed to render
+				if(item instanceof Actor) {
+				}
+			}
+		}
 	}
 	
 	//TODO: Resolve connection

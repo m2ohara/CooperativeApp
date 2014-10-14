@@ -80,6 +80,12 @@ public class UserState implements ITask {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Object getTaskItems() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
