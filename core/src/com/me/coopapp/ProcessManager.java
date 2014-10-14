@@ -2,15 +2,16 @@ package com.me.coopapp;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Observable;
 
 import org.sqlite.SQLiteConnection;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.me.coopapp.gamestate.GLContextItem;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GameStateItem;
-import com.me.coopapp.gamestate.GameStateItem.WaitingState;
+import com.me.coopapp.gamestate.GameStateItem.NextState;
+import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.screen.Button;
 
 public class ProcessManager extends Thread {
@@ -63,8 +64,8 @@ public class ProcessManager extends Thread {
 		ScreenTasks.add(ScreenState.getScreenInstance());
 		
 		Button b = new Button();
-		GameStateItem gItem = new GameStateItem(b);
-		gItem.state = GameStateItem.WaitingState.GdxInstantiate;
+		GameStateItem gItem = new GdxGameStateItem(b);
+		gItem.state = GameStateItem.NextState.GdxInstantiate;
 		GameState.getGameState().items.add(gItem);
 		GameTasks.add(GameState.getGameState());
 	
@@ -101,10 +102,11 @@ public class ProcessManager extends Thread {
 		//Check task outcome
 		ArrayList<GameStateItem> GameItems = (ArrayList<GameStateItem>)t.getTaskItems();
 		for(GameStateItem item : GameItems) {
+			//TODO: Refactor Add GameStateItem instead of stateOutcome object
 			//If item needs to be instantiated in GL context
-			if(item.state == WaitingState.GdxInstantiate && item.stateOutcome != null) {
+			if(item.state == NextState.GdxInstantiate && item.stateOutcome != null) {
 				gdxItems.add(item.stateOutcome);
-				item.state = WaitingState.GlgSet;
+				item.state = NextState.GlgSet;
 			}
 		}
 	}

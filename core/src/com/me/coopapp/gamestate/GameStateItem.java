@@ -1,28 +1,28 @@
 package com.me.coopapp.gamestate;
 
-import com.me.coopapp.GLContextItem;
 import com.me.coopapp.screen.Button;
 
 public class GameStateItem {
 	
-	public WaitingState state;
+	public NextState state;
 	Object item;
 	public Object stateOutcome;
+	public IGLContext glContext;
 	
 	public GameStateItem(Object _item) {
 		item = _item;
 	}
 	
-	public enum WaitingState {
+	public enum NextState {
 		GdxInstantiate, GlgSet, GlgAct
 	}
 	
 	public void setState() {
-		if(state == WaitingState.GdxInstantiate) {
+		if(state == NextState.GdxInstantiate) {
 			stateOutcome = new GLContextItem(item);
 		}
 		
-		if(state == WaitingState.GlgSet) {
+		if(state == NextState.GlgSet) {
 			stateOutcome = ((Button)item).instance;
 		}
 	}

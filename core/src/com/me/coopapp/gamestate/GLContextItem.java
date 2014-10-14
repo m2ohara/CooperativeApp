@@ -1,4 +1,4 @@
-package com.me.coopapp;
+package com.me.coopapp.gamestate;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,6 @@ public class GLContextItem implements IGLContext {
 	
 	public GLContextItem(Object _item) {
 		item = _item;
-
 	}
 	
 	public void initialiseItem() {

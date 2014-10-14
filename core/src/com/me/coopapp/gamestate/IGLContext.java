@@ -1,4 +1,4 @@
-package com.me.coopapp;
+package com.me.coopapp.gamestate;
 
 public interface IGLContext {
 

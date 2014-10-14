@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.me.coopapp.ITask;
-import com.me.coopapp.gamestate.GameStateItem.WaitingState;
+import com.me.coopapp.gamestate.GameStateItem.NextState;
 
 public class GameState implements ITask {
 	
@@ -41,7 +41,7 @@ public class GameState implements ITask {
 	
 	private void performGameStateOutcome(GameStateItem item) {
 		
-		if(item.state == WaitingState.GlgSet && item.stateOutcome != null) {
+		if(item.state == NextState.GlgSet && item.stateOutcome != null) {
 			try {
 				if(item.stateOutcome.getClass() == Class.forName("com.badlogic.gdx.scenes.scene2d.ui.TextButton")) {
 					SetActor(item);
@@ -50,7 +50,7 @@ public class GameState implements ITask {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			item.state = WaitingState.GlgAct;
+			item.state = NextState.GlgAct;
 		}
 	}
 	

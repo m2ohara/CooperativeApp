@@ -2,6 +2,7 @@ package com.me.coopapp;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.me.coopapp.gamestate.GameState;
 
@@ -59,12 +60,15 @@ public class ScreenState implements ITask {
 		//Set texture position based on screen size 
 		x = (Gdx.graphics.getWidth() - texture.getWidth()) /2 ;
 		y = (Gdx.graphics.getHeight()  - texture.getHeight()) / 2;
+		
 	}
 
 	@Override
 	public void Perform() {
 		set(type);
-		GameState.stage.addActor(new Image(texture));
+		Actor background = new Image(texture);
+		background.setPosition(x, y);
+		GameState.stage.addActor(background);
 	}
 
 	@Override
