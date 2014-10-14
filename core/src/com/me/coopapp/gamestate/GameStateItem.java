@@ -19,7 +19,7 @@ public class GameStateItem {
 	
 	public void setState() {
 		if(state == NextState.GdxInstantiate) {
-			stateOutcome = new GLContextItem(item);
+			stateOutcome = new GLContextItem();
 		}
 		
 		if(state == NextState.GlgSet) {

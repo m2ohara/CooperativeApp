@@ -158,14 +158,16 @@ public class ProcessManager extends Thread {
 			for(Object item : gdxItems) {
 				
 				//Initialise any items needing GL context
-				if(item instanceof GLContextItem) {
-					((GLContextItem) item).initialiseItem();
+				if(item instanceof GameStateItem) {
+					((GdxGameStateItem) item).initialise();
 				}
 				
 				//Set items needed to render
 				if(item instanceof Actor) {
 				}
 			}
+			
+			gdxItems.clear();
 		}
 	}
 	
