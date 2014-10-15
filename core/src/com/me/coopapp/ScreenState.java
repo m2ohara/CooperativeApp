@@ -64,7 +64,7 @@ public class ScreenState implements ITask {
 	}
 
 	@Override
-	public void Perform() {
+	public void Perform(boolean isGdxThread) {
 		set(type);
 		Actor background = new Image(texture);
 		background.setPosition(x, y);

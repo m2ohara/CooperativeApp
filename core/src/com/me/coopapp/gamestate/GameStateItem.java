@@ -18,10 +18,8 @@ public class GameStateItem {
 	}
 	
 	public void setState() {
-		if(state == NextState.GdxInstantiate) {
-			stateOutcome = new GLContextItem();
-		}
 		
+		//Create item wrapper
 		if(state == NextState.GlgSet) {
 			stateOutcome = ((Button)item).instance;
 		}

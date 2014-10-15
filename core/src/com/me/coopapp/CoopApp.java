@@ -19,7 +19,7 @@ public class CoopApp extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	
-	private ProcessManager processor = ProcessManager.getProcessManager();
+	private GameLogic processor = GameLogic.getProcessManager();
 	public SQLiteConnection connection;
 	
 	//TO DO: resolve connection dependency
@@ -33,7 +33,7 @@ public class CoopApp extends ApplicationAdapter {
 		
 		ScreenState.getScreenInstance().set(Types.ScreenTypes.startTexture);
 		
-		processor = ProcessManager.getProcessManager();	
+		processor = GameLogic.getProcessManager();	
 		//TODO: Resolve Set db connection
 		processor.SetConnection(connection);
 		SQLConnection.connection = connection;

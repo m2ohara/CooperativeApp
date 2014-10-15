@@ -14,26 +14,24 @@ import com.me.coopapp.gamestate.GameStateItem.NextState;
 import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.screen.Button;
 
-public class ProcessManager extends Thread {
+public class GameLogic extends Thread {
 	
-	private static ProcessManager processInstance = new ProcessManager();
+	private static GameLogic processInstance = new GameLogic();
 	private static User userEntity;
 	private SQLiteConnection connection;
 	public ArrayList<ITask> UserTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> GameTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> ScreenTasks = new ArrayList<ITask>();
 	
-	public ArrayList<Object> gdxItems = new ArrayList<Object>();
-	
-	private ProcessManager() {
+	private GameLogic() {
 		userEntity = User.getUser();
 		ScreenState.getScreenInstance();
 	}
 	
 	//Retrieve single instance of this class
-	public static ProcessManager getProcessManager() {
+	public static GameLogic getProcessManager() {
 		if(processInstance == null) {
-			processInstance = new ProcessManager();
+			processInstance = new GameLogic();
 		}
 		return processInstance;
 	}
@@ -75,7 +73,7 @@ public class ProcessManager extends Thread {
 		
 		//Process current screen state
 		for(ITask t : ScreenTasks) {
-			t.Perform();
+			t.Perform(false);
 		}
 		ScreenTasks.clear();
 	}
@@ -83,39 +81,39 @@ public class ProcessManager extends Thread {
 	private void processUserState() {
 		//Process current user state
 		for(ITask t : UserTasks) {
-			t.Perform();
+			t.Perform(false);
 		}
 		UserTasks.clear();
 	}
 	
-	private void processGameState() {
+	private void processGameState(boolean isGdxThread) {
 		//Process current game state
 		for(ITask t : GameTasks) {
-			t.Perform();
+			t.Perform(isGdxThread);
 			
-			performGdxOutcome(t);
+//			GameState.performGdxOutcome(t);
 		}
 //		GameTasks.clear();
 	}
 	
-	private void performGdxOutcome(ITask t) {
-		//Check task outcome
-		ArrayList<GameStateItem> GameItems = (ArrayList<GameStateItem>)t.getTaskItems();
-		for(GameStateItem item : GameItems) {
-			//TODO: Refactor Add GameStateItem instead of stateOutcome object
-			//If item needs to be instantiated in GL context
-			if(item.state == NextState.GdxInstantiate && item.stateOutcome != null) {
-				gdxItems.add(item.stateOutcome);
-				item.state = NextState.GlgSet;
-			}
-		}
-	}
+//	private void performGdxOutcome(ITask t) {
+//		//Check task outcome
+//		ArrayList<GameStateItem> GameItems = (ArrayList<GameStateItem>)t.getTaskItems();
+//		for(GameStateItem item : GameItems) {
+//			//TODO: Refactor Add GameStateItem instead of stateOutcome object
+//			//If item needs to be instantiated in GL context
+//			if(item.state == NextState.GdxInstantiate && item.stateOutcome != null) {
+//				gdxItems.add(item.stateOutcome);
+//				item.state = NextState.GlgSet;
+//			}
+//		}
+//	}
 	
 	public void process() {
 		
 		processUserState();
 		
-		processGameState();
+		processGameState(false);
 		
 		syncToGdxThread();
 		
@@ -147,29 +145,30 @@ public class ProcessManager extends Thread {
 	    Gdx.app.postRunnable(new Runnable() {
 	        @Override
 	        public void run() {
-	           performGdxProcess();
+//	           GameState.performGdxProcess();
+	           processGameState(true);
 	        }
 	     });
 	}
 	
-	private void performGdxProcess() {
-		
-		if(!gdxItems.isEmpty()) {
-			for(Object item : gdxItems) {
-				
-				//Initialise any items needing GL context
-				if(item instanceof GameStateItem) {
-					((GdxGameStateItem) item).initialise();
-				}
-				
-				//Set items needed to render
-				if(item instanceof Actor) {
-				}
-			}
-			
-			gdxItems.clear();
-		}
-	}
+//	private void performGdxProcess() {
+//		
+//		if(!gdxItems.isEmpty()) {
+//			for(Object item : gdxItems) {
+//				
+//				//Initialise any items needing GL context
+//				if(item instanceof GameStateItem) {
+//					((GdxGameStateItem) item).initialise();
+//				}
+//				
+//				//Set items needed to render
+//				if(item instanceof Actor) {
+//				}
+//			}
+//			
+//			gdxItems.clear();
+//		}
+//	}
 	
 	//TODO: Resolve connection
 	public void SetConnection(SQLiteConnection conn) {

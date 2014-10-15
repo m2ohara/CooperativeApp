@@ -15,7 +15,7 @@ public class UserState implements ITask {
 		entity = _entity;
 	}
 	
-	public void Perform() {
+	public void Perform(boolean isGdxThread) {
 		startTransaction();
 		executeTransaction(entity.GetAction());
 	}

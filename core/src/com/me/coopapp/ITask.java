@@ -2,7 +2,7 @@ package com.me.coopapp;
 
 public interface ITask {
 	
-	public void Perform();
+	public void Perform(boolean isGdxThread);
 	
 	public Object getTaskItems();
 	

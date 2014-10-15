@@ -14,7 +14,8 @@ public class GameState implements ITask {
 	public static Stage stage = new Stage();
 	public static Actor actor;
 	private static GameState gameInstance;
-	public ArrayList<GameStateItem> items = new ArrayList<GameStateItem>();
+	public static ArrayList<GameStateItem> items = new ArrayList<GameStateItem>();
+	public static ArrayList<Object> gdxItems = new ArrayList<Object>();
 	
 	//Singleton
 	private GameState() {
@@ -28,18 +29,71 @@ public class GameState implements ITask {
 		return gameInstance;
 	}
 	
-	public void Perform() {
+	public void Perform(boolean isGdxThread) {
 		//Perform current actions
 		for(GameStateItem item : items) {
+			
+//			setGdxState();
+			
 			item.setState();
 			
-			performGameStateOutcome(item);
+			//Perform logic within game logic thread
+			if(!isGdxThread)
+				performGlgOutcome(item);
+			
+			//Perform logic within Gdx thread
+			if(isGdxThread)
+				performGdxOutcome(item);
 		}
 		
 		
 	}
 	
-	private void performGameStateOutcome(GameStateItem item) {
+	@SuppressWarnings("unchecked")
+//	public void setGdxState() {
+//		//Check task outcome
+////		ArrayList<GameStateItem> GameItems = (ArrayList<GameStateItem>)this.getTaskItems();
+//		for(GameStateItem item : items) {
+//			//If item needs to be instantiated in GL context
+//			if(item.state == NextState.GdxInstantiate && item.stateOutcome != null) {
+//				gdxItems.add(item.stateOutcome);
+//				item.state = NextState.GlgSet;
+//			}
+//		}
+//	}
+	
+	//Called from Gdx thread
+//	public static void performGdxProcess() {
+//		
+//		if(!items.isEmpty()) {
+//			for(Object item : gdxItems) {
+//				
+//				//Initialise any items needing GL context
+//				if(item instanceof GameStateItem) {
+//					((GdxGameStateItem) item).initialise();
+//				}
+//				
+//				//Set items needed to render
+//				if(item instanceof Actor) {
+//				}
+//			}
+//			
+//			gdxItems.clear();
+//		}
+//	}
+	
+	private void performGdxOutcome(GameStateItem item) {
+		//Initialise any items needing GL context
+		if(item instanceof GdxGameStateItem && item.state == NextState.GdxInstantiate) {
+			((GdxGameStateItem) item).initialise();
+		}
+		
+		//Set items needed to render
+//		if(item instanceof Actor) {
+//		}
+	}
+	
+	private void performGlgOutcome(GameStateItem item) {
 		
 		if(item.state == NextState.GlgSet && item.stateOutcome != null) {
 			try {
@@ -52,6 +106,17 @@ public class GameState implements ITask {
 			}
 			item.state = NextState.GlgAct;
 		}
+	}
+
+	@Override
+	public void Dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object getTaskItems() {
+		return items;
 	}
 	
 	public void SetActor(GameStateItem gState) {
@@ -69,21 +134,6 @@ public class GameState implements ITask {
 		float y = (Gdx.graphics.getHeight()  - actorToSet.getHeight()) / 2;
 		
 		actorToSet.setPosition(x, y);
-	}
-	
-	private void convertBox2DCoordinates(float x, float y) {
-
-	}
-
-	@Override
-	public void Dispose() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Object getTaskItems() {
-		return items;
 	}
 
 }

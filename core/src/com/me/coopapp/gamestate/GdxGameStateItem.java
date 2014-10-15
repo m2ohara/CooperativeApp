@@ -9,7 +9,9 @@ public class GdxGameStateItem extends GameStateItem {
 	}
 	
 	public void initialise() {
+		stateOutcome = new GLContextItem();
 		glContext.initialiseItem(item);
+		state = NextState.GlgSet;
 	}
 
 }
