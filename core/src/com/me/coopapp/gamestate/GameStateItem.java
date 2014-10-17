@@ -1,28 +1,27 @@
 package com.me.coopapp.gamestate;
 
-import com.me.coopapp.screen.Button;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class GameStateItem {
 	
-	public NextState state;
-	Object item;
-	public Object stateOutcome;
+	public NextThreadAction state;
+	public Object item;
 	public IGLContext glContext;
 	
 	public GameStateItem(Object _item) {
 		item = _item;
 	}
 	
-	public enum NextState {
-		GdxInstantiate, GlgSet, GlgAct
+	public enum NextThreadAction {
+		GdxInstantiate, GlgSet, GlgAct, Finished
 	}
 	
-	public void setState() {
+	public void setToStage(Stage stage) {
 		
-		//Create item wrapper
-		if(state == NextState.GlgSet) {
-			stateOutcome = ((Button)item).instance;
-		}
+	}
+	
+	public void dispose() {
+		
 	}
 
 

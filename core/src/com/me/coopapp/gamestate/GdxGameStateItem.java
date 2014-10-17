@@ -1,17 +1,26 @@
 package com.me.coopapp.gamestate;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.me.coopapp.gamestate.GameStateItem.NextThreadAction;
+
 public class GdxGameStateItem extends GameStateItem {
 
-	public GdxGameStateItem(Object _item) {
+	public GdxGameStateItem(IGLContext _item) {
 		super(_item);
 
-		glContext = new GLContextItem();
+		//Set next state to instantiate
+		state = GameStateItem.NextThreadAction.GdxInstantiate;
+		glContext = _item;
 	}
 	
-	public void initialise() {
-		stateOutcome = new GLContextItem();
-		glContext.initialiseItem(item);
-		state = NextState.GlgSet;
+	public void instantiateGdxItem() {
+		glContext.instantiate();
+		state = NextThreadAction.GlgSet;
+	}
+	
+	public void setToStage(Stage stage) {
+		glContext.setToStage(stage);
+		state = NextThreadAction.Finished;
 	}
 
 }

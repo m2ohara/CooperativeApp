@@ -2,10 +2,10 @@ package com.me.coopapp;
 
 public interface ITask {
 	
-	public void Perform(boolean isGdxThread);
+	public void perform(boolean isGdxThread);
 	
-	public Object getTaskItems();
+	public boolean isTaskComplete();
 	
-	public void Dispose();
+	public void dispose();
 
 }

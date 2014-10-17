@@ -64,7 +64,7 @@ public class ScreenState implements ITask {
 	}
 
 	@Override
-	public void Perform(boolean isGdxThread) {
+	public void perform(boolean isGdxThread) {
 		set(type);
 		Actor background = new Image(texture);
 		background.setPosition(x, y);
@@ -72,15 +72,15 @@ public class ScreenState implements ITask {
 	}
 
 	@Override
-	public void Dispose() {
+	public void dispose() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Object getTaskItems() {
+	public boolean isTaskComplete() {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 	
 

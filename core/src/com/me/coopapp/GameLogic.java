@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import org.sqlite.SQLiteConnection;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.me.coopapp.gamestate.GLContextItem;
 import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.gamestate.GameStateItem;
-import com.me.coopapp.gamestate.GameStateItem.NextState;
 import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.screen.Button;
 
@@ -29,7 +25,7 @@ public class GameLogic extends Thread {
 	}
 	
 	//Retrieve single instance of this class
-	public static GameLogic getProcessManager() {
+	public static GameLogic getInstance() {
 		if(processInstance == null) {
 			processInstance = new GameLogic();
 		}
@@ -61,10 +57,10 @@ public class GameLogic extends Thread {
 		ScreenState.getScreenInstance().type = Types.ScreenTypes.registerTexture;
 		ScreenTasks.add(ScreenState.getScreenInstance());
 		
-		Button b = new Button();
-		GameStateItem gItem = new GdxGameStateItem(b);
-		gItem.state = GameStateItem.NextState.GdxInstantiate;
-		GameState.getGameState().items.add(gItem);
+		GameState.getGameState().items.add(new GdxGameStateItem(new Button("SetupBtn1", 0, 90)));
+		GameState.getGameState().items.add(new GdxGameStateItem(new Button("SetUpBtn2", 0, -90)));
+		
+		
 		GameTasks.add(GameState.getGameState());
 	
 	}
@@ -73,7 +69,7 @@ public class GameLogic extends Thread {
 		
 		//Process current screen state
 		for(ITask t : ScreenTasks) {
-			t.Perform(false);
+			t.perform(false);
 		}
 		ScreenTasks.clear();
 	}
@@ -81,33 +77,31 @@ public class GameLogic extends Thread {
 	private void processUserState() {
 		//Process current user state
 		for(ITask t : UserTasks) {
-			t.Perform(false);
+			t.perform(false);
 		}
 		UserTasks.clear();
 	}
 	
 	private void processGameState(boolean isGdxThread) {
+		
+		ArrayList<ITask> tasksNotComplete = new ArrayList<ITask>();
+		
 		//Process current game state
 		for(ITask t : GameTasks) {
-			t.Perform(isGdxThread);
+			t.perform(isGdxThread);
 			
-//			GameState.performGdxOutcome(t);
+			//Get any current items that need to perform another action within task
+			if(!t.isTaskComplete()) {
+				tasksNotComplete.add(t);
+			}
 		}
-//		GameTasks.clear();
+		
+		GameTasks.clear();
+		
+		//Add any new items with actions to be performed
+		GameTasks.addAll(tasksNotComplete);
 	}
 	
-//	private void performGdxOutcome(ITask t) {
-//		//Check task outcome
-//		ArrayList<GameStateItem> GameItems = (ArrayList<GameStateItem>)t.getTaskItems();
-//		for(GameStateItem item : GameItems) {
-//			//TODO: Refactor Add GameStateItem instead of stateOutcome object
-//			//If item needs to be instantiated in GL context
-//			if(item.state == NextState.GdxInstantiate && item.stateOutcome != null) {
-//				gdxItems.add(item.stateOutcome);
-//				item.state = NextState.GlgSet;
-//			}
-//		}
-//	}
 	
 	public void process() {
 		
@@ -145,30 +139,11 @@ public class GameLogic extends Thread {
 	    Gdx.app.postRunnable(new Runnable() {
 	        @Override
 	        public void run() {
-//	           GameState.performGdxProcess();
+		       processScreenState();
 	           processGameState(true);
 	        }
 	     });
 	}
-	
-//	private void performGdxProcess() {
-//		
-//		if(!gdxItems.isEmpty()) {
-//			for(Object item : gdxItems) {
-//				
-//				//Initialise any items needing GL context
-//				if(item instanceof GameStateItem) {
-//					((GdxGameStateItem) item).initialise();
-//				}
-//				
-//				//Set items needed to render
-//				if(item instanceof Actor) {
-//				}
-//			}
-//			
-//			gdxItems.clear();
-//		}
-//	}
 	
 	//TODO: Resolve connection
 	public void SetConnection(SQLiteConnection conn) {
