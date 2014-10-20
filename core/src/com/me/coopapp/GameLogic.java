@@ -54,7 +54,7 @@ public class GameLogic extends Thread {
 		UserTasks.add(new UserState(userEntity));
 		
 		//TO DO: Place in new setup condition. Setup registration screen
-		ScreenState.getScreenInstance().type = Types.ScreenTypes.registerTexture;
+		ScreenState.getScreenInstance().type = Types.ScreenTypes.register1Texture;
 		ScreenTasks.add(ScreenState.getScreenInstance());
 		
 		GameState.getGameState().items.add(new GdxGameStateItem(new Button("SetupBtn1", 0, 90)));

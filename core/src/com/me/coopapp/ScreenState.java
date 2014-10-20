@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.me.coopapp.gamestate.GameState;
+import com.me.coopapp.screen.IScreen;
+import com.me.coopapp.screen.Screen;
+import com.me.coopapp.screen.setup.RegisterOffline;
 
 public class ScreenState implements ITask {
 	
@@ -14,6 +17,7 @@ public class ScreenState implements ITask {
 	public float y;
 	private Types.ScreenTypes current;
 	public Types.ScreenTypes type;
+	private Screen screen;
 	
 	
 	private ScreenState() {
@@ -43,8 +47,12 @@ public class ScreenState implements ITask {
 				else if(type == Types.ScreenTypes.loadingTexture) {
 					texture = new Texture("LoadingTexture.jpg");
 				}
-				else if(type == Types.ScreenTypes.registerTexture) {
-					texture = new Texture("RegisterTexture.png");
+				else if(type == Types.ScreenTypes.register1Texture) {
+					texture = new Texture("Register1.png");
+				}
+				else if(type == Types.ScreenTypes.register2Texture) {
+					screen = new RegisterOffline();
+					texture = new Texture("Register2.png");
 				}
 				current = type;
 			}

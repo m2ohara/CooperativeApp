@@ -13,11 +13,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.me.coopapp.GameLogic;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.Types;
+import com.me.coopapp.Types.ScreenTypes;
 import com.me.coopapp.gamestate.IGLContext;
 
 public class Button implements IGLContext {
 
-	private TextButton instance;
+	protected TextButton instance;
 	
 	private String type;
 	private TextureAtlas buttonAtlas;
@@ -51,11 +52,16 @@ public class Button implements IGLContext {
 		setWidth();
 		setHeight();
 		
+		setListener(ScreenTypes.startTexture);
+	}
+	
+	public void setListener(final ScreenTypes type) {
 		instance.addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		        //Change screen
-		    	ScreenState.getScreenInstance().type = Types.ScreenTypes.startTexture;
-		    	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());
+		    	ScreenState.getScreenInstance().type = type;
+		    	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());	    		
+
 		    }
 		  }
 		);
