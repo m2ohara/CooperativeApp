@@ -1,13 +1,14 @@
 package com.me.coopapp;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.screen.IScreen;
 import com.me.coopapp.screen.Screen;
-import com.me.coopapp.screen.setup.RegisterOffline;
+import com.me.coopapp.screen.setup.RegisterOfflineScreen;
 
 public class ScreenState implements ITask {
 	
@@ -42,16 +43,19 @@ public class ScreenState implements ITask {
 			if(current != type) {
 				//Load screen
 				if(type == Types.ScreenTypes.startTexture) {
+					screen = new Screen();
 					texture = new Texture("StartTexture.jpg");
 				}
 				else if(type == Types.ScreenTypes.loadingTexture) {
+					screen = new Screen();
 					texture = new Texture("LoadingTexture.jpg");
 				}
 				else if(type == Types.ScreenTypes.register1Texture) {
+					screen = new Screen();
 					texture = new Texture("Register1.png");
 				}
 				else if(type == Types.ScreenTypes.register2Texture) {
-					screen = new RegisterOffline();
+					screen = new RegisterOfflineScreen();
 					texture = new Texture("Register2.png");
 				}
 				current = type;
@@ -77,6 +81,7 @@ public class ScreenState implements ITask {
 		Actor background = new Image(texture);
 		background.setPosition(x, y);
 		GameState.stage.addActor(background);
+		screen.SetUI();
 	}
 
 	@Override

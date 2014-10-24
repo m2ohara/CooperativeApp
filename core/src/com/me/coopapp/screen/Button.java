@@ -52,14 +52,14 @@ public class Button implements IGLContext {
 		setWidth();
 		setHeight();
 		
-		setListener(ScreenTypes.startTexture);
+		setListener();
 	}
 	
-	public void setListener(final ScreenTypes type) {
+	public void setListener() {
 		instance.addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		        //Change screen
-		    	ScreenState.getScreenInstance().type = type;
+		    	ScreenState.getScreenInstance().type = ScreenTypes.register1Texture;
 		    	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());	    		
 
 		    }

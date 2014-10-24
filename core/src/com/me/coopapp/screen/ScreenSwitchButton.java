@@ -7,18 +7,20 @@ import com.me.coopapp.ScreenState;
 import com.me.coopapp.Types.ScreenTypes;
 
 public class ScreenSwitchButton extends Button {
+	
+	public ScreenTypes screenToSwitch;
 
-	public ScreenSwitchButton(String _type) {
+	public ScreenSwitchButton(String _type, ScreenTypes _screenToSwitch) {
 		super(_type);
-		// TODO Auto-generated constructor stub
+		screenToSwitch = _screenToSwitch;
 	}
 	
-	public ScreenSwitchButton(String _type, float xCoord, float yCoord) {
+	public ScreenSwitchButton(String _type, float xCoord, float yCoord, ScreenTypes _screenToSwitch) {
 		super(_type, xCoord, yCoord);
-		// TODO Auto-generated constructor stub
+		screenToSwitch = _screenToSwitch;
 	}
 	
-	public void SetListener(final ScreenTypes screenToSwitch) {
+	public void SetListener() {
 		instance.addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		    	ScreenState.getScreenInstance().type = screenToSwitch;
