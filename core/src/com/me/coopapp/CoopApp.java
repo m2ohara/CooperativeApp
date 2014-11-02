@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sqlite.SQLiteConnection;
+//import org.sqlite.SQLiteConnection;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -20,11 +20,11 @@ public class CoopApp extends ApplicationAdapter {
 	Texture img;
 	
 	private GameLogic processor = GameLogic.getInstance();
-	public SQLiteConnection connection;
+	public Connection connection;
 	
 	//TO DO: resolve connection dependency
 	public void SetConnection(Connection conn) {
-		connection = (SQLiteConnection)conn;
+		connection = (Connection)conn;
 	}
 	
 	@Override

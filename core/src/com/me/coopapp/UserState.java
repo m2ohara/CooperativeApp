@@ -1,14 +1,15 @@
 package com.me.coopapp;
 
+import java.sql.Connection;
 import java.sql.Statement;
 
-import org.sqlite.SQLiteConnection;
+//import org.sqlite.SQLiteConnection;
 
 public class UserState implements ITask {
 	
 	private IEntity entity;
 	public String imageName;
-	private SQLiteConnection conn;
+	private Connection conn;
 	private Statement statement;
 	
 	public UserState(IEntity _entity) {

@@ -23,8 +23,13 @@ public class ScreenSwitchButton extends Button {
 	public void SetListener() {
 		instance.addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
+		    	//Set screen to switch to on click
 		    	ScreenState.getScreenInstance().type = screenToSwitch;
 		    	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());
+		    	
+		    	//Remove this button
+		    	dispose();
+		    	
 		    }
 		  }
 		);

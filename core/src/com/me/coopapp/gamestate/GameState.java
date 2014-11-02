@@ -50,7 +50,7 @@ public class GameState implements ITask {
 			}
 		}
 		
-//		items.removeAll(complete);
+		items.removeAll(complete);
 		
 	}
 	

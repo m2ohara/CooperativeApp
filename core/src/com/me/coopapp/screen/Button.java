@@ -59,8 +59,11 @@ public class Button implements IGLContext {
 		instance.addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		        //Change screen
-		    	ScreenState.getScreenInstance().type = ScreenTypes.register1Texture;
-		    	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());	    		
+		    	ScreenState.getScreenInstance().type = ScreenTypes.register2Texture;
+		    	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());
+		    	
+		    	//Remove this button
+		    	dispose();
 
 		    }
 		  }
@@ -92,8 +95,10 @@ public class Button implements IGLContext {
 		
 		actorToSet.setPosition(x, y);
 	}
-	
+
+	@Override
 	public void dispose() {
+		instance.remove();
 		
 	}
 

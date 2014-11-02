@@ -1,22 +1,21 @@
 package com.me.coopapp;
 
-//import java.sql.Connection;
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import org.sqlite.SQLiteConnection;
+//import org.sqlite.SQLiteConnection;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
 public class Setup {
 	
-	private SQLiteConnection connection;
+	private Connection connection;
 	
 	//TO DO: Set up dependency injection
-	public Setup(SQLiteConnection conn) {
+	public Setup(Connection conn) {
 		connection = conn;
 	}
 	

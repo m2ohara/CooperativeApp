@@ -5,29 +5,64 @@ filter: Nearest,Nearest
 repeat: none
 SetupBtn1-down
   rotate: false
-  xy: 1, 1
+  xy: 1, 176
   size: 199, 79
   orig: 199, 79
   offset: 0, 0
   index: -1
 SetupBtn1
   rotate: false
-  xy: 202, 1
+  xy: 1, 95
   size: 199, 79
   orig: 199, 79
   offset: 0, 0
   index: -1
 SetUpBtn2-down
   rotate: false
-  xy: 403, 4
+  xy: 202, 179
   size: 202, 76
   orig: 202, 76
   offset: 0, 0
   index: -1
 SetUpBtn2
   rotate: false
-  xy: 607, 4
+  xy: 202, 101
   size: 202, 76
   orig: 202, 76
+  offset: 0, 0
+  index: -1
+CreateProfileBtn-down
+  rotate: false
+  xy: 1, 38
+  size: 167, 55
+  orig: 167, 55
+  offset: 0, 0
+  index: -1
+CreateProfileBtn
+  rotate: false
+  xy: 202, 44
+  size: 167, 55
+  orig: 167, 55
+  offset: 0, 0
+  index: -1
+UploadPhotoBtn-down
+  rotate: false
+  xy: 170, 1
+  size: 94, 41
+  orig: 94, 41
+  offset: 0, 0
+  index: -1
+UploadPhotoBtn
+  rotate: false
+  xy: 266, 1
+  size: 94, 41
+  orig: 94, 41
+  offset: 0, 0
+  index: -1
+UploadPhotoIcon
+  rotate: false
+  xy: 406, 190
+  size: 67, 65
+  orig: 67, 65
   offset: 0, 0
   index: -1

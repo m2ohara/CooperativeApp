@@ -7,4 +7,6 @@ public interface IGLContext {
 	public void instantiate();
 	
 	public void setToStage(Stage stage);
+	
+	public void dispose();
 }

@@ -20,6 +20,11 @@ public class GdxGameStateItem extends GameStateItem {
 	
 	public void setToStage(Stage stage) {
 		glContext.setToStage(stage);
+		state = NextThreadAction.GlgAct;
+	}
+	
+	public void dispose() {
+		glContext.dispose();
 		state = NextThreadAction.Finished;
 	}
 

@@ -3,7 +3,7 @@ package com.me.coopapp;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import org.sqlite.SQLiteConnection;
+//import org.sqlite.SQLiteConnection;
 
 import com.badlogic.gdx.Gdx;
 import com.me.coopapp.gamestate.GameState;
@@ -14,7 +14,7 @@ public class GameLogic extends Thread {
 	
 	private static GameLogic processInstance = new GameLogic();
 	private static User userEntity;
-	private SQLiteConnection connection;
+	private Connection connection;
 	public ArrayList<ITask> UserTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> GameTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> ScreenTasks = new ArrayList<ITask>();
@@ -91,15 +91,15 @@ public class GameLogic extends Thread {
 			t.perform(isGdxThread);
 			
 			//Get any current items that need to perform another action within task
-			if(!t.isTaskComplete()) {
-				tasksNotComplete.add(t);
-			}
+//			if(!t.isTaskComplete()) {
+//				tasksNotComplete.add(t);
+//			}
 		}
 		
-		GameTasks.clear();
+//		GameTasks.clear();
 		
 		//Add any new items with actions to be performed
-		GameTasks.addAll(tasksNotComplete);
+//		GameTasks.addAll(tasksNotComplete);
 	}
 	
 	
@@ -146,7 +146,7 @@ public class GameLogic extends Thread {
 	}
 	
 	//TODO: Resolve connection
-	public void SetConnection(SQLiteConnection conn) {
+	public void SetConnection(Connection conn) {
 		connection = conn;
 	}
 	
