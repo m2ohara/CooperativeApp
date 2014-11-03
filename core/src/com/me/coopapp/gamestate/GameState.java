@@ -1,6 +1,7 @@
 package com.me.coopapp.gamestate;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -29,7 +30,7 @@ public class GameState implements ITask {
 	public void perform(boolean isGdxThread) {
 		isTaskComplete = true;
 		
-		ArrayList<GameStateItem> complete = new ArrayList<GameStateItem>();
+//		ArrayList<GameStateItem> complete = new ArrayList<GameStateItem>();
 		//Perform current actions
 		for(GameStateItem item : items) {
 			
@@ -45,12 +46,12 @@ public class GameState implements ITask {
 			if(item.state != GameStateItem.NextThreadAction.Finished) {
 				isTaskComplete = false;
 			}
-			else {
-				complete.add(item);
-			}
+//			else {
+//				complete.add(item);
+//			}
 		}
 		
-		items.removeAll(complete);
+//		items.removeAll(complete);
 		
 	}
 	
@@ -78,6 +79,15 @@ public class GameState implements ITask {
 	@Override
 	public boolean isTaskComplete() {
 		return isTaskComplete;
+	}
+
+	@Override
+	public void cleanUpTask() {
+		for (Iterator<GameStateItem> iterator = items.iterator(); iterator.hasNext();) {
+			if(iterator.next().state == NextThreadAction.Finished) {
+				iterator.remove();
+			}
+		}
 	}
 
 }

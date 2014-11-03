@@ -87,6 +87,12 @@ public class UserState implements ITask {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void cleanUpTask() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

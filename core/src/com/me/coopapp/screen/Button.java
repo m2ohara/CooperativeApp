@@ -98,6 +98,8 @@ public class Button implements IGLContext {
 
 	@Override
 	public void dispose() {
+		
+		//Remove from stage
 		instance.remove();
 		
 	}
