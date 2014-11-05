@@ -11,6 +11,7 @@ public class GdxGameStateItem extends GameStateItem {
 		//Set next state to instantiate
 		state = GameStateItem.NextThreadAction.GdxInstantiate;
 		glContext = _item;
+		glContext.setDisposer(new Disposer(this));
 	}
 	
 	public void instantiateGdxItem() {
@@ -22,10 +23,6 @@ public class GdxGameStateItem extends GameStateItem {
 		glContext.setToStage(stage);
 		state = NextThreadAction.GlgAct;
 	}
-	
-	public void dispose() {
-		glContext.dispose();
-		state = NextThreadAction.Finished;
-	}
+
 
 }

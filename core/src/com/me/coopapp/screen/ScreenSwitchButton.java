@@ -5,6 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.me.coopapp.GameLogic;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.Types.ScreenTypes;
+import com.me.coopapp.gamestate.GameState;
+import com.me.coopapp.gamestate.GameStateItem;
 
 public class ScreenSwitchButton extends Button {
 	
@@ -33,6 +35,13 @@ public class ScreenSwitchButton extends Button {
 		    }
 		  }
 		);
+	}
+	
+	@Override
+	public void dispose() {
+		
+		//TO DO: Remove all gamestateitems and stage actors
+		
 	}
 
 }

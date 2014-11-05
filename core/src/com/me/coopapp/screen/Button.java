@@ -12,8 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.me.coopapp.GameLogic;
 import com.me.coopapp.ScreenState;
-import com.me.coopapp.Types;
 import com.me.coopapp.Types.ScreenTypes;
+import com.me.coopapp.gamestate.Disposer;
+import com.me.coopapp.gamestate.GameStateItem;
 import com.me.coopapp.gamestate.IGLContext;
 
 public class Button implements IGLContext {
@@ -27,6 +28,7 @@ public class Button implements IGLContext {
 	private TextButtonStyle style = new TextButtonStyle();
 	private float xCentreOffset = 0;
 	private float yCentreOffset = 0;
+	public Disposer itemDisposer = null;
 	
 	public Button(String _type) {
 		type = _type;
@@ -101,7 +103,14 @@ public class Button implements IGLContext {
 		
 		//Remove from stage
 		instance.remove();
+		//Dispose related game item
+		itemDisposer.dispose();
 		
+	}
+
+	@Override
+	public void setDisposer(Disposer disposer) {
+		itemDisposer = disposer;
 	}
 
 }

@@ -27,10 +27,9 @@ public class GameState implements ITask {
 		return gameInstance;
 	}
 	
-	public void perform(boolean isGdxThread) {
+	public synchronized void perform(boolean isGdxThread) {
 		isTaskComplete = true;
 		
-//		ArrayList<GameStateItem> complete = new ArrayList<GameStateItem>();
 		//Perform current actions
 		for(GameStateItem item : items) {
 			
@@ -46,12 +45,7 @@ public class GameState implements ITask {
 			if(item.state != GameStateItem.NextThreadAction.Finished) {
 				isTaskComplete = false;
 			}
-//			else {
-//				complete.add(item);
-//			}
 		}
-		
-//		items.removeAll(complete);
 		
 	}
 	
@@ -79,15 +73,6 @@ public class GameState implements ITask {
 	@Override
 	public boolean isTaskComplete() {
 		return isTaskComplete;
-	}
-
-	@Override
-	public void cleanUpTask() {
-		for (Iterator<GameStateItem> iterator = items.iterator(); iterator.hasNext();) {
-			if(iterator.next().state == NextThreadAction.Finished) {
-				iterator.remove();
-			}
-		}
 	}
 
 }

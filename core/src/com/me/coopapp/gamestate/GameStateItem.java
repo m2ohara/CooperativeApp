@@ -21,6 +21,7 @@ public class GameStateItem {
 	}
 	
 	public void dispose() {
+		GameState.getGameState().items.remove(this);
 		
 	}
 

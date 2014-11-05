@@ -111,8 +111,6 @@ public class GameLogic extends Thread {
 		
 		syncToGdxThread();
 		
-		cleanUpState();
-		
 	}
 
 	@Override
@@ -145,12 +143,6 @@ public class GameLogic extends Thread {
 	           processGameState(true);
 	        }
 	     });
-	}
-	
-	private void cleanUpState() {
-		for(ITask t : GameTasks) {
-			t.cleanUpTask();
-		}
 	}
 	
 	//TODO: Resolve connection

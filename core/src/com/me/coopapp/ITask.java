@@ -7,7 +7,5 @@ public interface ITask {
 	public boolean isTaskComplete();
 	
 	public void dispose();
-	
-	public void cleanUpTask();
 
 }
