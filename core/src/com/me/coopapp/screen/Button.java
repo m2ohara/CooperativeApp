@@ -19,16 +19,18 @@ import com.me.coopapp.gamestate.IGLContext;
 
 public class Button implements IGLContext {
 
+	//TO DO: refactor to Actor class
 	protected TextButton instance;
+	private float xCentreOffset = 0;
+	private float yCentreOffset = 0;
 	
 	private String type;
 	private TextureAtlas buttonAtlas;
 	private BitmapFont font = new BitmapFont();
 	private Skin skin = new Skin();
 	private TextButtonStyle style = new TextButtonStyle();
-	private float xCentreOffset = 0;
-	private float yCentreOffset = 0;
 	public Disposer itemDisposer = null;
+	
 	
 	public Button(String _type) {
 		type = _type;

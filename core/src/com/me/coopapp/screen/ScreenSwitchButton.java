@@ -29,7 +29,7 @@ public class ScreenSwitchButton extends Button {
 		    	ScreenState.getScreenInstance().type = screenToSwitch;
 		    	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());
 		    	
-		    	//Remove this button
+		    	//Remove all items from game state
 		    	dispose();
 		    	
 		    }
@@ -40,7 +40,8 @@ public class ScreenSwitchButton extends Button {
 	@Override
 	public void dispose() {
 		
-		//TO DO: Remove all gamestateitems and stage actors
+		GameState.stage.clear();
+		GameState.getGameState().items.clear();
 		
 	}
 
