@@ -108,6 +108,9 @@ public class Button implements IGLContext {
 		//Dispose related game item
 		itemDisposer.dispose();
 		
+		buttonAtlas.dispose();
+		skin.dispose();
+		
 	}
 
 	@Override

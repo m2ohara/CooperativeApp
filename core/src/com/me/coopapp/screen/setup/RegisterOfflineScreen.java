@@ -21,10 +21,10 @@ public class RegisterOfflineScreen extends Screen {
 		
 		
 		//Set layout
-		GameState.getGameState().items.add(new GdxGameStateItem(new Button("UploadPhotoBtn", -100, -100)));
-		GameState.getGameState().items.add(new GdxGameStateItem(new Icon("UploadPhotoIcon", -100, -150)));
+		GameState.getGameState().items.add(new GdxGameStateItem(new Button("UploadPhotoBtn", -100, -75)));
 		GameState.getGameState().items.add(new GdxGameStateItem(new Icon("UploadPhotoIcon", -170, -150)));
-		GameState.getGameState().items.add(new GdxGameStateItem(new Icon("UploadPhotoIcon", -240, -150)));
+		GameState.getGameState().items.add(new GdxGameStateItem(new Icon("UploadPhotoIcon", -90, -150)));
+		GameState.getGameState().items.add(new GdxGameStateItem(new Icon("UploadPhotoIcon", -10, -150)));
 		GameState.getGameState().items.add(new GdxGameStateItem(new ScreenSwitchButton("CreateProfileBtn", 0, -250, ScreenTypes.loadingTexture)));
 		
 		GameLogic.getInstance().GameTasks.add(GameState.getGameState());
