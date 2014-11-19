@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.me.coopapp.gamestate.Disposer;
+import com.me.coopapp.gamestate.GameState;
+import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.gamestate.IGLContext;
 
 public class CoopAppActor implements IGLContext {
@@ -13,14 +15,29 @@ public class CoopAppActor implements IGLContext {
 	protected float yCentreOffset = 0;
 	protected String type;
 	
+	public CoopAppActor() {
+		setGdxGameStateItem();
+	}
+	
 	public CoopAppActor(String _type) {
 		type = _type;
+		
+		setGdxGameStateItem();
+	}
+	
+	public CoopAppActor(float _xCentreOffset, float _yCentreOffset) {
+		xCentreOffset = _xCentreOffset;
+		yCentreOffset = _yCentreOffset;
+		
+		setGdxGameStateItem();
 	}
 	
 	public CoopAppActor(String _type, float _xCentreOffset, float _yCentreOffset) {
 		type = _type;
 		xCentreOffset = _xCentreOffset;
 		yCentreOffset = _yCentreOffset;
+		
+		setGdxGameStateItem();
 	}
 	
 	protected void setWidth() {
@@ -57,7 +74,7 @@ public class CoopAppActor implements IGLContext {
 
 	@Override
 	public void instantiate() {
-		// TODO Auto-generated method stub
+		// Inherited method for creating instance while in Gdx thread
 		
 	}
 
@@ -65,6 +82,10 @@ public class CoopAppActor implements IGLContext {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void setGdxGameStateItem() {
+		GameState.getGameState().items.add(new GdxGameStateItem(this));
 	}
 
 }
