@@ -1,4 +1,4 @@
-package com.me.coopapp.screen;
+package com.me.coopapp.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 
-public class GdxTextField extends CoopAppActor {
+public class GdxTextField extends GdxActor {
 	
 	public GdxTextField(float _xCentreOffset, float _yCentreOffset) {
 		super(_xCentreOffset, _yCentreOffset);
@@ -17,21 +17,13 @@ public class GdxTextField extends CoopAppActor {
 	public void instantiate() {
 		actor = new CoopAppTextField();
 		
-		actor.set(new TextField("TO DO: Set with style name?", getSkinFromPack("Buttons")));
+		actor.set(new TextField("", new Skin(Gdx.files.internal("Data/uiskin.json"))));
 	}
 	
-	//TO DO: Implement disposer
 	
-	private Skin getSkinFromPack(String packName) {
-
-		TextureAtlas txAtlas = new TextureAtlas(Gdx.files.internal(""+packName+".pack"));
-
-		return new Skin(txAtlas);
-	}
-	
-	public class CoopAppTextField implements ICoopAppActor {
+	public class CoopAppTextField implements IGdxActor {
 		
-		Image textField;
+		TextField textField;
 		
 		public CoopAppTextField() {
 			
@@ -39,7 +31,7 @@ public class GdxTextField extends CoopAppActor {
 
 		@Override
 		public void set(Object _object) {
-			textField = (Image) _object;
+			textField = (TextField) _object;
 			
 		}
 

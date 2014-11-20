@@ -1,4 +1,4 @@
-package com.me.coopapp.screen;
+package com.me.coopapp.ui;
 
 public interface IScreen {
 	

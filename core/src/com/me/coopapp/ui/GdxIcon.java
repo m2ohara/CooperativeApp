@@ -1,4 +1,4 @@
-package com.me.coopapp.screen;
+package com.me.coopapp.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,8 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.ObjectSet;
+import com.me.coopapp.gamestate.Disposer;
 
-public class GdxIcon extends CoopAppActor{
+public class GdxIcon extends GdxActor{
+	
+	private TextureAtlas txAtlas;
+	private Skin txSkin;
 	
 	public GdxIcon(String _type) {
 		super(_type);
@@ -30,15 +34,13 @@ public class GdxIcon extends CoopAppActor{
 	
 	private Drawable getDrawableFromPack(String packName) {
 
-		TextureAtlas txAtlas = new TextureAtlas(Gdx.files.internal(""+packName+".pack"));
-		Skin txSkin = new Skin(txAtlas);
+		txAtlas = new TextureAtlas(Gdx.files.internal(""+packName+".pack"));
+		txSkin = new Skin(txAtlas);
 
 		return txSkin.getDrawable(type);
 	}
 	
-	//TO DO: Implement disposer
-	
-	public class CoopAppIcon implements ICoopAppActor {
+	public class CoopAppIcon implements IGdxActor {
 		
 		private Image icon;
 		
@@ -55,6 +57,18 @@ public class GdxIcon extends CoopAppActor{
 		public Actor get() {
 			return icon;
 		}
+		
+	}
+	
+	@Override
+	public void dispose() {
+		
+		//Remove from stage
+		actor.get().remove();
+		
+		//Remove dependent instances
+		txAtlas.dispose();
+		txSkin.dispose();
 		
 	}
 

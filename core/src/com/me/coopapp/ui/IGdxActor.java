@@ -1,8 +1,8 @@
-package com.me.coopapp.screen;
+package com.me.coopapp.ui;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public interface ICoopAppActor {
+public interface IGdxActor {
 	
 	public void set(Object _object);
 	

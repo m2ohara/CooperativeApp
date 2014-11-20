@@ -1,4 +1,4 @@
-package com.me.coopapp.screen;
+package com.me.coopapp.ui;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -8,7 +8,7 @@ import com.me.coopapp.Types.ScreenTypes;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GameStateItem;
 
-public class ScreenSwitchButton extends Button {
+public class ScreenSwitchButton extends GdxButton {
 	
 	public ScreenTypes screenToSwitch;
 
@@ -23,7 +23,7 @@ public class ScreenSwitchButton extends Button {
 	}
 	
 	public void SetListener() {
-		instance.addListener(new ClickListener() {
+		actor.get().addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		    	//Set screen to switch to on click
 		    	ScreenState.getScreenInstance().type = screenToSwitch;

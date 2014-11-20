@@ -5,10 +5,11 @@ import java.util.ArrayList;
 
 //import org.sqlite.SQLiteConnection;
 
+
 import com.badlogic.gdx.Gdx;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GdxGameStateItem;
-import com.me.coopapp.screen.Button;
+import com.me.coopapp.ui.GdxButton;
 
 public class GameLogic extends Thread {
 	
@@ -57,8 +58,8 @@ public class GameLogic extends Thread {
 		ScreenState.getScreenInstance().type = Types.ScreenTypes.register1Texture;
 		ScreenTasks.add(ScreenState.getScreenInstance());
 		
-		GameState.getGameState().items.add(new GdxGameStateItem(new Button("SetupBtn1", 0, 90)));
-		GameState.getGameState().items.add(new GdxGameStateItem(new Button("SetUpBtn2", 0, -90)));
+		GameState.getGameState().items.add(new GdxGameStateItem(new GdxButton("SetupBtn1", 0, 90)));
+		GameState.getGameState().items.add(new GdxGameStateItem(new GdxButton("SetUpBtn2", 0, -90)));
 		
 		
 		GameTasks.add(GameState.getGameState());

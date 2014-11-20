@@ -14,7 +14,7 @@ public class Disposer {
 		
 	}
 	
-	public void dispose() {
+	public void disposeGameStateItem() {
 		itemToDispose.state = NextThreadAction.Finished;
 		itemToDispose.dispose();
 	}
