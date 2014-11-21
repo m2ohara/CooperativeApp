@@ -43,6 +43,7 @@ public class GdxActor implements IGLContext {
 	}
 	
 	protected void setWidth() {
+		//TO DO: Pass param values
 		actor.get().setWidth(202);
 	}
 	
@@ -53,12 +54,13 @@ public class GdxActor implements IGLContext {
 	public void setToStage(Stage stage) {
 		
 		setRelativePosition(actor.get());
+		//Add actor to stage for physics processing
 		stage.addActor(actor.get());
 	}
 	
 	protected void setRelativePosition(Actor actorToSet) {
 		
-		//Centre button
+		//Centre actor
 		float x = (Gdx.graphics.getWidth() - actorToSet.getWidth()) /2 ;
 		float y = (Gdx.graphics.getHeight()  - actorToSet.getHeight()) / 2;
 		
@@ -76,6 +78,7 @@ public class GdxActor implements IGLContext {
 
 	@Override
 	public void dispose() {
+		//Remove instance from stage to improve performance
 		actor.get().remove();
 		
 	}
@@ -86,6 +89,7 @@ public class GdxActor implements IGLContext {
 	}
 	
 	private void setGdxGameStateItem() {
+		//Add game state item to list for processing
 		GameState.getGameState().items.add(new GdxGameStateItem(this));
 	}
 

@@ -1,23 +1,30 @@
 package com.me.coopapp.ui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 
 public class GdxTextField extends GdxActor {
 	
-	public GdxTextField(float _xCentreOffset, float _yCentreOffset) {
+	//The text field input label
+	private String textValue;
+	
+	public GdxTextField(float _xCentreOffset, float _yCentreOffset, String _textValue) {
 		super(_xCentreOffset, _yCentreOffset);
+		textValue = _textValue == null ? "" : _textValue;
 	}
 	
 	public void instantiate() {
 		actor = new CoopAppTextField();
 		
-		actor.set(new TextField("", new Skin(Gdx.files.internal("Data/uiskin.json"))));
+		actor.set(new TextField(textValue, new Skin(Gdx.files.internal("Data/uiskin.json"))));
+		
+		setListener();
 	}
 	
 	
@@ -39,7 +46,28 @@ public class GdxTextField extends GdxActor {
 		public Actor get() {
 			return textField;
 		}
+		
+		public TextField getAsType() {
+			return textField;
+		}
 
+	}
+	
+	public void setListener() {
+		
+		actor.get().addListener(new InputListener() {
+			
+			public boolean keyDown(InputEvent event, int keyCode) {
+				
+				if(keyCode == Input.Keys.ENTER) {
+					String textInput = ((TextField)actor.get()).getText();
+					
+					//TO DO: Store input in DB
+				}
+				
+				return true;
+			}
+		});
 	}
 
 }

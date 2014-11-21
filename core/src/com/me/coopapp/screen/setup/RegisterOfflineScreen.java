@@ -21,8 +21,8 @@ public class RegisterOfflineScreen extends Screen {
 		
 		
 		//Set layout
-		new GdxTextField(0, 80);
-		new GdxTextField(0, 10);
+		new GdxTextField(0, 80, "Name");
+		new GdxTextField(0, 10, "Email");
 		new GdxButton("UploadPhotoBtn", -100, -75);
 		new GdxIcon("UploadPhotoIcon", -170, -150);
 		new GdxIcon("UploadPhotoIcon", -90, -150);

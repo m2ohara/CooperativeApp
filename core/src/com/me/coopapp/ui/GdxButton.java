@@ -23,7 +23,6 @@ public class GdxButton extends GdxActor {
 	TextureAtlas buttonAtlas;
 	Skin skin = new Skin();
 	
-	
 	public GdxButton(String _type) {
 		super(_type);
 	}
