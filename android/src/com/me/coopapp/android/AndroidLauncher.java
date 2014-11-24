@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.me.coopapp.CoopApp;
+import com.me.coopapp.dal.SQLConnection;
 
 public class AndroidLauncher extends AndroidApplication {
 	
@@ -15,7 +16,7 @@ public class AndroidLauncher extends AndroidApplication {
 		CoopApp app = new CoopApp();
 		initialize(app, config);
 		//Obtain db connection from jdbc driver
-		app.SetConnection(new AndroidActionResolver(getContext()).getConnection());
+		new SQLConnection(new AndroidActionResolver(getContext()));
 		
 	}
 }

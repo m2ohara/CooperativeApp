@@ -20,12 +20,6 @@ public class CoopApp extends ApplicationAdapter {
 	Texture img;
 	
 	private GameLogic processor = GameLogic.getInstance();
-	public Connection connection;
-	
-	//TO DO: resolve connection dependency
-	public void SetConnection(Connection conn) {
-		connection = (Connection)conn;
-	}
 	
 	@Override
 	public void create () {
@@ -35,14 +29,14 @@ public class CoopApp extends ApplicationAdapter {
 		
 		processor = GameLogic.getInstance();	
 		//TODO: Resolve Set db connection
-		processor.SetConnection(connection);
-		SQLConnection.connection = connection;
-		try {
-			SQLConnection.metaData = connection.getMetaData();
-		}
-		catch(SQLException e) {
-			
-		}
+//		processor.SetConnection(connection);
+//		SQLConnection.connection = connection;
+//		try {
+//			SQLConnection.metaData = connection.getMetaData();
+//		}
+//		catch(SQLException e) {
+//			
+//		}
 		processor.processSetup();
 		
 		//Start logic thread

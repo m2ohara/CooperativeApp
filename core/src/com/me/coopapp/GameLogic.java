@@ -35,7 +35,7 @@ public class GameLogic extends Thread {
 	
 	public void processSetup() {
 		
-		Setup setupState = new Setup(connection);
+		Setup setupState = new Setup();
 		
 		//Configure app
 		

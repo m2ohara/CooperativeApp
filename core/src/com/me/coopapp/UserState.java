@@ -23,13 +23,13 @@ public class UserState implements ITask {
 	
 	public void startTransaction() {
 		
-		try {
-			conn = SQLConnection.getConnection();
-			statement = conn.createStatement();
-		}
-		catch(Exception e) {
-			
-		}
+//		try {
+//			conn = SQLConnection.getConnection();
+//			statement = conn.createStatement();
+//		}
+//		catch(Exception e) {
+//			
+//		}
 	}
 	
 	public void executeTransaction(String transactionType) {

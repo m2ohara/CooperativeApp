@@ -3,6 +3,7 @@ package com.me.coopapp.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.me.coopapp.CoopApp;
+import com.me.coopapp.dal.SQLConnection;
 
 public class DesktopLauncher {
 	
@@ -13,6 +14,6 @@ public class DesktopLauncher {
 		new LwjglApplication(app, config);
 		
 		//Obtain db connection from jdbc driver
-		app.SetConnection(new DesktopActionResolver().getConnection());
+		new SQLConnection(new DesktopActionResolver());
 	}
 }
