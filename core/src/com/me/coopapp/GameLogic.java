@@ -3,10 +3,11 @@ package com.me.coopapp;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-//import org.sqlite.SQLiteConnection;
+
 
 
 import com.badlogic.gdx.Gdx;
+import com.me.coopapp.dal.transaction.User;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.ui.GdxButton;
@@ -14,14 +15,14 @@ import com.me.coopapp.ui.GdxButton;
 public class GameLogic extends Thread {
 	
 	private static GameLogic processInstance = new GameLogic();
-	private static User userEntity;
+	public static User userEntity;
 	private Connection connection;
 	public ArrayList<ITask> UserTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> GameTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> ScreenTasks = new ArrayList<ITask>();
 	
 	private GameLogic() {
-		userEntity = User.getUser();
+		userEntity = new User();
 		ScreenState.getScreenInstance();
 	}
 	
@@ -41,7 +42,7 @@ public class GameLogic extends Thread {
 		
 		//If already setup load settings
 		if(setupState.isTableExists()) {
-			userEntity.action = "Get";
+			new UserState(userEntity).addUser("", "");
 		}
 		
 		//If new setup create new settings 
@@ -49,7 +50,6 @@ public class GameLogic extends Thread {
 			
 			//Setup data base
 			setupState.createDatabaseFromFile();
-			userEntity.action = "Insert";
 		} 
 		//Perform appropriate user action
 		UserTasks.add(new UserState(userEntity));

@@ -2,18 +2,16 @@ package com.me.coopapp;
 
 public interface IEntity {
 	
-	public String Insert();
+	public String insert();
 	
-	public String Update();
+	public String update();
 	
-	public String Delete();
+	public String delete();
 	
-	public String Get();
+	public String get();
 	
-	public String GetById(int id);
+	public String getById(int id);
 	
-	public String Execute();
-	
-	public String GetAction();
+	public String execute();
 
 }

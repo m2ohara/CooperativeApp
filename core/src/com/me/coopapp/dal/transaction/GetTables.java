@@ -17,7 +17,7 @@ public class GetTables implements ISQLTransaction {
 	}
 
 	@Override
-	public ResultSet PerformTransaction() {
+	public ResultSet performTransaction() {
 		ResultSet queryResult = null;
 		
 		try {
@@ -32,6 +32,18 @@ public class GetTables implements ISQLTransaction {
 		
 		return queryResult;
 		
+	}
+
+	@Override
+	public void setTransaction(TransactionType _type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public TransactionType getTransaction() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

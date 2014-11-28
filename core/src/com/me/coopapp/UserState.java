@@ -1,71 +1,57 @@
 package com.me.coopapp;
 
-import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.ResultSet;
 
-//import org.sqlite.SQLiteConnection;
+import com.me.coopapp.dal.ISQLTransaction;
+import com.me.coopapp.dal.transaction.User;
 
-public class UserState implements ITask {
+
+public class UserState implements ITask, ISQLTransaction {
 	
-	private IEntity entity;
+	private User entity;
 	public String imageName;
-	private Connection conn;
-	private Statement statement;
+	private TransactionType type;
 	
-	public UserState(IEntity _entity) {
+	public UserState(User _entity) {
 		entity = _entity;
 	}
 	
+	@Override
 	public void perform(boolean isGdxThread) {
-		startTransaction();
-		executeTransaction(entity.GetAction());
-	}
-	
-	public void startTransaction() {
 		
-//		try {
-//			conn = SQLConnection.getConnection();
-//			statement = conn.createStatement();
-//		}
-//		catch(Exception e) {
-//			
-//		}
-	}
-	
-	public void executeTransaction(String transactionType) {
-		try {
-			if(transactionType == "Insert") {
-				statement.executeUpdate((entity.Insert()));
-			}
-			else if(transactionType == "Update") {
-				statement.executeUpdate((entity.Update()));
-			}
-			else if(transactionType == "Delete") {
-				statement.executeUpdate((entity.Delete()));
-			}
-			else {
-				//Log error
-			}		
-		}
-		catch(Exception e) {
-			
-		}
-		finally {
-			
-			if(conn != null) {
-				try {
-					statement.close();
-					conn.close();
-				}
-				catch(Exception e) {
-					
-				}
-			}
+		if(!isGdxThread) {
+			performTransaction();
 		}
 	}
-	
-	public void commitTransaction() {
+
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean isTaskComplete() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ResultSet performTransaction() {
 		
+		if(type == TransactionType.INSERT) {
+			entity.insert();
+		}
+		return null;
+	}
+
+	@Override
+	public void setTransaction(TransactionType _type) {
+		type = _type;
+	}
+
+	@Override
+	public TransactionType getTransaction() {
+		return type;
 	}
 	
 	public String getImageName() {
@@ -75,17 +61,14 @@ public class UserState implements ITask {
 	public void setImageName(String _imageName) {
 		imageName = _imageName;
 	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
+	
+	//Set transaction to perform
+	public void addUser(String _name, String _email) {
 		
-	}
-
-	@Override
-	public boolean isTaskComplete() {
-		// TODO Auto-generated method stub
-		return false;
+		type = TransactionType.INSERT;
+		entity.addUser(_name, _email);
+		
+		GameLogic.getInstance().UserTasks.add(this);
 	}
 	
 

@@ -16,7 +16,7 @@ public class Setup {
 		
 		boolean hasFirstTable = false;
 		try {
-			hasFirstTable = new GetTables().PerformTransaction().next();
+			hasFirstTable = new GetTables().performTransaction().next();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
