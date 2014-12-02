@@ -1,57 +1,24 @@
 package com.me.coopapp;
 
-import java.sql.ResultSet;
-
-import com.me.coopapp.dal.ISQLTransaction;
+import com.me.coopapp.dal.ISQLTransaction.TransactionType;
 import com.me.coopapp.dal.transaction.User;
 
 
-public class UserState implements ITask, ISQLTransaction {
+public class UserState {
 	
+	private static UserState instance;
 	private User entity;
 	public String imageName;
-	private TransactionType type;
 	
-	public UserState(User _entity) {
-		entity = _entity;
+	private UserState() {
+
 	}
 	
-	@Override
-	public void perform(boolean isGdxThread) {
-		
-		if(!isGdxThread) {
-			performTransaction();
+	public static UserState getInstance() {
+		if(instance == null) {
+			instance = new UserState();
 		}
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public boolean isTaskComplete() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public ResultSet performTransaction() {
-		
-		if(type == TransactionType.INSERT) {
-			entity.insert();
-		}
-		return null;
-	}
-
-	@Override
-	public void setTransaction(TransactionType _type) {
-		type = _type;
-	}
-
-	@Override
-	public TransactionType getTransaction() {
-		return type;
+		return instance;
 	}
 	
 	public String getImageName() {
@@ -62,14 +29,29 @@ public class UserState implements ITask, ISQLTransaction {
 		imageName = _imageName;
 	}
 	
-	//Set transaction to perform
-	public void addUser(String _name, String _email) {
+	//Set instance attributes
+	public void addUser() {
 		
-		type = TransactionType.INSERT;
-		entity.addUser(_name, _email);
+		UserTask task = new UserTask();
+		task.setTransaction(TransactionType.INSERT);
 		
-		GameLogic.getInstance().UserTasks.add(this);
+		GameLogic.getInstance().UserTasks.add(task);
 	}
 	
+	public void setUser(String _name, String _email) {
+		
+		setName(_name);
+		setEmail(_email);
+	}
+	
+	public void setName(String _name) {
+		entity.setName(_name);
+	}
+	
+	public void setEmail(String _email) {
+		entity.setEmail(_email);
+	}
+	
+	public enum Task { INSERT }
 
 }

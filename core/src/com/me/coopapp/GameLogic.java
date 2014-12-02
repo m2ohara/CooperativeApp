@@ -1,13 +1,9 @@
 package com.me.coopapp;
 
-import java.sql.Connection;
 import java.util.ArrayList;
-
-
-
+import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
-import com.me.coopapp.dal.transaction.User;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.ui.GdxButton;
@@ -15,14 +11,11 @@ import com.me.coopapp.ui.GdxButton;
 public class GameLogic extends Thread {
 	
 	private static GameLogic processInstance = new GameLogic();
-	public static User userEntity;
-	private Connection connection;
 	public ArrayList<ITask> UserTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> GameTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> ScreenTasks = new ArrayList<ITask>();
 	
 	private GameLogic() {
-		userEntity = new User();
 		ScreenState.getScreenInstance();
 	}
 	
@@ -35,24 +28,15 @@ public class GameLogic extends Thread {
 	}
 	
 	public void processSetup() {
-		
-		Setup setupState = new Setup();
-		
-		//Configure app
-		
-		//If already setup load settings
-		if(setupState.isTableExists()) {
-			new UserState(userEntity).addUser("", "");
-		}
-		
+
 		//If new setup create new settings 
-		else if(setupState.isTableExists() == false) {
-			
+		Setup setup = new Setup();
+		if(!setup.isTableExists()) {
 			//Setup data base
-			setupState.createDatabaseFromFile();
+			new Setup().createDatabaseFromFile();
 		} 
 		//Perform appropriate user action
-		UserTasks.add(new UserState(userEntity));
+//		UserTasks.add(new UserState(userEntity));
 		
 		//TO DO: Place in new setup condition. Setup registration screen
 		ScreenState.getScreenInstance().type = Types.ScreenTypes.register1Texture;
@@ -75,38 +59,34 @@ public class GameLogic extends Thread {
 		ScreenTasks.clear();
 	}
 	
-	private void processUserState() {
-		//Process current user state
-		for(ITask t : UserTasks) {
-			t.perform(false);
+	private void processUserState(boolean isGdxThread) {
+		
+		if(!isGdxThread) {
+			//Process current user state
+			Iterator<ITask> it = UserTasks.iterator();
+			while(it.hasNext()) {
+				ITask task = it.next();
+				task.perform(false);
+				
+				if(task.isTaskComplete()) {
+					it.remove();
+				}
+			}
 		}
-		UserTasks.clear();
 	}
 	
 	private void processGameState(boolean isGdxThread) {
-		
-		ArrayList<ITask> tasksNotComplete = new ArrayList<ITask>();
-		
+
 		//Process current game state
 		for(ITask t : GameTasks) {
 			t.perform(isGdxThread);
-			
-			//Get any current items that need to perform another action within task
-//			if(!t.isTaskComplete()) {
-//				tasksNotComplete.add(t);
-//			}
 		}
-		
-//		GameTasks.clear();
-		
-		//Add any new items with actions to be performed
-//		GameTasks.addAll(tasksNotComplete);
 	}
 	
 	
 	public void process() {
 		
-		processUserState();
+		processUserState(false);
 		
 		processGameState(false);
 		
@@ -134,7 +114,7 @@ public class GameLogic extends Thread {
 		this.dispose();
 	}
 	
-	//This takes place in the Gdx thread
+	//Perform any actions that take place in the Gdx thread
 	private void syncToGdxThread() {
 		
 	    Gdx.app.postRunnable(new Runnable() {
@@ -145,14 +125,4 @@ public class GameLogic extends Thread {
 	        }
 	     });
 	}
-	
-	//TODO: Resolve connection
-	public void SetConnection(Connection conn) {
-		connection = conn;
-	}
-	
-	public Connection GetConnection() {
-		return connection;
-	}
-
 }

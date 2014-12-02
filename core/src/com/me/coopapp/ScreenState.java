@@ -58,6 +58,10 @@ public class ScreenState implements ITask {
 					screen = new RegisterOfflineScreen();
 					texture = new Texture("Register2.png");
 				}
+				else if(type == Types.ScreenTypes.createProfileTexture) {
+					screen = new RegisterOfflineScreen();
+					texture = new Texture("createProfile.png");
+				}
 				current = type;
 			}
 		}

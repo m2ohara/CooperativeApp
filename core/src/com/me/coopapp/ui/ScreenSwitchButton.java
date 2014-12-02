@@ -22,19 +22,21 @@ public class ScreenSwitchButton extends GdxButton {
 		screenToSwitch = _screenToSwitch;
 	}
 	
-	public void SetListener() {
+	public void setListener() {
 		actor.get().addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
+		    	
 		    	//Set screen to switch to on click
 		    	ScreenState.getScreenInstance().type = screenToSwitch;
 		    	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());
 		    	
-		    	//Remove all items from game state
+		    	//Remove all current items from game state
 		    	dispose();
-		    	
 		    }
 		  }
 		);
+		
+		setCustomListeners();
 	}
 	
 	@Override

@@ -20,8 +20,9 @@ import com.me.coopapp.gamestate.IGLContext;
 
 public class GdxButton extends GdxActor {
 
-	TextureAtlas buttonAtlas;
-	Skin skin = new Skin();
+	private TextureAtlas buttonAtlas;
+	private Skin skin = new Skin();
+	
 	
 	public GdxButton(String _type) {
 		super(_type);
@@ -62,6 +63,9 @@ public class GdxButton extends GdxActor {
 		    }
 		  }
 		);
+		
+		//Set any other custom listeners
+		setCustomListeners();
 	}
 	
 	public class CoopAppButton implements IGdxActor {

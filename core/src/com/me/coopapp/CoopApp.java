@@ -1,9 +1,5 @@
 package com.me.coopapp;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 //import org.sqlite.SQLiteConnection;
 
@@ -12,7 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.me.coopapp.gamestate.GameState;
 
 public class CoopApp extends ApplicationAdapter {
@@ -28,15 +23,6 @@ public class CoopApp extends ApplicationAdapter {
 		ScreenState.getScreenInstance().set(Types.ScreenTypes.startTexture);
 		
 		processor = GameLogic.getInstance();	
-		//TODO: Resolve Set db connection
-//		processor.SetConnection(connection);
-//		SQLConnection.connection = connection;
-//		try {
-//			SQLConnection.metaData = connection.getMetaData();
-//		}
-//		catch(SQLException e) {
-//			
-//		}
 		processor.processSetup();
 		
 		//Start logic thread
@@ -55,7 +41,6 @@ public class CoopApp extends ApplicationAdapter {
 		GameState.stage.draw();
 		
 		batch.begin();
-//		batch.draw(ScreenState.getScreenInstance().texture, ScreenState.getScreenInstance().x, ScreenState.getScreenInstance().y);
 		batch.end();
 	}
 	

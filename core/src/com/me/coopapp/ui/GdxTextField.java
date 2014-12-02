@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.me.coopapp.GameLogic;
+import com.me.coopapp.ui.IListenerAction.ListenerActionType;
 
 
 public class GdxTextField extends GdxActor {
@@ -15,11 +16,12 @@ public class GdxTextField extends GdxActor {
 	//The text field input label
 	private String textValue;
 	public String inputValue;
-	private IListenerAction lAction;
+	private ListenerActionType lActionType;
 	
-	public GdxTextField(float _xCentreOffset, float _yCentreOffset, String _textValue) {
+	public GdxTextField(float _xCentreOffset, float _yCentreOffset, String _textValue, ListenerActionType _lActionType) {
 		super(_xCentreOffset, _yCentreOffset);
 		textValue = _textValue == null ? "" : _textValue;
+		lActionType = _lActionType;
 	}
 	
 	public void instantiate() {
@@ -64,17 +66,16 @@ public class GdxTextField extends GdxActor {
 				
 				if(keyCode == Input.Keys.ENTER) {
 					inputValue = ((TextField)actor.get()).getText();
+					
+					new TextFieldListenerAction(lActionType, inputValue);
+					
 				}
-				
-				//TO DO: Implement UserListenerActionType and pass inputValue to instance
-				
 				return true;
 			}
 		});
-	}
-	
-	public void setListenerAction(IListenerAction _lAction) {
-		lAction = _lAction;
+		
+		//Set any other custom listeners
+		setCustomListeners();
 	}
 
 }

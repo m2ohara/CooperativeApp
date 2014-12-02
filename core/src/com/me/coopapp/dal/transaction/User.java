@@ -10,25 +10,27 @@ import com.me.coopapp.dal.SQLConnection;
 
 public class User implements IEntity {
 	
-	private Connection connection;
+	private static User instance;
+	private static Connection connection;
 	private String name;
 	private String email;
 	
-	public User() {
+	private User() {
 		connection = SQLConnection.get();
 	}
 	
-	public void setName(String _name) {
-		name = _name;
-	}
-	
-	public void setEmail(String _email) {
-		email = _email;
-	}
-	
-	public void addUser(String _name, String _email) {
-		name = _name;
-		email = _email;
+	public static User getInstance() {
+		if(instance == null) {
+			instance = new User();
+		}
+		try {
+			if(connection == null || connection.isClosed()) {
+				connection = SQLConnection.get();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return instance;
 	}
 
 	@Override
@@ -37,6 +39,10 @@ public class User implements IEntity {
 		Statement addUserStatement = null;
 		
 		//Create SQL
+		if(name == null || email == null) {
+			return "error";
+		}
+		
 		String SQL = "INSERT values ("+ name+", "+email+") INTO USER";
 		
 		//Initialise as false
@@ -94,6 +100,14 @@ public class User implements IEntity {
 	public String execute() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
