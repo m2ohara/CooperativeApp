@@ -63,9 +63,6 @@ public class GdxButton extends GdxActor {
 		    }
 		  }
 		);
-		
-		//Set any other custom listeners
-		setCustomListeners();
 	}
 	
 	public class CoopAppButton implements IGdxActor {

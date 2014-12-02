@@ -73,9 +73,6 @@ public class GdxTextField extends GdxActor {
 				return true;
 			}
 		});
-		
-		//Set any other custom listeners
-		setCustomListeners();
 	}
 
 }

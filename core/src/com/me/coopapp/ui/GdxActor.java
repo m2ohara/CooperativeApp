@@ -1,17 +1,15 @@
 package com.me.coopapp.ui;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Observer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.me.coopapp.gamestate.Disposer;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.gamestate.IGLContext;
-import com.me.coopapp.ui.IListenerAction.ListenerActionType;
 
 public class GdxActor implements IGLContext {
 	
@@ -19,7 +17,7 @@ public class GdxActor implements IGLContext {
 	protected float xCentreOffset = 0;
 	protected float yCentreOffset = 0;
 	protected String type;
-	protected ArrayList<IListener> lActions = new ArrayList<IListener>();
+	public UIPublisher inputPublisher = new UIPublisher(); 
 	
 	protected Disposer itemDisposer = null;
 	
@@ -99,18 +97,13 @@ public class GdxActor implements IGLContext {
 		GameState.getGameState().items.add(new GdxGameStateItem(this));
 	}
 	
-	protected void setListener() {
-		setCustomListeners();
+	public void addListener(Observer observer) {
+		inputPublisher.addObserver(observer);
 	}
 	
-	public void addListener(IListener listener) {
-		lActions.add(listener);
-	}
-	
-	protected void setCustomListeners() {
-		//Set any other custom listeners
-		for(IListener lAction : lActions) {
-			actor.get().addListener(lAction.getListener());
+	public void addListener(ArrayList<Observer> observers) {
+		for(Observer observer : observers) {
+			inputPublisher.addObserver(observer);
 		}
 	}
 
