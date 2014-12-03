@@ -13,7 +13,7 @@ public class GameStateItem {
 	}
 	
 	public enum NextThreadAction {
-		GdxInstantiate, GlgSet, GlgAct, Finished
+		GDXINSTANTIATE, GLGSET, GLGACT, FINISHED, GLGTRANSACTION
 	}
 	
 	public void setToStage(Stage stage) {
@@ -21,7 +21,7 @@ public class GameStateItem {
 	}
 	
 	public void dispose() {
-		GameState.getGameState().items.remove(this);
+		GameState.get().items.remove(this);
 		
 	}
 

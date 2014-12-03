@@ -1,4 +1,4 @@
-package com.me.coopapp.dal.transaction;
+package com.me.coopapp.entity;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -34,16 +34,16 @@ public class User implements IEntity {
 	}
 
 	@Override
-	public String insert() {
+	public int insert() {
 		
 		Statement addUserStatement = null;
 		
 		//Create SQL
 		if(name == null || email == null) {
-			return "error";
+			return -1;
 		}
 		
-		String SQL = "INSERT values ("+ name+", "+email+") INTO USER";
+		String SQL = "INSERT INTO USER values ("+ name+", "+email+")";
 		
 		//Initialise as false
 		int result = -1;
@@ -69,37 +69,37 @@ public class User implements IEntity {
 			}
 		}
 		
-		return result == -1 ? "error" : "success";
+		return result;
 	}
 
 	@Override
-	public String update() {
+	public int update() {
+		// TODO Auto-generated method stub
+		return -1;
+	}
+
+	@Override
+	public int delete() {
+		// TODO Auto-generated method stub
+		return -1;
+	}
+
+	@Override
+	public ResultSet get() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String delete() {
+	public ResultSet getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String get() {
+	public int execute() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String execute() {
-		// TODO Auto-generated method stub
-		return null;
+		return -1;
 	}
 	
 	public void setName(String name) {

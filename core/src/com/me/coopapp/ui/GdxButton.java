@@ -5,8 +5,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
@@ -14,9 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.me.coopapp.GameLogic;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.Types.ScreenTypes;
-import com.me.coopapp.gamestate.Disposer;
-import com.me.coopapp.gamestate.GameStateItem;
-import com.me.coopapp.gamestate.IGLContext;
+
 
 public class GdxButton extends GdxActor {
 

@@ -1,16 +1,10 @@
 package com.me.coopapp.android;
+
 import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
-
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.util.Log;
 
@@ -47,32 +41,32 @@ public class AndroidActionResolver implements IActionResolver {
             return null;
     }
     
-    private Connection openDBSQLite() {
-        String file = dbPath;
-        Connection connection = null;
-        Statement statement = null;
-        PreparedStatement  insertstatement = null;
-        ResultSet rs = null;
-        try
-        {
-//            if (!file.getParentFile().exists()) {
-//                file.getParentFile().mkdirs();
-//            }
-            SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(file , null);
-            db.close();
-
-          connection = new org.sqldroid.SQLDroidDriver().connect("jdbc:sqlite:" + file , new Properties());
-
-//          statement = connection.createStatement();
-//          statement.setQueryTimeout(30);  // set timeout to 30 sec.
+//    private Connection openDBSQLite() {
+//        String file = dbPath;
+//        Connection connection = null;
+//        Statement statement = null;
+//        PreparedStatement  insertstatement = null;
+//        ResultSet rs = null;
+//        try
+//        {
+////            if (!file.getParentFile().exists()) {
+////                file.getParentFile().mkdirs();
+////            }
+//            SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(file , null);
+//            db.close();
 //
-//          statement.executeUpdate("drop table if exists person3");
-//          statement.executeUpdate("create table person3 (id integer primary key, name string, test integer)");
-          
-        } catch (SQLException e) {
-            Log.e("sql", e.getMessage());
-        }
-        
-        return connection;
-    }
+//          connection = new org.sqldroid.SQLDroidDriver().connect("jdbc:sqlite:" + file , new Properties());
+//
+////          statement = connection.createStatement();
+////          statement.setQueryTimeout(30);  // set timeout to 30 sec.
+////
+////          statement.executeUpdate("drop table if exists person3");
+////          statement.executeUpdate("create table person3 (id integer primary key, name string, test integer)");
+//          
+//        } catch (SQLException e) {
+//            Log.e("sql", e.getMessage());
+//        }
+//        
+//        return connection;
+//    }
 }

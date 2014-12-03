@@ -1,8 +1,6 @@
 package com.me.coopapp.gamestate;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.me.coopapp.ITask;
@@ -20,7 +18,7 @@ public class GameState implements ITask {
 		Gdx.input.setInputProcessor(stage);
 	}
 	
-	public static GameState getGameState() {
+	public static GameState get() {
 		if(gameInstance == null) {
 			gameInstance = new GameState();
 		}
@@ -42,7 +40,7 @@ public class GameState implements ITask {
 				performGdxAction(item);
 			
 			//Check if item action is not complete
-			if(item.state != GameStateItem.NextThreadAction.Finished) {
+			if(item.state != GameStateItem.NextThreadAction.FINISHED) {
 				isTaskComplete = false;
 			}
 		}
@@ -52,15 +50,18 @@ public class GameState implements ITask {
 	private void performGdxAction(GameStateItem item) {
 		
 		//Initialise any items needing GL context
-		if(item instanceof GdxGameStateItem && item.state == NextThreadAction.GdxInstantiate) {
+		if(item instanceof GdxGameStateItem && item.state == NextThreadAction.GDXINSTANTIATE) {
 			((GdxGameStateItem) item).instantiateGdxItem();
 		}
 	}
 	
 	private void performGlgAction(GameStateItem item) {
 
-		if(item instanceof GameStateItem && item.state == NextThreadAction.GlgSet) {
+		if(item instanceof GameStateItem && item.state == NextThreadAction.GLGSET) {
 			((GdxGameStateItem) item).setToStage(stage);
+		}
+		if(item instanceof GameStateItem && item.state == NextThreadAction.GLGTRANSACTION) {
+			((DbGameStateItem) item).performDbTransaction();
 		}
 	}
 	

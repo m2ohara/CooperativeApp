@@ -6,7 +6,7 @@ import java.util.Observer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.me.coopapp.gamestate.Disposer;
+import com.me.coopapp.gamestate.GdxDisposer;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.gamestate.IGLContext;
@@ -18,8 +18,7 @@ public class GdxActor implements IGLContext {
 	protected float yCentreOffset = 0;
 	protected String type;
 	public UIPublisher inputPublisher = new UIPublisher(); 
-	
-	protected Disposer itemDisposer = null;
+	protected GdxDisposer itemDisposer = null;
 	
 	public GdxActor() {
 		setGdxGameStateItem();
@@ -88,13 +87,13 @@ public class GdxActor implements IGLContext {
 	}
 	
 	@Override
-	public void setDisposer(Disposer disposer) {
+	public void setDisposer(GdxDisposer disposer) {
 		itemDisposer = disposer;
 	}
 	
 	private void setGdxGameStateItem() {
 		//Add game state item to list for processing
-		GameState.getGameState().items.add(new GdxGameStateItem(this));
+		GameState.get().items.add(new GdxGameStateItem(this));
 	}
 	
 	public void addListener(Observer observer) {

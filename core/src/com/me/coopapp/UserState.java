@@ -1,13 +1,12 @@
 package com.me.coopapp;
 
 import com.me.coopapp.dal.ISQLTransaction.TransactionType;
-import com.me.coopapp.dal.transaction.User;
+import com.me.coopapp.entity.User;
 
 
 public class UserState {
 	
 	private static UserState instance;
-	private User entity;
 	public String imageName;
 	
 	private UserState() {
@@ -45,11 +44,11 @@ public class UserState {
 	}
 	
 	public void setName(String _name) {
-		entity.setName(_name);
+		User.getInstance().setName(_name);
 	}
 	
 	public void setEmail(String _email) {
-		entity.setEmail(_email);
+		User.getInstance().setEmail(_email);
 	}
 	
 	public enum Task { INSERT }

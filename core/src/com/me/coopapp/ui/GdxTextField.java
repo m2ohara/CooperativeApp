@@ -7,8 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.me.coopapp.GameLogic;
-import com.me.coopapp.ui.IListenerAction.ListenerActionType;
 
 
 public class GdxTextField extends GdxActor {
@@ -16,12 +14,10 @@ public class GdxTextField extends GdxActor {
 	//The text field input label
 	private String textValue;
 	public String inputValue;
-	private ListenerActionType lActionType;
 	
-	public GdxTextField(float _xCentreOffset, float _yCentreOffset, String _textValue, ListenerActionType _lActionType) {
+	public GdxTextField(float _xCentreOffset, float _yCentreOffset, String _textValue) {
 		super(_xCentreOffset, _yCentreOffset);
 		textValue = _textValue == null ? "" : _textValue;
-		lActionType = _lActionType;
 	}
 	
 	public void instantiate() {
@@ -67,7 +63,7 @@ public class GdxTextField extends GdxActor {
 				if(keyCode == Input.Keys.ENTER) {
 					inputValue = ((TextField)actor.get()).getText();
 					
-					new TextFieldListenerAction(lActionType, inputValue);
+					inputPublisher.notifyObservers(inputValue);
 					
 				}
 				return true;

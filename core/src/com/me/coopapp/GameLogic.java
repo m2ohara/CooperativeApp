@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
+import com.me.coopapp.gamestate.DbGameStateItem;
 import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.gamestate.GdxGameStateItem;
-import com.me.coopapp.ui.GdxButton;
 
 public class GameLogic extends Thread {
 	
@@ -30,23 +29,18 @@ public class GameLogic extends Thread {
 	public void processSetup() {
 
 		//If new setup create new settings 
-		Setup setup = new Setup();
-		if(!setup.isTableExists()) {
-			//Setup data base
-			new Setup().createDatabaseFromFile();
-		} 
+//		if(!DbSetup.getInstance().isTableExists()) {
+//			//Setup data base
+//			DbSetup.getInstance().createDatabaseFromFile();
+//		} 
 		//Perform appropriate user action
 //		UserTasks.add(new UserState(userEntity));
 		
-		//TO DO: Place in new setup condition. Setup registration screen
-		ScreenState.getScreenInstance().type = Types.ScreenTypes.register1Texture;
-		ScreenTasks.add(ScreenState.getScreenInstance());
-		
-		GameState.getGameState().items.add(new GdxGameStateItem(new GdxButton("SetupBtn1", 0, 90)));
-		GameState.getGameState().items.add(new GdxGameStateItem(new GdxButton("SetUpBtn2", 0, -90)));
+		//Setup new database if required
+		GameState.get().items.add(new DbGameStateItem(DbSetup.getInstance()));
 		
 		
-		GameTasks.add(GameState.getGameState());
+		GameTasks.add(GameState.get());
 	
 	}
 	
@@ -68,6 +62,7 @@ public class GameLogic extends Thread {
 				ITask task = it.next();
 				task.perform(false);
 				
+				//Remove completed
 				if(task.isTaskComplete()) {
 					it.remove();
 				}

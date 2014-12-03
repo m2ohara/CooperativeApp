@@ -6,14 +6,15 @@ import java.util.Observer;
 import com.me.coopapp.GameLogic;
 import com.me.coopapp.Types.ScreenTypes;
 import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.ui.AddUserListener;
+import com.me.coopapp.ui.ListenerAddUser;
 import com.me.coopapp.ui.GdxButton;
 import com.me.coopapp.ui.GdxIcon;
 import com.me.coopapp.ui.GdxTextField;
-import com.me.coopapp.ui.IListenerAction.ListenerActionType;
 import com.me.coopapp.ui.Screen;
-import com.me.coopapp.ui.ScreenSwitchButton;
-import com.me.coopapp.ui.SwitchScreenListener;
+import com.me.coopapp.ui.GdxSwitchScreenBtn;
+import com.me.coopapp.ui.ListenerSwitchScreen;
+import com.me.coopapp.ui.ListenerSetUser;
+import com.me.coopapp.ui.ListenerSetUser.ObservableType;
 
 public class RegisterOfflineScreen extends Screen {
 	
@@ -27,14 +28,14 @@ public class RegisterOfflineScreen extends Screen {
 		
 		
 		//Set layout
-		new GdxTextField(0, 80, "Name", ListenerActionType.SETUSERNAME);
-		new GdxTextField(0, 10, "Email", ListenerActionType.SETUSEREMAIL);
+		new GdxTextField(0, 80, "Name").addListener(new ListenerSetUser(ObservableType.NAME));
+		new GdxTextField(0, 10, "Email").addListener(new ListenerSetUser(ObservableType.EMAIL));
 		new GdxButton("UploadPhotoBtn", -100, -75);
 		new GdxIcon("UploadPhotoIcon", -170, -150);
 		new GdxIcon("UploadPhotoIcon", -90, -150);
 		new GdxIcon("UploadPhotoIcon", -10, -150);
 
-		new ScreenSwitchButton("CreateProfileBtn", 0, -250, ScreenTypes.createProfileTexture).addListener(
+		new GdxSwitchScreenBtn("CreateProfileBtn", 0, -250, ScreenTypes.createProfileTexture).addListener(
 				new ArrayList<Observer>() 
 				{/**
 				 * 
@@ -42,13 +43,15 @@ public class RegisterOfflineScreen extends Screen {
 					private static final long serialVersionUID = 1L;
 
 					{
-						add(new AddUserListener()); 
-						add(new SwitchScreenListener());
+						add(new ListenerAddUser()); 
+						add(new ListenerSwitchScreen());
 					}
 				}
 				);
 
-		GameLogic.getInstance().GameTasks.add(GameState.getGameState());
+		//Perform game logic tasks
+		//TO DO: Review for intended usage 
+		GameLogic.getInstance().GameTasks.add(GameState.get());
 
 	}
 	

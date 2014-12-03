@@ -3,7 +3,7 @@ package com.me.coopapp;
 import java.sql.ResultSet;
 
 import com.me.coopapp.dal.ISQLTransaction;
-import com.me.coopapp.dal.transaction.User;
+import com.me.coopapp.entity.User;
 
 public class UserTask implements ITask, ISQLTransaction {
 

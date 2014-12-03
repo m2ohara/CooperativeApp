@@ -7,7 +7,7 @@ import com.me.coopapp.GameLogic;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.Types.ScreenTypes;
 
-public class SwitchScreenListener implements Observer {
+public class ListenerSwitchScreen implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {

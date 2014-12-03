@@ -2,22 +2,19 @@ package com.me.coopapp.ui;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.me.coopapp.GameLogic;
-import com.me.coopapp.ScreenState;
 import com.me.coopapp.Types.ScreenTypes;
 import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.gamestate.GameStateItem;
 
-public class ScreenSwitchButton extends GdxButton {
+public class GdxSwitchScreenBtn extends GdxButton {
 	
 	public ScreenTypes screenToSwitch;
 
-	public ScreenSwitchButton(String _type, ScreenTypes _screenToSwitch) {
+	public GdxSwitchScreenBtn(String _type, ScreenTypes _screenToSwitch) {
 		super(_type);
 		screenToSwitch = _screenToSwitch;
 	}
 	
-	public ScreenSwitchButton(String _type, float xCoord, float yCoord, ScreenTypes _screenToSwitch) {
+	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenTypes _screenToSwitch) {
 		super(_type, xCoord, yCoord);
 		screenToSwitch = _screenToSwitch;
 	}
@@ -40,7 +37,7 @@ public class ScreenSwitchButton extends GdxButton {
 	public void dispose() {
 		
 		GameState.stage.clear();
-		GameState.getGameState().items.clear();
+		GameState.get().items.clear();
 		
 	}
 

@@ -2,11 +2,11 @@ package com.me.coopapp.gamestate;
 
 import com.me.coopapp.gamestate.GameStateItem.NextThreadAction;
 
-public class Disposer {
+public class GdxDisposer {
 	
 	private GameStateItem itemToDispose;
 	
-	public Disposer(GameStateItem item) {
+	public GdxDisposer(GameStateItem item) {
 		
 		itemToDispose = item;
 		
@@ -15,7 +15,7 @@ public class Disposer {
 	}
 	
 	public void disposeGameStateItem() {
-		itemToDispose.state = NextThreadAction.Finished;
+		itemToDispose.state = NextThreadAction.FINISHED;
 		itemToDispose.dispose();
 	}
 

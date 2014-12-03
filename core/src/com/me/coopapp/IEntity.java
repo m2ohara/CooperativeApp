@@ -1,17 +1,19 @@
 package com.me.coopapp;
 
+import java.sql.ResultSet;
+
 public interface IEntity {
 	
-	public String insert();
+	public int insert();
 	
-	public String update();
+	public int update();
 	
-	public String delete();
+	public int delete();
 	
-	public String get();
+	public ResultSet get();
 	
-	public String getById(int id);
+	public ResultSet getById(int id);
 	
-	public String execute();
+	public int execute();
 
 }

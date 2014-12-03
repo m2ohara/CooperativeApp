@@ -1,4 +1,4 @@
-package com.me.coopapp.dal.transaction;
+package com.me.coopapp.entity;
 
 import java.sql.Connection;
 import java.sql.SQLException;

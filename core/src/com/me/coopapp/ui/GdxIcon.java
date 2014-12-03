@@ -1,15 +1,11 @@
 package com.me.coopapp.ui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.ObjectSet;
-import com.me.coopapp.gamestate.Disposer;
 
 public class GdxIcon extends GdxActor{
 	

@@ -1,13 +1,12 @@
 package com.me.coopapp;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.screen.setup.RegisterOfflineScreen;
+import com.me.coopapp.screen.setup.RegisterOptionsScreen;
 import com.me.coopapp.ui.Screen;
 
 public class ScreenState implements ITask {
@@ -51,7 +50,7 @@ public class ScreenState implements ITask {
 					texture = new Texture("LoadingTexture.jpg");
 				}
 				else if(type == Types.ScreenTypes.register1Texture) {
-					screen = new Screen();
+					screen = new RegisterOptionsScreen();
 					texture = new Texture("Register1.png");
 				}
 				else if(type == Types.ScreenTypes.register2Texture) {
