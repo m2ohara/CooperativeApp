@@ -9,7 +9,7 @@ public class DesktopActionResolver implements IActionResolver {
 
 	@Override
 	public Connection getConnection() {
-		String url = "jdbc:sqlite:sampleDB.db";
+		String url = "jdbc:sqlite:CoopAppDB.sqlite";
 		try {
 			Class.forName("org.sqlite.JDBC");
 			return DriverManager.getConnection(url);

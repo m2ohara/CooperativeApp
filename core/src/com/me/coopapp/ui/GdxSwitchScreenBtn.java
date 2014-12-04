@@ -1,9 +1,14 @@
 package com.me.coopapp.ui;
 
+import java.util.Iterator;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.me.coopapp.GameLogic;
+import com.me.coopapp.ITask;
 import com.me.coopapp.Types.ScreenTypes;
 import com.me.coopapp.gamestate.GameState;
+import com.me.coopapp.gamestate.GameStateItem;
 
 public class GdxSwitchScreenBtn extends GdxButton {
 	
@@ -26,7 +31,7 @@ public class GdxSwitchScreenBtn extends GdxButton {
 		    	inputPublisher.notifyObservers(screenToSwitch);
 		    	
 		    	//Remove all current items from game state
-		    	dispose();
+		    	disposeGdx();
 		    }
 		  }
 		);
@@ -34,10 +39,20 @@ public class GdxSwitchScreenBtn extends GdxButton {
 	}
 	
 	@Override
-	public void dispose() {
+	public void disposeGdx() {
 		
-		GameState.stage.clear();
+		//Dispose all Gdx items on memory
+//		Iterator<GameStateItem> it = GameState.get().items.iterator();
+//		while(it.hasNext()) {
+//			GameStateItem gSItem = it.next();
+//			if(gSItem.glContext != null) {
+//				gSItem.glContext.disposeGdx();
+//			}
+//			gSItem.disposeGSItem();
+//		}
+		
 		GameState.get().items.clear();
+		GameState.stage.clear();
 		
 	}
 

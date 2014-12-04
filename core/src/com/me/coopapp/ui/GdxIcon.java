@@ -57,7 +57,7 @@ public class GdxIcon extends GdxActor{
 	}
 	
 	@Override
-	public void dispose() {
+	public void disposeGdx() {
 		
 		//Remove from stage
 		actor.get().remove();

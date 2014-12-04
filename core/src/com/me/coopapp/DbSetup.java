@@ -2,13 +2,13 @@ package com.me.coopapp;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import com.me.coopapp.dal.ISQLTransaction;
 import com.me.coopapp.entity.Database;
 
 public class DbSetup implements ISQLTransaction {
 	
 	private static DbSetup instance;
-	private Database entity;
 	private TransactionType type;
 	public boolean isDB = false;
 	
@@ -27,16 +27,20 @@ public class DbSetup implements ISQLTransaction {
 		
 		if(type == TransactionType.INSERT) {
 			//Create DB
-			entity.insert();
+			Database.getInstance().insert();
 		}
 		
 		else if(type == TransactionType.GET) {
 			//Get DB tables
 			try {
-				if(!entity.get().next()) {
+				if(!Database.getInstance().get().next()) {
 					//If tables do not exist, create DB 
-					entity.insert();
+					Database.getInstance().insert();
 				}
+				
+				//Set screen
+				ScreenState.getScreenInstance().setTask(Types.ScreenTypes.register1Texture);
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

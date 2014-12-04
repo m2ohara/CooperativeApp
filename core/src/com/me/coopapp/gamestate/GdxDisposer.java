@@ -1,12 +1,11 @@
 package com.me.coopapp.gamestate;
 
-import com.me.coopapp.gamestate.GameStateItem.NextThreadAction;
-
 public class GdxDisposer {
 	
 	private GameStateItem itemToDispose;
 	
-	public GdxDisposer(GameStateItem item) {
+	
+	public GdxDisposer(GdxGameStateItem item) {
 		
 		itemToDispose = item;
 		
@@ -14,9 +13,23 @@ public class GdxDisposer {
 		
 	}
 	
-	public void disposeGameStateItem() {
-		itemToDispose.state = NextThreadAction.FINISHED;
-		itemToDispose.dispose();
+	public void dispose() {
+		((IGLContext)itemToDispose.item).disposeGdx();
+		itemToDispose.disposeGSItem();
 	}
+	
+//	private void disposeGameStateItem() {
+//		itemToDispose.state = NextThreadAction.FINISHED;
+//		itemToDispose.disposeGSItem();
+//	}
+//	
+//	private void disposeGdxItems() {
+//		if(gdxItemsToDispose != null) {
+//			Iterator<Disposable> it = gdxItemsToDispose.iterator();
+//			while(it.hasNext()) {
+//				it.next().dispose();
+//			}
+//		}
+//	}
 
 }

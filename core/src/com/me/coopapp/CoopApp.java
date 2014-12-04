@@ -20,7 +20,7 @@ public class CoopApp extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		
-		ScreenState.getScreenInstance().set(Types.ScreenTypes.startTexture);
+		ScreenState.getScreenInstance().setTask(Types.ScreenTypes.startTexture);
 		
 		processor = GameLogic.getInstance();	
 		processor.processSetup();

@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.me.coopapp.GameLogic;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.Types.ScreenTypes;
 
@@ -50,11 +49,11 @@ public class GdxButton extends GdxActor {
 		actor.get().addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		        //Change screen
-		    	ScreenState.getScreenInstance().type = ScreenTypes.register2Texture;
-		    	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());
+		    	ScreenState.getScreenInstance().setTask(ScreenTypes.register2Texture);
 		    	
-		    	//Remove this button
-		    	dispose();
+//		    	//Remove this button
+//		    	dispose();
+		    	itemDisposer.dispose();
 
 		    }
 		  }
@@ -82,14 +81,14 @@ public class GdxButton extends GdxActor {
 	}
 
 	@Override
-	public void dispose() {
+	public void disposeGdx() {
 		
 		//Remove from stage
 		actor.get().remove();
+		
+		//Remove gdx items
 		buttonAtlas.dispose();
 		skin.dispose();
-		//Dispose related game item
-		itemDisposer.disposeGameStateItem();
 		
 	}
 

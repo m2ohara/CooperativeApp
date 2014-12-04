@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
+import com.me.coopapp.dal.ISQLTransaction.TransactionType;
 import com.me.coopapp.gamestate.DbGameStateItem;
 import com.me.coopapp.gamestate.GameState;
 
@@ -28,16 +29,10 @@ public class GameLogic extends Thread {
 	
 	public void processSetup() {
 
-		//If new setup create new settings 
-//		if(!DbSetup.getInstance().isTableExists()) {
-//			//Setup data base
-//			DbSetup.getInstance().createDatabaseFromFile();
-//		} 
-		//Perform appropriate user action
-//		UserTasks.add(new UserState(userEntity));
-		
 		//Setup new database if required
-		GameState.get().items.add(new DbGameStateItem(DbSetup.getInstance()));
+		DbSetup instance = DbSetup.getInstance();
+		instance.setTransaction(TransactionType.GET);
+		GameState.get().items.add(new DbGameStateItem(instance));
 		
 		
 		GameTasks.add(GameState.get());

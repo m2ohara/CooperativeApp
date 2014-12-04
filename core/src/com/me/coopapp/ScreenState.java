@@ -12,11 +12,11 @@ import com.me.coopapp.ui.Screen;
 public class ScreenState implements ITask {
 	
 	private static ScreenState screenInstance = null;
-	public Texture texture;
-	public float x;
-	public float y;
+	private Texture texture;
+	private float x;
+	private float y;
 	private Types.ScreenTypes current;
-	public Types.ScreenTypes type;
+	private Types.ScreenTypes type;
 	private Screen screen;
 	
 	
@@ -30,12 +30,17 @@ public class ScreenState implements ITask {
 		return screenInstance;
 	}
 	
-	public void set(Types.ScreenTypes type) {
+	public void setTask(Types.ScreenTypes _type) {
+		type = _type;
+		GameLogic.getInstance().ScreenTasks.add(this);
+	}
+	
+	private void set(Types.ScreenTypes type) {
 		update(type);
 		setRelativePosition();
 	}
 	
-	public void update(Types.ScreenTypes type) {
+	private void update(Types.ScreenTypes type) {
 	
 		//Only load if not current screen texture
 		if(type != null) {

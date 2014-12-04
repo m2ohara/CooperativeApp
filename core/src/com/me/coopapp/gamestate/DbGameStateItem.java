@@ -9,6 +9,8 @@ public class DbGameStateItem extends GameStateItem {
 	public DbGameStateItem(Object _item) {
 		super(_item);
 		
+		state = NextThreadAction.GLGTRANSACTION;
+		
 		//TO DO: Set disposer
 	}
 

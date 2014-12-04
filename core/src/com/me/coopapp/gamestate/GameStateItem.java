@@ -20,9 +20,9 @@ public class GameStateItem {
 		
 	}
 	
-	public void dispose() {
+	public void disposeGSItem() {
+		state = NextThreadAction.FINISHED;
 		GameState.get().items.remove(this);
-		
 	}
 
 

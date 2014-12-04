@@ -80,7 +80,7 @@ public class GdxActor implements IGLContext {
 	}
 
 	@Override
-	public void dispose() {
+	public void disposeGdx() {
 		//Remove instance from stage to improve performance
 		actor.get().remove();
 		
@@ -89,6 +89,11 @@ public class GdxActor implements IGLContext {
 	@Override
 	public void setDisposer(GdxDisposer disposer) {
 		itemDisposer = disposer;
+	}
+	
+	@Override
+	public GdxDisposer getDisposer() {
+		return itemDisposer;
 	}
 	
 	private void setGdxGameStateItem() {

@@ -5,14 +5,14 @@ import java.util.Observer;
 
 import com.me.coopapp.GameLogic;
 import com.me.coopapp.ScreenState;
-import com.me.coopapp.Types.ScreenTypes;
+import com.me.coopapp.Types;
 
 public class ListenerSwitchScreen implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
     	//Set screen to switch to on click
-    	ScreenState.getScreenInstance().type = (ScreenTypes)arg;
+    	ScreenState.getScreenInstance().setTask((Types.ScreenTypes)arg);
     	GameLogic.getInstance().ScreenTasks.add(ScreenState.getScreenInstance());
 	}
 

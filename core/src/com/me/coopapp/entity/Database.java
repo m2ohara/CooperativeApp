@@ -39,7 +39,7 @@ public class Database implements IEntity {
 		Statement createDBStatement = null;
 		
 		//Get sql from file
-		FileHandle createDBFile = Gdx.files.internal("sampleDB.sql");
+		FileHandle createDBFile = Gdx.files.internal("createDB.sql");
 		String fileSQL = createDBFile.readString();
 		
 		//Initialise as false

@@ -43,7 +43,7 @@ public class User implements IEntity {
 			return -1;
 		}
 		
-		String SQL = "INSERT INTO USER values ("+ name+", "+email+")";
+		String SQL = "INSERT INTO USER (NAME, ACCOUNT_IDENTIFIER, STATE) values ('"+ name+"', '"+email+"', 1)";
 		
 		//Initialise as false
 		int result = -1;
