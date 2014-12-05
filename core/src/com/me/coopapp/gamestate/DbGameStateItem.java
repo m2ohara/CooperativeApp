@@ -16,7 +16,6 @@ public class DbGameStateItem extends GameStateItem {
 
 	public ResultSet performDbTransaction() {
 		
-		state = NextThreadAction.FINISHED;
 		return ((ISQLTransaction) item).performTransaction();
 	}
 

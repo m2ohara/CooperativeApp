@@ -1,6 +1,8 @@
 package com.me.coopapp.gamestate;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.me.coopapp.ITask;
@@ -29,20 +31,24 @@ public class GameState implements ITask {
 		isTaskComplete = true;
 		
 		//Perform current actions
-		for(GameStateItem item : items) {
+		Iterator<GameStateItem> it = items.iterator();
+		while(it.hasNext()) {
+			
+			GameStateItem itemToPerform = it.next();
+			
+			//If finished remove
+			if(itemToPerform.state == GameStateItem.NextThreadAction.FINISHED) {
+				it.remove();
+				break;
+			}
 			
 			//Perform logic within game logic thread
 			if(!isGdxThread)
-				performGlgAction(item);
+				performGlgAction(itemToPerform);
 			
 			//Perform logic within Gdx thread
 			if(isGdxThread)
-				performGdxAction(item);
-			
-			//Check if item action is not complete
-			if(item.state != GameStateItem.NextThreadAction.FINISHED) {
-				isTaskComplete = false;
-			}
+				performGdxAction(itemToPerform);
 		}
 		
 	}

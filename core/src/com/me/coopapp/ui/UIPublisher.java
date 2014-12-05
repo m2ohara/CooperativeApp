@@ -7,7 +7,7 @@ import java.util.Observer;
 public class UIPublisher extends Observable {
 	
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
-	
+
 	public UIPublisher() {}
 	
 	public void addObserver(Observer observer) {
@@ -22,6 +22,10 @@ public class UIPublisher extends Observable {
 	      for (Observer observer : observers) {
 	          observer.update(this, args);
 	       }
+	}
+	
+	public ArrayList<Observer> getObservers() {
+		return observers;
 	}
 
 }

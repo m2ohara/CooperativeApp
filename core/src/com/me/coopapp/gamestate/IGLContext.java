@@ -1,6 +1,9 @@
 package com.me.coopapp.gamestate;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Disposable;
 
 public interface IGLContext {
 	
@@ -13,4 +16,6 @@ public interface IGLContext {
 	public void setToStage(Stage stage);
 	
 	public void disposeGdx();
+	
+	public ArrayList<Disposable> getDisposableGdx();
 }

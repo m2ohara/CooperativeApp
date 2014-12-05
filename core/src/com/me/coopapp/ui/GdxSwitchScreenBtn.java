@@ -1,14 +1,10 @@
 package com.me.coopapp.ui;
 
-import java.util.Iterator;
-
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.me.coopapp.GameLogic;
-import com.me.coopapp.ITask;
+import com.me.coopapp.Types;
 import com.me.coopapp.Types.ScreenTypes;
 import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.gamestate.GameStateItem;
 
 public class GdxSwitchScreenBtn extends GdxButton {
 	
@@ -16,22 +12,42 @@ public class GdxSwitchScreenBtn extends GdxButton {
 
 	public GdxSwitchScreenBtn(String _type, ScreenTypes _screenToSwitch) {
 		super(_type);
+		
+		//Set screen to switch to
 		screenToSwitch = _screenToSwitch;
+		
+		//Add listener for screen switching action
+		addListener(new ListenerSwitchScreen());
 	}
 	
 	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenTypes _screenToSwitch) {
 		super(_type, xCoord, yCoord);
+
+		//Set screen to switch to
 		screenToSwitch = _screenToSwitch;
+		
+		//Add listener for screen switching action
+		addListener(new ListenerSwitchScreen());
+	}
+	
+	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenTypes _screenToSwitch, Types.ScreenTypes screen) {
+		super(_type, xCoord, yCoord, screen);
+
+		//Set screen to switch to
+		screenToSwitch = _screenToSwitch;
+		
+		//Add listener for screen switching action
+		addListener(new ListenerSwitchScreen());
 	}
 	
 	public void setListener() {
 		actor.get().addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		    	
-		    	inputPublisher.notifyObservers(screenToSwitch);
-		    	
 		    	//Remove all current items from game state
-		    	disposeGdx();
+		    	itemDisposer.disposeAll();
+		    	
+		    	publisher.notifyObservers(screenToSwitch);
 		    }
 		  }
 		);
@@ -41,16 +57,7 @@ public class GdxSwitchScreenBtn extends GdxButton {
 	@Override
 	public void disposeGdx() {
 		
-		//Dispose all Gdx items on memory
-//		Iterator<GameStateItem> it = GameState.get().items.iterator();
-//		while(it.hasNext()) {
-//			GameStateItem gSItem = it.next();
-//			if(gSItem.glContext != null) {
-//				gSItem.glContext.disposeGdx();
-//			}
-//			gSItem.disposeGSItem();
-//		}
-		
+		//TO DO: Remove specified actors / items
 		GameState.get().items.clear();
 		GameState.stage.clear();
 		

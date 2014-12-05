@@ -1,5 +1,7 @@
 package com.me.coopapp.ui;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -9,8 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.me.coopapp.ScreenState;
-import com.me.coopapp.Types.ScreenTypes;
+import com.badlogic.gdx.utils.Disposable;
+import com.me.coopapp.Types;
 
 
 public class GdxButton extends GdxActor {
@@ -27,20 +29,26 @@ public class GdxButton extends GdxActor {
 		super(_type, _xCentreOffset, _yCentreOffset);
 	}
 	
+	public GdxButton(String _type, float _xCentreOffset, float _yCentreOffset, Types.ScreenTypes screen) {
+		super(_type, _xCentreOffset, _yCentreOffset, screen);
+	}
+	
+	
 	public void instantiate() {
 		
 		BitmapFont font = new BitmapFont();
 		TextButtonStyle style = new TextButtonStyle();
 		
+		//Set gdx items
 		buttonAtlas = new TextureAtlas(Gdx.files.internal("Buttons.pack"));
 		skin.addRegions(buttonAtlas);
 		style.font = font;
 		style.up = skin.getDrawable(type);
 		style.down = skin.getDrawable(type+"-down");
 		
+		//Create button
 		actor = new CoopAppButton();
 		actor.set(new TextButton("", style));
-		
 		
 		setListener();
 	}
@@ -48,11 +56,10 @@ public class GdxButton extends GdxActor {
 	public void setListener() {
 		actor.get().addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
-		        //Change screen
-		    	ScreenState.getScreenInstance().setTask(ScreenTypes.register2Texture);
+
+		    	publisher.notifyObservers();
 		    	
-//		    	//Remove this button
-//		    	dispose();
+		    	//Remove this button
 		    	itemDisposer.dispose();
 
 		    }
@@ -81,6 +88,7 @@ public class GdxButton extends GdxActor {
 	}
 
 	@Override
+	//Invoked by GdxDisposer
 	public void disposeGdx() {
 		
 		//Remove from stage
@@ -90,6 +98,14 @@ public class GdxButton extends GdxActor {
 		buttonAtlas.dispose();
 		skin.dispose();
 		
+	}
+	
+	//Invoked during runtime (after gdx instantiation)
+	public ArrayList<Disposable> getDisposableGdx() {
+		gdxItemsToDispose = new ArrayList<Disposable>();
+		gdxItemsToDispose.add(buttonAtlas);
+		gdxItemsToDispose.add(skin);
+		return gdxItemsToDispose;
 	}
 
 }

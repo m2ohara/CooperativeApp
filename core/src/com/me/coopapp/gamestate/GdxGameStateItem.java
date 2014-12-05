@@ -1,6 +1,7 @@
 package com.me.coopapp.gamestate;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.me.coopapp.Types;
 
 public class GdxGameStateItem extends GameStateItem {
 
@@ -10,6 +11,19 @@ public class GdxGameStateItem extends GameStateItem {
 		//Set next state to instantiate
 		state = GameStateItem.NextThreadAction.GDXINSTANTIATE;
 		glContext = _item;
+		
+		//Set gamestate item to be disposable
+		new GdxDisposer(this);
+	}
+	
+	public GdxGameStateItem(IGLContext _item, Types.ScreenTypes _screen) {
+		super(_item);
+
+		//Set next state to instantiate
+		state = GameStateItem.NextThreadAction.GDXINSTANTIATE;
+		glContext = _item;
+		
+		screen = _screen;
 		
 		//Set gamestate item to be disposable
 		new GdxDisposer(this);

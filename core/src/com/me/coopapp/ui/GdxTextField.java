@@ -63,7 +63,7 @@ public class GdxTextField extends GdxActor {
 				if(keyCode == Input.Keys.ENTER) {
 					inputValue = ((TextField)actor.get()).getText();
 					
-					inputPublisher.notifyObservers(inputValue);
+					publisher.notifyObservers(inputValue);
 					
 				}
 				return true;
