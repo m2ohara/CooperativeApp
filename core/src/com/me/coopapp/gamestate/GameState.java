@@ -37,7 +37,7 @@ public class GameState implements ITask {
 			GameStateItem itemToPerform = it.next();
 			
 			//If finished remove
-			if(itemToPerform.state == GameStateItem.NextThreadAction.FINISHED) {
+			if(itemToPerform.state == GameStateItem.NextThreadAction.DISPOSE) {
 				it.remove();
 				break;
 			}

@@ -59,26 +59,5 @@ public class DbSetup implements ISQLTransaction {
 	public TransactionType getTransaction() {
 		return type;
 	}
-	
-	//************* Refactor out ***************//
-	//Check if database is setup
-//	public boolean isTableExists() {
-//		
-//		boolean hasFirstTable = false;
-//		try {
-//			hasFirstTable = new GetTables().performTransaction().next();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return hasFirstTable;
-//	}
-//	
-//	//Create database
-//	public int createDatabaseFromFile() {
-//		
-//		return new CreateDB().PerformTransaction();
-//		
-//	}
 
 }

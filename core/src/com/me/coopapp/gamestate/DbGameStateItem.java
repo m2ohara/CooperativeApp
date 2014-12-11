@@ -1,7 +1,9 @@
 package com.me.coopapp.gamestate;
 
 import java.sql.ResultSet;
+
 import com.me.coopapp.dal.ISQLTransaction;
+import com.me.coopapp.dispose.Disposer;
 
 public class DbGameStateItem extends GameStateItem {
 	
@@ -11,10 +13,12 @@ public class DbGameStateItem extends GameStateItem {
 		
 		state = NextThreadAction.GLGTRANSACTION;
 		
-		//TO DO: Set disposer
+		itemDisposer = new Disposer();
 	}
 
 	public ResultSet performDbTransaction() {
+		
+		state = NextThreadAction.DISPOSE;
 		
 		return ((ISQLTransaction) item).performTransaction();
 	}

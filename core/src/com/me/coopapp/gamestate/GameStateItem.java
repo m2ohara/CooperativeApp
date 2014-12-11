@@ -2,6 +2,7 @@ package com.me.coopapp.gamestate;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.me.coopapp.Types;
+import com.me.coopapp.dispose.Disposer;
 
 public class GameStateItem {
 	
@@ -9,13 +10,14 @@ public class GameStateItem {
 	public Types.ScreenTypes screen;
 	public Object item;
 	public IGLContext glContext;
+	protected Disposer itemDisposer = null;
 	
 	public GameStateItem(Object _item) {
 		item = _item;
 	}
 	
 	public enum NextThreadAction {
-		GDXINSTANTIATE, GLGSET, GLGACT, FINISHED, GLGTRANSACTION, GDXDISPOSE
+		GDXINSTANTIATE, GLGSET, GLGACT, DISPOSE, GLGTRANSACTION, GDXDISPOSE
 	}
 	
 	public void setToStage(Stage stage) {
@@ -24,7 +26,7 @@ public class GameStateItem {
 	
 	//Invoked by GdxDisposer
 	public void disposeGSItem() {
-		this.state = NextThreadAction.FINISHED;
+		this.state = NextThreadAction.DISPOSE;
 //		GameState.get().items.remove(this);
 	}
 
