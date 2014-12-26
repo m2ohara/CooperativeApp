@@ -32,7 +32,8 @@ public class GameLogic extends Thread {
 		//Setup new database if required
 		DbSetup instance = DbSetup.getInstance();
 		instance.setTransaction(TransactionType.GET);
-		GameState.get().items.add(new DbGameStateItem(instance));
+		DbGameStateItem item = new DbGameStateItem(instance);
+		GameState.get().items.put(item.hashCode(), item);
 		
 		
 		GameTasks.add(GameState.get());

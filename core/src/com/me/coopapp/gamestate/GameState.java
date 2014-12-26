@@ -1,7 +1,6 @@
 package com.me.coopapp.gamestate;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -12,7 +11,7 @@ public class GameState implements ITask {
 	
 	public static Stage stage = new Stage();
 	private static GameState gameInstance;
-	public ArrayList<GameStateItem> items = new ArrayList<GameStateItem>();
+	public ConcurrentHashMap<Integer, GameStateItem> items = new ConcurrentHashMap<Integer, GameStateItem>();
 	public boolean isTaskComplete = false;
 	
 	//Singleton
@@ -31,24 +30,20 @@ public class GameState implements ITask {
 		isTaskComplete = true;
 		
 		//Perform current actions
-		Iterator<GameStateItem> it = items.iterator();
-		while(it.hasNext()) {
-			
-			GameStateItem itemToPerform = it.next();
+		for(GameStateItem item : items.values()) {
 			
 			//If finished remove
-			if(itemToPerform.state == GameStateItem.NextThreadAction.DISPOSE) {
-				it.remove();
-				break;
+			if(item.state == GameStateItem.NextThreadAction.DISPOSE) {
+				items.remove(item.hashCode());
 			}
 			
 			//Perform logic within game logic thread
-			if(!isGdxThread)
-				performGlgAction(itemToPerform);
+			else if(!isGdxThread)
+				performGlgAction(item);
 			
 			//Perform logic within Gdx thread
-			if(isGdxThread)
-				performGdxAction(itemToPerform);
+			else if(isGdxThread)
+				performGdxAction(item);
 		}
 		
 	}

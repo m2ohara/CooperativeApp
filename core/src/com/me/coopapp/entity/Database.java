@@ -92,6 +92,14 @@ public class Database implements IEntity {
 		catch(SQLException ex) {
 			System.out.println("Error getting tables: "+ex);
 		}
+		finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
 		
 		return queryResult;
 	}

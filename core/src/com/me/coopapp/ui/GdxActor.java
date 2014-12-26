@@ -40,6 +40,13 @@ public class GdxActor implements IGLContext {
 		setGdxGameStateItem();
 	}
 	
+	public GdxActor(float _xCentreOffset, float _yCentreOffset, Types.ScreenTypes screen) {
+		xCentreOffset = _xCentreOffset;
+		yCentreOffset = _yCentreOffset;
+		
+		setGdxGameStateItem(screen);
+	}
+	
 	public GdxActor(String _type, float _xCentreOffset, float _yCentreOffset) {
 		type = _type;
 		xCentreOffset = _xCentreOffset;
@@ -109,12 +116,14 @@ public class GdxActor implements IGLContext {
 	
 	private void setGdxGameStateItem() {
 		//Add game state item to list for processing
-		GameState.get().items.add(new GdxGameStateItem(this));
+		GdxGameStateItem item = new GdxGameStateItem(this);
+		GameState.get().items.put(item.hashCode(), item);
 	}
 	
 	private void setGdxGameStateItem(Types.ScreenTypes screen) {
 		//Add game state item to list for processing
-		GameState.get().items.add(new GdxGameStateItem(this));
+		GdxGameStateItem item = new GdxGameStateItem(this, screen);
+		GameState.get().items.put(item.hashCode(), item);
 	}
 	
 	public void addListener(Observer observer) {

@@ -3,6 +3,7 @@ package com.me.coopapp.screen.setup;
 import java.util.ArrayList;
 
 import com.me.coopapp.GameLogic;
+import com.me.coopapp.Types;
 import com.me.coopapp.Types.ScreenTypes;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.ui.GdxActor;
@@ -35,12 +36,12 @@ public class RegisterOfflineScreen extends Screen {
 		//Set items for btn to dispose of on click
 		btn.getDisposer().addGdxItemToDispose( new ArrayList<GdxActor>() {{
 			//Set layout
-			new GdxTextField(0, 80, "Name").addListener(new ListenerSetUser(ObservableType.NAME));
-			new GdxTextField(0, 10, "Email").addListener(new ListenerSetUser(ObservableType.EMAIL));
-			new GdxButton("UploadPhotoBtn", -100, -75);
-			new GdxIcon("UploadPhotoIcon", -170, -150);
-			new GdxIcon("UploadPhotoIcon", -90, -150);
-			new GdxIcon("UploadPhotoIcon", -10, -150);
+			new GdxTextField(0, 80, "Name", ScreenTypes.createProfileTexture).addListener(new ListenerSetUser(ObservableType.NAME));
+			new GdxTextField(0, 10, "Email", ScreenTypes.createProfileTexture).addListener(new ListenerSetUser(ObservableType.EMAIL));
+			new GdxButton("UploadPhotoBtn", -100, -75, ScreenTypes.createProfileTexture);
+			new GdxIcon("UploadPhotoIcon", -170, -150, ScreenTypes.createProfileTexture);
+			new GdxIcon("UploadPhotoIcon", -90, -150, ScreenTypes.createProfileTexture);
+			new GdxIcon("UploadPhotoIcon", -10, -150, ScreenTypes.createProfileTexture);
 		}});
 
 		//Perform game logic tasks

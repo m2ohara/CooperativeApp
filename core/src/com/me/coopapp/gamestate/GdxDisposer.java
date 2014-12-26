@@ -62,10 +62,9 @@ public class GdxDisposer {
 	}
 	
 	private void disposeGlgItems() {
-		Iterator<GameStateItem> it = GameState.get().items.iterator();
-		while(it.hasNext()) {
-			GameStateItem item = it.next();
-			//Dispose all other GameStateItems
+		
+		for(GameStateItem item : GameState.get().items.values()) {
+			//Dispose all other GameStateItems 
 			if(item.screen == itemToDispose.screen && !item.equals(itemToDispose)) {
 				item.state = NextThreadAction.DISPOSE;
 			}
