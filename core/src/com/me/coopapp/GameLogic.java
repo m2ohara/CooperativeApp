@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.me.coopapp.dal.ISQLTransaction.TransactionType;
 import com.me.coopapp.gamestate.DbGameStateItem;
 import com.me.coopapp.gamestate.GameState;
+import com.me.coopapp.ScreenState;
 
 public class GameLogic extends Thread {
 	

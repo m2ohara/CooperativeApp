@@ -34,15 +34,17 @@ public class RegisterOfflineScreen extends Screen {
 		//Add action to insert user state to DB
 		btn.addListener(new ListenerAddUser());
 		//Set items for btn to dispose of on click
-		btn.getDisposer().addGdxItemToDispose( new ArrayList<GdxActor>() {{
-			//Set layout
-			new GdxTextField(0, 80, "Name", ScreenTypes.createProfileTexture).addListener(new ListenerSetUser(ObservableType.NAME));
-			new GdxTextField(0, 10, "Email", ScreenTypes.createProfileTexture).addListener(new ListenerSetUser(ObservableType.EMAIL));
-			new GdxButton("UploadPhotoBtn", -100, -75, ScreenTypes.createProfileTexture);
-			new GdxIcon("UploadPhotoIcon", -170, -150, ScreenTypes.createProfileTexture);
-			new GdxIcon("UploadPhotoIcon", -90, -150, ScreenTypes.createProfileTexture);
-			new GdxIcon("UploadPhotoIcon", -10, -150, ScreenTypes.createProfileTexture);
-		}});
+//		btn.getDisposer().addGdxItemToDispose( new ArrayList<GdxActor>() {{
+//
+//		}});
+		
+		//Set layout
+		new GdxTextField(0, 80, "Name", ScreenTypes.createProfileTexture).addListener(new ListenerSetUser(ObservableType.NAME));
+		new GdxTextField(0, 10, "Email", ScreenTypes.createProfileTexture).addListener(new ListenerSetUser(ObservableType.EMAIL));
+		new GdxButton("UploadPhotoBtn", -100, -75, ScreenTypes.createProfileTexture);
+		new GdxIcon("UploadPhotoIcon", -170, -150, ScreenTypes.createProfileTexture);
+		new GdxIcon("UploadPhotoIcon", -90, -150, ScreenTypes.createProfileTexture);
+		new GdxIcon("UploadPhotoIcon", -10, -150, ScreenTypes.createProfileTexture);
 
 		//Perform game logic tasks
 		//TO DO: Review for intended usage 

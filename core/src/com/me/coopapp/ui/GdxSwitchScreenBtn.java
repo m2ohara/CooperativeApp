@@ -21,7 +21,7 @@ public class GdxSwitchScreenBtn extends GdxButton {
 	}
 	
 	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenTypes _screenToSwitch) {
-		super(_type, xCoord, yCoord);
+		super(_type, xCoord, yCoord, _screenToSwitch);
 
 		//Set screen to switch to
 		screenToSwitch = _screenToSwitch;

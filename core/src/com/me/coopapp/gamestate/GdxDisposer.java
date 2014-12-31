@@ -16,7 +16,7 @@ public class GdxDisposer {
 	public GdxDisposer(GdxGameStateItem item) {
 		
 		itemToDispose = item;
-		
+		//Set related gdx item disposal 
 		item.glContext.setDisposer(this);
 		
 	}

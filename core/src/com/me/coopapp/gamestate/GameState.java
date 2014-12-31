@@ -32,7 +32,7 @@ public class GameState implements ITask {
 		//Perform current actions
 		for(GameStateItem item : items.values()) {
 			
-			//If finished remove
+			//If finished remove (Refactor to dispose method)
 			if(item.state == GameStateItem.NextThreadAction.DISPOSE) {
 				items.remove(item.hashCode());
 			}
