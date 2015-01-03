@@ -2,11 +2,13 @@ package com.me.coopapp;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.me.coopapp.dal.ISQLTransaction.TransactionType;
 import com.me.coopapp.gamestate.DbGameStateItem;
 import com.me.coopapp.gamestate.GameState;
+import com.me.coopapp.gamestate.GameStateItem;
 import com.me.coopapp.ScreenState;
 
 public class GameLogic extends Thread {
@@ -14,7 +16,8 @@ public class GameLogic extends Thread {
 	private static GameLogic processInstance = new GameLogic();
 	public ArrayList<ITask> UserTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> GameTasks = new ArrayList<ITask>();
-	public ArrayList<ITask> ScreenTasks = new ArrayList<ITask>();
+//	public ArrayList<ITask> ScreenTasks = new ArrayList<ITask>();
+	public ConcurrentHashMap<Integer, ITask> _ScreenTasks = new ConcurrentHashMap<Integer, ITask>();
 	
 	private GameLogic() {
 		ScreenState.getScreenInstance();
@@ -41,13 +44,17 @@ public class GameLogic extends Thread {
 	
 	}
 	
-	public void processScreenState() {
+	public void processScreenState(boolean isGdxThread) {
 		
 		//Process current screen state
-		for(ITask t : ScreenTasks) {
-			t.perform(false);
+		for(ITask t : _ScreenTasks.values()) {
+			t.perform(isGdxThread);
+			
+			if(t.isTaskComplete()) {
+				t.dispose(); //TO DO: Implement logic
+				_ScreenTasks.remove(t.hashCode());
+			}
 		}
-		ScreenTasks.clear();
 	}
 	
 	private void processUserState(boolean isGdxThread) {
@@ -112,7 +119,7 @@ public class GameLogic extends Thread {
 	    Gdx.app.postRunnable(new Runnable() {
 	        @Override
 	        public void run() {
-		       processScreenState();
+//		       processScreenState(true);
 	           processGameState(true);
 	        }
 	     });

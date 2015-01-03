@@ -18,6 +18,7 @@ public class ScreenState implements ITask {
 	private Types.ScreenTypes current;
 	private Types.ScreenTypes type;
 	private Screen screen;
+	private boolean isTaskComplete = false;
 	
 	
 	private ScreenState() {
@@ -27,12 +28,12 @@ public class ScreenState implements ITask {
 		if(screenInstance == null) {
 			screenInstance = new ScreenState();
 		}
-		return screenInstance;
+		return new ScreenState();
 	}
 	
 	public void setTask(Types.ScreenTypes _type) {
 		type = _type;
-		GameLogic.getInstance().ScreenTasks.add(this);
+		GameLogic.getInstance()._ScreenTasks.put(this.hashCode(), this);
 	}
 	
 	private void set(Types.ScreenTypes type) {
@@ -63,7 +64,7 @@ public class ScreenState implements ITask {
 					texture = new Texture("Register2.png");
 				}
 				else if(type == Types.ScreenTypes.createProfileTexture) {
-					screen = new RegisterOfflineScreen();
+					screen = new Screen();
 					texture = new Texture("createProfile.png");
 				}
 				current = type;
@@ -85,11 +86,20 @@ public class ScreenState implements ITask {
 
 	@Override
 	public void perform(boolean isGdxThread) {
-		set(type);
-		Actor background = new Image(texture);
-		background.setPosition(x, y);
-		GameState.stage.addActor(background);
-		screen.SetUI();
+		
+		if(isGdxThread) {
+			
+			GameState.stage.clear();
+			
+			set(type);
+			Actor background = new Image(texture);
+			background.setPosition(x, y);
+			GameState.stage.addActor(background);
+			
+			screen.SetUI();
+			
+			isTaskComplete = true;
+		}
 	}
 
 	@Override
@@ -100,8 +110,7 @@ public class ScreenState implements ITask {
 
 	@Override
 	public boolean isTaskComplete() {
-		// TODO Auto-generated method stub
-		return false;
+		return isTaskComplete;
 	}
 	
 

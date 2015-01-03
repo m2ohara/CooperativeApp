@@ -35,7 +35,7 @@ public class CoopApp extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		//Render process dependent objects
-		processor.processScreenState();
+		processor.processScreenState(true);
 
 		
 		GameState.stage.draw();
