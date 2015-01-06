@@ -39,7 +39,7 @@ public class DbSetup implements ISQLTransaction {
 				}
 				
 				//Set screen
-				ScreenState.getScreenInstance().setTask(Types.ScreenTypes.register1Texture);
+				new ScreenState((Types.ScreenTypes.register1Texture));
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

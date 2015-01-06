@@ -11,24 +11,15 @@ import com.me.coopapp.ui.Screen;
 
 public class ScreenState implements ITask {
 	
-	private static ScreenState screenInstance = null;
 	private Texture texture;
 	private float x;
 	private float y;
-	private Types.ScreenTypes current;
 	private Types.ScreenTypes type;
 	private Screen screen;
 	private boolean isTaskComplete = false;
 	
-	
-	private ScreenState() {
-	}
-	
-	public static ScreenState getScreenInstance() {
-//		if(screenInstance == null) {
-//			screenInstance = new ScreenState();
-//		}
-		return new ScreenState();
+	public ScreenState(Types.ScreenTypes _type) {
+		setTask(_type);
 	}
 	
 	public void setTask(Types.ScreenTypes _type) {
@@ -36,16 +27,15 @@ public class ScreenState implements ITask {
 		GameLogic.getInstance()._ScreenTasks.put(this.hashCode(), this);
 	}
 	
-	private void set(Types.ScreenTypes type) {
-		update(type);
+	private void set() {
+		setScreen();
 		setRelativePosition();
 	}
 	
-	private void update(Types.ScreenTypes type) {
+	private void setScreen() {
 	
 		//Only load if not current screen texture
 		if(type != null) {
-			if(current != type) {
 				//Load screen
 				if(type == Types.ScreenTypes.startTexture) {
 					screen = new Screen();
@@ -67,11 +57,10 @@ public class ScreenState implements ITask {
 					screen = new Screen();
 					texture = new Texture("createProfile.png");
 				}
-				current = type;
-			}
 		}
 		//Get start screen if null
 		else {
+			screen = new Screen();
 			texture = new Texture("StartTexture.jpg");
 		}
 	}
@@ -91,7 +80,7 @@ public class ScreenState implements ITask {
 			
 			GameState.stage.clear();
 			
-			set(type);
+			set();
 			Actor background = new Image(texture);
 			background.setPosition(x, y);
 			GameState.stage.addActor(background);

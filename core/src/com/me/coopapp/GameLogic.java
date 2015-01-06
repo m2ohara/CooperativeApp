@@ -20,7 +20,7 @@ public class GameLogic extends Thread {
 	public ConcurrentHashMap<Integer, ITask> _ScreenTasks = new ConcurrentHashMap<Integer, ITask>();
 	
 	private GameLogic() {
-		ScreenState.getScreenInstance();
+//		ScreenState.getScreenInstance();
 	}
 	
 	//Retrieve single instance of this class

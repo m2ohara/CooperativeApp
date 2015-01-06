@@ -12,7 +12,7 @@ public class ListenerSwitchScreen implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
     	//Set screen to switch to on click
-    	ScreenState.getScreenInstance().setTask((Types.ScreenTypes)arg);
+    	new ScreenState((Types.ScreenTypes)arg);
 //    	GameLogic.getInstance()._ScreenTasks.put(ScreenState.getScreenInstance().hashCode(), ScreenState.getScreenInstance());
 	}
 
