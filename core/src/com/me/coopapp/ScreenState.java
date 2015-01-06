@@ -25,9 +25,9 @@ public class ScreenState implements ITask {
 	}
 	
 	public static ScreenState getScreenInstance() {
-		if(screenInstance == null) {
-			screenInstance = new ScreenState();
-		}
+//		if(screenInstance == null) {
+//			screenInstance = new ScreenState();
+//		}
 		return new ScreenState();
 	}
 	
