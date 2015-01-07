@@ -24,7 +24,7 @@ public class ScreenState implements ITask {
 	
 	public void setTask(Types.ScreenTypes _type) {
 		type = _type;
-		GameLogic.getInstance()._ScreenTasks.put(this.hashCode(), this);
+		GameLogic.getInstance().screenTasks.put(this.hashCode(), this);
 	}
 	
 	private void set() {

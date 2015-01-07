@@ -16,11 +16,10 @@ public class GameLogic extends Thread {
 	private static GameLogic processInstance = new GameLogic();
 	public ArrayList<ITask> UserTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> GameTasks = new ArrayList<ITask>();
-//	public ArrayList<ITask> ScreenTasks = new ArrayList<ITask>();
-	public ConcurrentHashMap<Integer, ITask> _ScreenTasks = new ConcurrentHashMap<Integer, ITask>();
+	public ConcurrentHashMap<Integer, ITask> screenTasks = new ConcurrentHashMap<Integer, ITask>();
+	public ConcurrentHashMap<Integer, ITask> userTasks = new ConcurrentHashMap<Integer, ITask>();
 	
 	private GameLogic() {
-//		ScreenState.getScreenInstance();
 	}
 	
 	//Retrieve single instance of this class
@@ -47,12 +46,12 @@ public class GameLogic extends Thread {
 	public void processScreenState(boolean isGdxThread) {
 		
 		//Process current screen state
-		for(ITask t : _ScreenTasks.values()) {
+		for(ITask t : screenTasks.values()) {
 			t.perform(isGdxThread);
 			
 			if(t.isTaskComplete()) {
 				t.dispose(); //TO DO: Implement logic
-				_ScreenTasks.remove(t.hashCode());
+				screenTasks.remove(t.hashCode());
 			}
 		}
 	}
@@ -61,14 +60,18 @@ public class GameLogic extends Thread {
 		
 		if(!isGdxThread) {
 			//Process current user state
-			Iterator<ITask> it = UserTasks.iterator();
-			while(it.hasNext()) {
-				ITask task = it.next();
-				task.perform(false);
+//			Iterator<ITask> it = UserTasks.iterator();
+//			while(it.hasNext()) {
+			for(ITask t : userTasks.values()) {	
+				
+//				ITask task = it.next();
+				t.perform(false);
 				
 				//Remove completed
-				if(task.isTaskComplete()) {
-					it.remove();
+				if(t.isTaskComplete()) {
+//					it.remove();
+					t.dispose();
+					userTasks.remove(t.hashCode());
 				}
 			}
 		}
