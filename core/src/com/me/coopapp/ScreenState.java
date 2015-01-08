@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.me.coopapp.gamestate.GameState;
+import com.me.coopapp.screen.setup.CreateProfileScreen;
 import com.me.coopapp.screen.setup.RegisterOfflineScreen;
 import com.me.coopapp.screen.setup.RegisterOptionsScreen;
 import com.me.coopapp.ui.Screen;
@@ -54,7 +55,7 @@ public class ScreenState implements ITask {
 					texture = new Texture("Register2.png");
 				}
 				else if(type == Types.ScreenTypes.createProfileTexture) {
-					screen = new Screen();
+					screen = new CreateProfileScreen();
 					texture = new Texture("createProfile.png");
 				}
 		}

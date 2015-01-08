@@ -21,6 +21,9 @@ public class ListenerSetUser implements Observer {
 		if(type == ObservableType.NAME) {
 			UserState.getInstance().setName((String) arg);
 		}
+		if(type == ObservableType.ALIAS) {
+			UserState.getInstance().setName((String) arg);
+		}
 		
 	}
 	
@@ -32,5 +35,5 @@ public class ListenerSetUser implements Observer {
 		this.type = type;
 	}
 
-	public enum ObservableType { EMAIL, NAME }
+	public enum ObservableType { EMAIL, NAME, ALIAS }
 }

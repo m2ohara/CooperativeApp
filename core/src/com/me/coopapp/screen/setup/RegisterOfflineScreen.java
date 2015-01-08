@@ -1,12 +1,6 @@
 package com.me.coopapp.screen.setup;
 
-import java.util.ArrayList;
-
-import com.me.coopapp.GameLogic;
-import com.me.coopapp.Types;
 import com.me.coopapp.Types.ScreenTypes;
-import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.ui.GdxActor;
 import com.me.coopapp.ui.GdxButton;
 import com.me.coopapp.ui.GdxIcon;
 import com.me.coopapp.ui.GdxSwitchScreenBtn;
@@ -24,7 +18,6 @@ public class RegisterOfflineScreen extends Screen {
 		
 	}
 
-	@SuppressWarnings("serial")
 	public void SetUI() {
 		
 		
@@ -33,10 +26,6 @@ public class RegisterOfflineScreen extends Screen {
 		GdxSwitchScreenBtn btn = new GdxSwitchScreenBtn("CreateProfileBtn", 0, -250, ScreenTypes.createProfileTexture);
 		//Add action to insert user state to DB
 		btn.addListener(new ListenerAddUser());
-		//Set items for btn to dispose of on click
-//		btn.getDisposer().addGdxItemToDispose( new ArrayList<GdxActor>() {{
-//
-//		}});
 		
 		//Set layout
 		new GdxTextField(0, 80, "Name", ScreenTypes.createProfileTexture).addListener(new ListenerSetUser(ObservableType.NAME));
@@ -45,10 +34,6 @@ public class RegisterOfflineScreen extends Screen {
 		new GdxIcon("UploadPhotoIcon", -170, -150, ScreenTypes.createProfileTexture);
 		new GdxIcon("UploadPhotoIcon", -90, -150, ScreenTypes.createProfileTexture);
 		new GdxIcon("UploadPhotoIcon", -10, -150, ScreenTypes.createProfileTexture);
-
-		//Perform game logic tasks
-		//TO DO: Review for intended usage 
-//		GameLogic.getInstance().GameTasks.add(GameState.get());
 
 	}
 	

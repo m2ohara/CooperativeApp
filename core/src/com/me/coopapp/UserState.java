@@ -28,8 +28,8 @@ public class UserState {
 		imageName = _imageName;
 	}
 	
-	//Set instance attributes
-	public void addUser() {
+	//Create tasks
+	public void setAddUserTask() {
 		
 		UserTask task = new UserTask();
 		task.setTransaction(TransactionType.INSERT);
@@ -37,6 +37,13 @@ public class UserState {
 		GameLogic.getInstance().UserTasks.add(task);
 	}
 	
+	public void setUpdateUserTask() {
+		UserTask task = new UserTask();
+		task.setTransaction(TransactionType.UPDATE);
+		GameLogic.getInstance().UserTasks.add(task);
+	}
+	
+	//Set instance properties
 	public void setUser(String _name, String _email) {
 		
 		setName(_name);
@@ -49,6 +56,10 @@ public class UserState {
 	
 	public void setEmail(String _email) {
 		User.getInstance().setEmail(_email);
+	}
+	
+	public void setAlias(String alias) {
+		User.getInstance().setAlias(alias);
 	}
 	
 	public enum Task { INSERT }

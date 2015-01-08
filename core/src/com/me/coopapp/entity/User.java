@@ -14,6 +14,7 @@ public class User implements IEntity {
 	private static Connection connection;
 	private String name;
 	private String email;
+	private String alias;
 	
 	private User() {
 		connection = SQLConnection.get();
@@ -43,7 +44,7 @@ public class User implements IEntity {
 			return -1;
 		}
 		
-		String SQL = "INSERT INTO USER (NAME, ACCOUNT_IDENTIFIER, STATE) values ('"+ name+"', '"+email+"', 1)";
+		String SQL = "INSERT INTO USER (NAME, ACCOUNT_IDENTIFIER, STATE, ALIAS) values ('"+ name+"', '"+email+"', 1)";
 		
 		//Initialise as false
 		int result = -1;
@@ -74,8 +75,41 @@ public class User implements IEntity {
 
 	@Override
 	public int update() {
-		// TODO Auto-generated method stub
-		return -1;
+		
+		Statement updateUserStatement = null;
+		
+		//Create SQL
+		if(name == null || email == null) {
+			return -1;
+		}
+		
+		String SQL = "UPDATE USER SET ALIAS = '"+alias+"'";
+		
+		//Initialise as false
+		int result = -1;
+		
+		try {
+			
+			//Create user
+			updateUserStatement = connection.createStatement();
+			result = updateUserStatement.executeUpdate(SQL);
+		}
+		catch(SQLException ex) {
+			//TO DO: Log error
+			System.out.println("Error inserting user: "+ex);
+		}
+		finally {
+			try {
+				updateUserStatement.close();
+				connection.close();
+			}
+			catch(SQLException e) {
+				//TO DO: Log error
+				System.out.println("Error closing statement: "+e);
+			}
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -108,6 +142,10 @@ public class User implements IEntity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public void setAlias(String alias) {
+		this.alias = alias;
 	}
 
 }
