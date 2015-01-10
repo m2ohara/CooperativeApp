@@ -39,6 +39,11 @@ public class UserTask implements ITask, ISQLTransaction {
 			
 			isTaskComplete = true;
 		}
+		else if(transaction == TransactionType.UPDATE) {
+			User.getInstance().update();
+			
+			isTaskComplete = true;
+		}
 		
 		return null;
 	}

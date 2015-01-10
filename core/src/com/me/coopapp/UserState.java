@@ -34,13 +34,13 @@ public class UserState {
 		UserTask task = new UserTask();
 		task.setTransaction(TransactionType.INSERT);
 		
-		GameLogic.getInstance().UserTasks.add(task);
+		GameLogic.getInstance().userTasks.put(task.hashCode(), task);
 	}
 	
 	public void setUpdateUserTask() {
 		UserTask task = new UserTask();
 		task.setTransaction(TransactionType.UPDATE);
-		GameLogic.getInstance().UserTasks.add(task);
+		GameLogic.getInstance().userTasks.put(task.hashCode(), task);
 	}
 	
 	//Set instance properties

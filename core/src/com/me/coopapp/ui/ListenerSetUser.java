@@ -22,7 +22,7 @@ public class ListenerSetUser implements Observer {
 			UserState.getInstance().setName((String) arg);
 		}
 		if(type == ObservableType.ALIAS) {
-			UserState.getInstance().setName((String) arg);
+			UserState.getInstance().setAlias((String) arg);
 		}
 		
 	}

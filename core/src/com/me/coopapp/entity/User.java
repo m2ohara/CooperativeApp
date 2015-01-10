@@ -12,12 +12,14 @@ public class User implements IEntity {
 	
 	private static User instance;
 	private static Connection connection;
+	private String id;
 	private String name;
 	private String email;
 	private String alias;
 	
 	private User() {
 		connection = SQLConnection.get();
+		id = App.get().getEmail();
 	}
 	
 	public static User getInstance() {
@@ -44,7 +46,7 @@ public class User implements IEntity {
 			return -1;
 		}
 		
-		String SQL = "INSERT INTO USER (NAME, ACCOUNT_IDENTIFIER, STATE, ALIAS) values ('"+ name+"', '"+email+"', 1)";
+		String SQL = "INSERT INTO USER (NAME, ACCOUNT_IDENTIFIER, STATE, ALIAS) values ('"+name+"', '"+email+"', 1, null)";
 		
 		//Initialise as false
 		int result = -1;
@@ -79,11 +81,11 @@ public class User implements IEntity {
 		Statement updateUserStatement = null;
 		
 		//Create SQL
-		if(name == null || email == null) {
+		if(alias == null || id == null) {
 			return -1;
 		}
 		
-		String SQL = "UPDATE USER SET ALIAS = '"+alias+"'";
+		String SQL = "UPDATE USER WHERE rowid = "+id+" SET ALIAS = '"+alias+"'";
 		
 		//Initialise as false
 		int result = -1;
@@ -146,6 +148,10 @@ public class User implements IEntity {
 	
 	public void setAlias(String alias) {
 		this.alias = alias;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 }

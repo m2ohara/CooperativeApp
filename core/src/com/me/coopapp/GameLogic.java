@@ -1,20 +1,16 @@
 package com.me.coopapp;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.me.coopapp.dal.ISQLTransaction.TransactionType;
 import com.me.coopapp.gamestate.DbGameStateItem;
 import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.gamestate.GameStateItem;
-import com.me.coopapp.ScreenState;
 
 public class GameLogic extends Thread {
 	
 	private static GameLogic processInstance = new GameLogic();
-	public ArrayList<ITask> UserTasks = new ArrayList<ITask>();
 	public ArrayList<ITask> GameTasks = new ArrayList<ITask>();
 	public ConcurrentHashMap<Integer, ITask> screenTasks = new ConcurrentHashMap<Integer, ITask>();
 	public ConcurrentHashMap<Integer, ITask> userTasks = new ConcurrentHashMap<Integer, ITask>();
@@ -60,16 +56,12 @@ public class GameLogic extends Thread {
 		
 		if(!isGdxThread) {
 			//Process current user state
-//			Iterator<ITask> it = UserTasks.iterator();
-//			while(it.hasNext()) {
 			for(ITask t : userTasks.values()) {	
 				
-//				ITask task = it.next();
 				t.perform(false);
 				
 				//Remove completed
 				if(t.isTaskComplete()) {
-//					it.remove();
 					t.dispose();
 					userTasks.remove(t.hashCode());
 				}
