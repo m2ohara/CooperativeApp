@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.me.coopapp.IEntity;
 import com.me.coopapp.dal.SQLConnection;
 
 public class User implements IEntity {

@@ -1,4 +1,6 @@
-package com.me.coopapp.ui;
+package com.me.coopapp.screen.setup;
+
+import com.me.coopapp.ui.IScreen;
 
 
 public class Screen implements IScreen {

@@ -8,7 +8,7 @@ import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.screen.setup.CreateProfileScreen;
 import com.me.coopapp.screen.setup.RegisterOfflineScreen;
 import com.me.coopapp.screen.setup.RegisterOptionsScreen;
-import com.me.coopapp.ui.Screen;
+import com.me.coopapp.screen.setup.Screen;
 
 public class ScreenState implements ITask {
 	

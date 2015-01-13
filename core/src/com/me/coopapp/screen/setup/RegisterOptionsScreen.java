@@ -3,7 +3,6 @@ package com.me.coopapp.screen.setup;
 import com.me.coopapp.Types;
 import com.me.coopapp.Types.ScreenTypes;
 import com.me.coopapp.ui.GdxSwitchScreenBtn;
-import com.me.coopapp.ui.Screen;
 
 public class RegisterOptionsScreen extends Screen {
 	

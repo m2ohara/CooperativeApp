@@ -1,4 +1,4 @@
-package com.me.coopapp;
+package com.me.coopapp.entity;
 
 import java.sql.ResultSet;
 

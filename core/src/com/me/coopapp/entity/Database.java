@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.me.coopapp.IEntity;
 import com.me.coopapp.dal.SQLConnection;
 
 public class Database implements IEntity {
