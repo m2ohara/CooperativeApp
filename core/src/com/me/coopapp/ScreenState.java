@@ -5,10 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.screen.setup.CreateProfileScreen;
-import com.me.coopapp.screen.setup.RegisterOfflineScreen;
-import com.me.coopapp.screen.setup.RegisterOptionsScreen;
-import com.me.coopapp.screen.setup.Screen;
+import com.me.coopapp.setup.CreateProfileScreen;
+import com.me.coopapp.setup.RegisterOfflineScreen;
+import com.me.coopapp.setup.RegisterOptionsScreen;
 
 public class ScreenState implements ITask {
 	
@@ -57,6 +56,10 @@ public class ScreenState implements ITask {
 				else if(type == Types.ScreenTypes.createProfileTexture) {
 					screen = new CreateProfileScreen();
 					texture = new Texture("createProfile.png");
+				}
+				else if(type == Types.ScreenTypes.gameWorldTexture) {
+					screen = new CreateProfileScreen();
+					texture = new Texture("Gameworld.png");
 				}
 		}
 		//Get start screen if null

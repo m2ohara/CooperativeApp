@@ -1,4 +1,4 @@
-package com.me.coopapp.screen.setup;
+package com.me.coopapp;
 
 import com.me.coopapp.ui.IScreen;
 

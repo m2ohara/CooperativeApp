@@ -1,5 +1,6 @@
-package com.me.coopapp.screen.setup;
+package com.me.coopapp.setup;
 
+import com.me.coopapp.Screen;
 import com.me.coopapp.Types.ScreenTypes;
 import com.me.coopapp.ui.GdxButton;
 import com.me.coopapp.ui.GdxIcon;

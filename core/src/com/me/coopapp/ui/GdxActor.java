@@ -8,8 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 import com.me.coopapp.Types;
+import com.me.coopapp.dispose.GdxDisposer;
 import com.me.coopapp.gamestate.GameState;
-import com.me.coopapp.gamestate.GdxDisposer;
 import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.gamestate.IGLContext;
 

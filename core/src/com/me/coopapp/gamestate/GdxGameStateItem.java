@@ -2,6 +2,7 @@ package com.me.coopapp.gamestate;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.me.coopapp.Types;
+import com.me.coopapp.dispose.GdxDisposer;
 
 public class GdxGameStateItem extends GameStateItem {
 

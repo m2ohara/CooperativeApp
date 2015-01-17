@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
+import com.me.coopapp.dispose.GdxDisposer;
 
 public interface IGLContext {
 	

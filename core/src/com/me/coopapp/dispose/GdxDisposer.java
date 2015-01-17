@@ -1,9 +1,13 @@
-package com.me.coopapp.gamestate;
+package com.me.coopapp.dispose;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.badlogic.gdx.utils.Disposable;
+import com.me.coopapp.gamestate.GameState;
+import com.me.coopapp.gamestate.GameStateItem;
+import com.me.coopapp.gamestate.GdxGameStateItem;
+import com.me.coopapp.gamestate.IGLContext;
 import com.me.coopapp.gamestate.GameStateItem.NextThreadAction;
 import com.me.coopapp.ui.GdxActor;
 
