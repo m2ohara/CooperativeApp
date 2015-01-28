@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.me.coopapp.Types;
+import com.me.coopapp.ScreenState;
 
 public class GdxIcon extends GdxActor{
 	
@@ -21,7 +21,7 @@ public class GdxIcon extends GdxActor{
 		super(_type, _xCentreOffset, _yCentreOffset);
 	}
 	
-	public GdxIcon(String _type, float _xCentreOffset, float _yCentreOffset, Types.ScreenTypes screen) {
+	public GdxIcon(String _type, float _xCentreOffset, float _yCentreOffset, ScreenState.Types screen) {
 		super(_type, _xCentreOffset, _yCentreOffset, screen);
 	}
 
@@ -29,7 +29,7 @@ public class GdxIcon extends GdxActor{
 	public void instantiate() {
 		actor = new CoopAppIcon();
 		
-		actor.set(new Image(getDrawableFromPack("Buttons")));
+		actor.set(new Image(getDrawableFromPack("Icons")));
 		
 	}
 	

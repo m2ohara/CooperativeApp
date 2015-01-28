@@ -2,15 +2,14 @@ package com.me.coopapp.ui;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.me.coopapp.Types;
-import com.me.coopapp.Types.ScreenTypes;
+import com.me.coopapp.ScreenState;
 import com.me.coopapp.gamestate.GameState;
 
 public class GdxSwitchScreenBtn extends GdxButton {
 	
-	public ScreenTypes screenToSwitch;
+	public ScreenState.Types screenToSwitch;
 
-	public GdxSwitchScreenBtn(String _type, ScreenTypes _screenToSwitch) {
+	public GdxSwitchScreenBtn(String _type, ScreenState.Types _screenToSwitch) {
 		super(_type);
 		
 		//Set screen to switch to
@@ -20,7 +19,7 @@ public class GdxSwitchScreenBtn extends GdxButton {
 		addListener(new ListenerSwitchScreen());
 	}
 	
-	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenTypes _screenToSwitch) {
+	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenState.Types _screenToSwitch) {
 		super(_type, xCoord, yCoord, _screenToSwitch);
 
 		//Set screen to switch to
@@ -30,7 +29,7 @@ public class GdxSwitchScreenBtn extends GdxButton {
 		addListener(new ListenerSwitchScreen());
 	}
 	
-	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenTypes _screenToSwitch, Types.ScreenTypes screen) {
+	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenState.Types _screenToSwitch, ScreenState.Types screen) {
 		super(_type, xCoord, yCoord, screen);
 
 		//Set screen to switch to

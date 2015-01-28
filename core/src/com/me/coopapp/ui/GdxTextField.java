@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.me.coopapp.Types;
+import com.me.coopapp.ScreenState;
 
 
 public class GdxTextField extends GdxActor {
@@ -16,7 +16,7 @@ public class GdxTextField extends GdxActor {
 	private String textValue;
 	public String inputValue;
 	
-	public GdxTextField(float _xCentreOffset, float _yCentreOffset, String _textValue, Types.ScreenTypes screen) {
+	public GdxTextField(float _xCentreOffset, float _yCentreOffset, String _textValue, ScreenState.Types screen) {
 		super(_xCentreOffset, _yCentreOffset, screen);
 		textValue = _textValue == null ? "" : _textValue;
 	}

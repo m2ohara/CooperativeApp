@@ -18,7 +18,7 @@ public class User implements IEntity {
 	
 	private User() {
 		connection = SQLConnection.get();
-		id = App.get().getEmail();
+		id = App.get().getId();
 	}
 	
 	public static User getInstance() {
@@ -84,7 +84,7 @@ public class User implements IEntity {
 			return -1;
 		}
 		
-		String SQL = "UPDATE USER WHERE rowid = "+id+" SET ALIAS = '"+alias+"'";
+		String SQL = "UPDATE USER  SET ALIAS = '"+alias+"' WHERE rowid = "+id+"";
 		
 		//Initialise as false
 		int result = -1;

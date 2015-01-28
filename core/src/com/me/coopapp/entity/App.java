@@ -1,7 +1,8 @@
 package com.me.coopapp.entity;
 
 import java.io.IOException;
-import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -13,7 +14,7 @@ public class App {
 	private static App instance;
 	private static String fileName = "AppConfig"; 
 	
-	private Dictionary<String, String> credentials;
+	private Map<String, String> credentials = new HashMap<String, String>();
 
 
 	private App() {
@@ -43,14 +44,15 @@ public class App {
 		Element credentialsEl = rootElement.getChildByName("credentials");
 
 		credentials.put("email", ((Element)credentialsEl.getChildByName("email")).getText());
+		credentials.put("id", ((Element)credentialsEl.getChildByName("id")).getText());
 		
 	}
 	
-	public Dictionary<String, String> getCredentials() {
+	public Map<String, String> getCredentials() {
 		return credentials;
 	}
 
-	public void setCredentials(Dictionary<String, String> userCredentials) {
+	public void setCredentials(Map<String, String> userCredentials) {
 		this.credentials = userCredentials;
 	}
 	

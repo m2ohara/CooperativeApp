@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
-import com.me.coopapp.Types;
+import com.me.coopapp.ScreenState;
 import com.me.coopapp.dispose.GdxDisposer;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GdxGameStateItem;
@@ -40,7 +40,7 @@ public class GdxActor implements IGLContext {
 		setGdxGameStateItem();
 	}
 	
-	public GdxActor(float _xCentreOffset, float _yCentreOffset, Types.ScreenTypes screen) {
+	public GdxActor(float _xCentreOffset, float _yCentreOffset, ScreenState.Types screen) {
 		xCentreOffset = _xCentreOffset;
 		yCentreOffset = _yCentreOffset;
 		
@@ -55,7 +55,7 @@ public class GdxActor implements IGLContext {
 		setGdxGameStateItem();
 	}
 	
-	public GdxActor(String _type, float _xCentreOffset, float _yCentreOffset, Types.ScreenTypes screen) {
+	public GdxActor(String _type, float _xCentreOffset, float _yCentreOffset, ScreenState.Types screen) {
 		type = _type;
 		xCentreOffset = _xCentreOffset;
 		yCentreOffset = _yCentreOffset;
@@ -120,7 +120,7 @@ public class GdxActor implements IGLContext {
 		GameState.get().items.put(item.hashCode(), item);
 	}
 	
-	private void setGdxGameStateItem(Types.ScreenTypes screen) {
+	private void setGdxGameStateItem(ScreenState.Types screen) {
 		//Add game state item to list for processing
 		GdxGameStateItem item = new GdxGameStateItem(this, screen);
 		GameState.get().items.put(item.hashCode(), item);

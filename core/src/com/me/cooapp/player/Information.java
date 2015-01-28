@@ -16,4 +16,7 @@ public class Information {
 
 	private Strategy strategy;
 	
+	private int Votes;
+	private int Reputation;
+	
 }

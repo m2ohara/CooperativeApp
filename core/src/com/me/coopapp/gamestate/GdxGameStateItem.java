@@ -1,7 +1,7 @@
 package com.me.coopapp.gamestate;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.me.coopapp.Types;
+import com.me.coopapp.ScreenState;
 import com.me.coopapp.dispose.GdxDisposer;
 
 public class GdxGameStateItem extends GameStateItem {
@@ -17,7 +17,7 @@ public class GdxGameStateItem extends GameStateItem {
 		new GdxDisposer(this);
 	}
 	
-	public GdxGameStateItem(IGLContext _item, Types.ScreenTypes _screen) {
+	public GdxGameStateItem(IGLContext _item, ScreenState.Types _screen) {
 		super(_item);
 
 		//Set next state to instantiate

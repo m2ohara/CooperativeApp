@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
-import com.me.coopapp.Types;
+import com.me.coopapp.ScreenState;
 
 
 public class GdxButton extends GdxActor {
@@ -29,7 +29,7 @@ public class GdxButton extends GdxActor {
 		super(_type, _xCentreOffset, _yCentreOffset);
 	}
 	
-	public GdxButton(String _type, float _xCentreOffset, float _yCentreOffset, Types.ScreenTypes screen) {
+	public GdxButton(String _type, float _xCentreOffset, float _yCentreOffset, ScreenState.Types screen) {
 		super(_type, _xCentreOffset, _yCentreOffset, screen);
 	}
 	

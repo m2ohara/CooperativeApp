@@ -80,3 +80,31 @@ UploadPhotoIcon
   orig: 67, 65
   offset: 0, 0
   index: -1
+PlayerSmallBtn-down
+  rotate: false
+  xy: 840, 76
+  size: 66, 142
+  orig: 66, 142
+  offset: 0, 0
+  index: -1
+PlayerSmallBtn
+  rotate: false
+  xy: 908, 74
+  size: 63, 144
+  orig: 63, 144
+  offset: 0, 0
+  index: -1
+OpponentSmallBtn-down
+  rotate: false
+  xy: 406, 7
+  size: 62, 97
+  orig: 62, 97
+  offset: 0, 0
+  index: -1
+OpponentSmallBtn
+  rotate: false
+  xy: 470, 8
+  size: 58, 96
+  orig: 58, 96
+  offset: 0, 0
+  index: -1

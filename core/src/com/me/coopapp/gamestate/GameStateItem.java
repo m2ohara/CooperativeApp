@@ -1,13 +1,13 @@
 package com.me.coopapp.gamestate;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.me.coopapp.Types;
+import com.me.coopapp.ScreenState;
 import com.me.coopapp.dispose.Disposer;
 
 public class GameStateItem {
 	
 	public NextThreadAction state;
-	public Types.ScreenTypes screen;
+	public ScreenState.Types screen;
 	public Object item;
 	public IGLContext glContext;
 	protected Disposer itemDisposer = null;
@@ -30,11 +30,11 @@ public class GameStateItem {
 //		GameState.get().items.remove(this);
 	}
 
-	public Types.ScreenTypes getScreen() {
+	public ScreenState.Types getScreen() {
 		return screen;
 	}
 
-	public void setScreen(Types.ScreenTypes screen) {
+	public void setScreen(ScreenState.Types screen) {
 		this.screen = screen;
 	}
 
