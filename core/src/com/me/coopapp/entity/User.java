@@ -84,7 +84,7 @@ public class User implements IEntity {
 			return -1;
 		}
 		
-		String SQL = "UPDATE USER  SET ALIAS = '"+alias+"' WHERE rowid = "+id+"";
+		String SQL = "UPDATE USER  SET ALIAS = '"+alias+"' WHERE ID = "+id+"";
 		
 		//Initialise as false
 		int result = -1;

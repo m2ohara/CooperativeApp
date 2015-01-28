@@ -1,5 +1,7 @@
 package com.me.cooapp.player;
 
+import com.me.coopapp.strategy.Strategy;
+
 public class Information {
 	
 	public Information() {

@@ -9,18 +9,27 @@ public class GameEngine {
 	private static GameEngine instance;
 	Dictionary<Player.Type, Player> players;
 	private Game.Type gameType;
+	private IGame game;
 	
 	private GameEngine() {
 
 	}
 	
-	public GameEngine get() {
+	public static GameEngine get() {
 		if(instance == null) {
 			instance = new GameEngine();
 		}
 		return instance;
 	}
 	
+	public IGame getGame() {
+		return game;
+	}
+
+	public void setGame(IGame game) {
+		this.game = game;
+	}
+
 	public void setGame(Dictionary<Player.Type, Player> players) {
 		this.players = players;
 	}
