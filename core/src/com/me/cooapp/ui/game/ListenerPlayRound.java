@@ -9,7 +9,7 @@ public class ListenerPlayRound implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		GameEngine.get().getGame().play();
+		GameEngine.get().getGame().playRound();
 		
 	}
 

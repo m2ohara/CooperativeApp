@@ -4,18 +4,13 @@ import java.util.HashMap;
 
 import com.me.cooapp.player.Player;
 
-public class ContinuousGame extends Game {
+public class RemoteGame extends Game {
 
-	public ContinuousGame(
+	public RemoteGame(
 			HashMap<com.me.cooapp.player.Player.Type, Player> players) {
 		super(players);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void play() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

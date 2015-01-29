@@ -15,37 +15,20 @@ public class Game implements IGame {
 		this.players = players;
 	}
 	
-	private HashMap<Player.Type, Player> players;
-	private int rounds;
-	private int currentRound = 0;
-	private int[] score;
-	private ArrayList<Expression> playerStrategy;
-	private ArrayList<Expression> opponentStrategy;
-	
-	private Map<statusType, Object> gameStatus = new HashMap<statusType, Object>();	
+	protected HashMap<Player.Type, Player> players;
+	protected IGameRules gameRules;
+	protected Map<statusType, Object> gameStatus = new HashMap<statusType, Object>();	
 	public enum statusType {Round, PrevInteractions}
 	
 	public void setGame() {
 		
-		rounds = (int) (Math.random() * 10);
-		playerStrategy = players.get(Player.Type.User).getInformation().getStrategy().getExpressions();
-		opponentStrategy = players.get(Player.Type.Opponent).getInformation().getStrategy().getExpressions();
 	}
 	
-	public void play() {
-		
-		//Get player expressions for current round
-		Expression playerExp = playerStrategy.get((int)currentRound % opponentStrategy.size());
-		Expression opponExp = opponentStrategy.get((int)currentRound % opponentStrategy.size());
-		
-		//Play round
-		playRound(new ArrayList<Expression>(Arrays.asList(playerExp, opponExp)));
-		
-		//Calculate results
+	public void playRound() {
 		
 	}
 	
-	private Object playRound(ArrayList<Expression> expressions) {
+	protected Object getRoundOutcome(ArrayList<Expression> expressions) {
 		
 		ArrayList<Integer> interactions = new ArrayList<Integer>();
 		
@@ -54,11 +37,10 @@ public class Game implements IGame {
 		}
 		
 		//Use game rules to determine score
-		
-		return new Object();
+		return gameRules.getInteractionPoints(interactions);
 	}
 	
-	private int translateExpression(Expression expression) {
+	protected int translateExpression(Expression expression) {
 		
 		ArrayList<Integer> previousInteractions = new ArrayList<Integer>();	
 		
@@ -69,6 +51,6 @@ public class Game implements IGame {
 		return result;
 	}
 	
-	public enum Type { Discrete, Continuous}
+	public enum Type { Local, Remote}
 
 }

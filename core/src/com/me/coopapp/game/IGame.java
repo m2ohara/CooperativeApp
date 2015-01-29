@@ -1,6 +1,12 @@
 package com.me.coopapp.game;
 
-public interface IGame {
+import java.util.ArrayList;
 
-	public void play();
+import com.me.coopapp.strategy.Expression;
+
+public interface IGame {
+	
+	public void setGame();
+
+	public void playRound();
 }

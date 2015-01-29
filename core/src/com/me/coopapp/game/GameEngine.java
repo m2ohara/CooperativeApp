@@ -1,23 +1,23 @@
 package com.me.coopapp.game;
 
-import java.util.Dictionary;
+import java.util.HashMap;
 
 import com.me.cooapp.player.Player;
 
 public class GameEngine {
 	
 	private static GameEngine instance;
-	Dictionary<Player.Type, Player> players;
+	private HashMap<Player.Type, Player> players;
 	private Game.Type gameType;
 	private IGame game;
 	
-	private GameEngine() {
-
+	private GameEngine(Game.Type gameType) {
+		this.gameType = gameType;
 	}
 	
 	public static GameEngine get() {
 		if(instance == null) {
-			instance = new GameEngine();
+			instance = new GameEngine(Game.Type.Local);
 		}
 		return instance;
 	}
@@ -25,21 +25,11 @@ public class GameEngine {
 	public IGame getGame() {
 		return game;
 	}
-
-	public void setGame(IGame game) {
-		this.game = game;
-	}
-
-	public void setGame(Dictionary<Player.Type, Player> players) {
+	
+	public void startGame(HashMap<Player.Type, Player> players) {
 		this.players = players;
-	}
-	
-	public void play() {
-			
-	}
-	
-	private void updatePlayer() {
-		
+		game = new LocalGame(players);
+		game.setGame();
 	}
 
 }
