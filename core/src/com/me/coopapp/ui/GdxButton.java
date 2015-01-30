@@ -54,6 +54,9 @@ public class GdxButton extends GdxActor {
 	}
 	
 	public void setListener() {
+		
+		if(clickListener != null) { actor.get().addListener(clickListener);}
+		
 		actor.get().addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 

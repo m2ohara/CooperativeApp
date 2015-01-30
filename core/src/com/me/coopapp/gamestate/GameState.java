@@ -64,6 +64,11 @@ public class GameState implements ITask {
 		if(item instanceof GameStateItem && item.state == NextThreadAction.GLGTRANSACTION) {
 			((DbGameStateItem) item).performDbTransaction();
 		}
+		
+		if(item instanceof GameStateItem && item.state == NextThreadAction.YES) {
+			//Perform next task
+			item.performTask();
+		}
 	}
 	
 	@Override
@@ -75,6 +80,10 @@ public class GameState implements ITask {
 	@Override
 	public boolean isTaskComplete() {
 		return isTaskComplete;
+	}
+	
+	public void addTask(GameStateItem task) {
+		GameState.get().items.put(task.hashCode(), task);
 	}
 
 }

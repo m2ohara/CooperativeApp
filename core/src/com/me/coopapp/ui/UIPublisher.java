@@ -27,5 +27,7 @@ public class UIPublisher extends Observable {
 	public ArrayList<Observer> getObservers() {
 		return observers;
 	}
+	
+	public enum ParameterType {SCREEN, PLAYERS}
 
 }

@@ -1,5 +1,7 @@
 package com.me.coopapp.ui;
 
+import java.util.HashMap;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.me.coopapp.ScreenState;
@@ -40,16 +42,23 @@ public class GdxSwitchScreenBtn extends GdxButton {
 	}
 	
 	public void setListener() {
+		
+		if(clickListener != null) { actor.get().addListener(clickListener);}
+		
 		actor.get().addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		    	
 		    	//Remove all current items from game state
 		    	itemDisposer.disposeAll();
 		    	
-		    	publisher.notifyObservers(screenToSwitch);
+		    	HashMap<UIPublisher.ParameterType, Object> parameters = new HashMap<UIPublisher.ParameterType, Object>();
+		    	parameters.put(UIPublisher.ParameterType.SCREEN, screenToSwitch);
+		    	
+		    	publisher.notifyObservers(parameters);
 		    }
 		  }
 		);
+	
 		
 	}
 	

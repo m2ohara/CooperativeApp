@@ -16,6 +16,7 @@ public class GameEngine {
 	}
 	
 	public static GameEngine get() {
+		//Singleton currently set to return local game
 		if(instance == null) {
 			instance = new GameEngine(Game.Type.Local);
 		}

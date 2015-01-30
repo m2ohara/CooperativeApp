@@ -6,6 +6,7 @@ import java.util.Observer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.dispose.GdxDisposer;
@@ -22,7 +23,8 @@ public class GdxActor implements IGLContext {
 	public UIPublisher publisher = new UIPublisher(); 
 	protected GdxDisposer itemDisposer = null;
 	protected ArrayList<Disposable> gdxItemsToDispose;
-	
+	protected ClickListener clickListener;
+
 	public GdxActor() {
 		setGdxGameStateItem();
 	}
@@ -128,6 +130,10 @@ public class GdxActor implements IGLContext {
 	
 	public void addListener(Observer observer) {
 		publisher.addObserver(observer);
+	}
+	
+	public void setListener(ClickListener clickListener) {
+		this.clickListener = clickListener;
 	}
 	
 	public void addListener(ArrayList<Observer> observers) {
