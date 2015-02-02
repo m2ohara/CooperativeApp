@@ -1,6 +1,5 @@
 package com.me.coopapp.gamestate;
 
-import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -44,8 +43,6 @@ public class GameStateItem {
 				tasksToPerform.remove(task);
 			}
 		}
-		
-//		disposeGSItem();
 		
 	}
 	

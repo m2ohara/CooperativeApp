@@ -18,7 +18,7 @@ public class Game implements IGame {
 	protected HashMap<Player.Type, Player> players;
 	protected IGameRules gameRules;
 	protected Map<statusType, Object> gameStatus = new HashMap<statusType, Object>();	
-	public enum statusType {Round, PrevInteractions}
+	public enum statusType {Round, PrevInteractions, Interacting}
 	
 	public void setGame() {
 		

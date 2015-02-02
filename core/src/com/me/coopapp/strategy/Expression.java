@@ -8,6 +8,10 @@ public class Expression implements IExpression {
 
 	public Expression() {}
 	
+	public Expression(Type type) {
+		this.type = type;
+	}
+	
 	private Type type;
 	
 	public int translateToInteraction(Map<Game.statusType, Object> gameStatus) {

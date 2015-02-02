@@ -6,6 +6,10 @@ public class Strategy {
 	
 	public Strategy() {}
 	
+	public Strategy(ArrayList<Expression> expressions) {
+		this.expressions = expressions;
+	}
+	
 	public ArrayList<Expression> getExpressions() {
 		return expressions;
 	}

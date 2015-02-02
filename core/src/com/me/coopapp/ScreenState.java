@@ -72,6 +72,10 @@ public class ScreenState implements ITask {
 					screen = new PlayerDetailsScreen();
 					texture = new Texture("PlayGame.png");
 				}
+				else if(type == Types.playInteractionTexture) {
+					screen = new PlayerDetailsScreen();
+					texture = new Texture("PlayGame.png");
+				}
 		}
 		//Get start screen if null
 		else {
@@ -118,7 +122,7 @@ public class ScreenState implements ITask {
 	}
 	
 	public static enum Types {
-		startTexture, loadingTexture, register1Texture, register2Texture, createProfileTexture, gameWorldTexture, playerDetailsTexture, playGameTexture
+		startTexture, loadingTexture, register1Texture, register2Texture, createProfileTexture, gameWorldTexture, playerDetailsTexture, playGameTexture, playInteractionTexture
 	}
 	
 

@@ -43,8 +43,10 @@ public class GdxSwitchScreenBtn extends GdxButton {
 	
 	public void setListener() {
 		
+		//Other click triggers
 		if(clickListener != null) { actor.get().addListener(clickListener);}
 		
+		//Default click triggers
 		actor.get().addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		    	

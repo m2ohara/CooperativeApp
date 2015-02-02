@@ -4,6 +4,10 @@ public class Player {
 	
 	public Player() {}
 	
+	public Player(Information information) {
+		this.information = information;
+	}
+	
 	private Information information;
 
 	public Information getInformation() {

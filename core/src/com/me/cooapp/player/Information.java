@@ -8,6 +8,10 @@ public class Information {
 		
 	}
 	
+	public Information(Strategy strategy) {
+		this.strategy = strategy;
+	}
+	
 	public Strategy getStrategy() {
 		return strategy;
 	}
