@@ -5,50 +5,99 @@ filter: Nearest,Nearest
 repeat: none
 PlayerChatbox1
   rotate: false
-  xy: 1, 1
+  xy: 1, 12
   size: 127, 96
   orig: 127, 96
   offset: 0, 0
   index: -1
 UploadPhotoIcon
   rotate: false
-  xy: 130, 32
+  xy: 130, 43
   size: 67, 65
   orig: 67, 65
   offset: 0, 0
   index: -1
-ExpressionLarge1
-  rotate: false
-  xy: 199, 45
-  size: 52, 52
-  orig: 52, 52
-  offset: 0, 0
-  index: -1
 MutateIconCoop1
   rotate: false
-  xy: 253, 46
+  xy: 199, 57
   size: 52, 51
   orig: 52, 51
   offset: 0, 0
   index: -1
 MutateIconDefect1
   rotate: false
-  xy: 307, 46
+  xy: 253, 57
   size: 50, 51
   orig: 50, 51
   offset: 0, 0
   index: -1
 OpponentChatBox1
   rotate: false
-  xy: 359, 53
+  xy: 305, 64
   size: 50, 44
   orig: 50, 44
   offset: 0, 0
   index: -1
-Expression1
+Bully
   rotate: false
-  xy: 411, 67
-  size: 24, 30
-  orig: 24, 30
+  xy: 357, 68
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+Exploiter
+  rotate: false
+  xy: 394, 68
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+Forgiving
+  rotate: false
+  xy: 431, 68
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+Friendly
+  rotate: false
+  xy: 468, 68
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+Nice
+  rotate: false
+  xy: 130, 1
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+Optomist
+  rotate: false
+  xy: 167, 1
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+Selfish
+  rotate: false
+  xy: 204, 15
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+Unforgiving
+  rotate: false
+  xy: 241, 15
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+Unpredictable
+  rotate: false
+  xy: 278, 15
+  size: 35, 40
+  orig: 35, 40
   offset: 0, 0
   index: -1

@@ -17,9 +17,8 @@ public class ListenerStartGame implements Observer {
 		HashMap<UIPublisher.ParameterType, Object> param = (HashMap<UIPublisher.ParameterType, Object>)arg;
 		
 		if(param.containsKey(UIPublisher.ParameterType.PLAYERS)) {
-		//TODO: Resolve GEGameStateItem removal from items list
-		//Start game for provided players
-		GameState.get().addTask(new GEGameStateItem(param.get(UIPublisher.ParameterType.PLAYERS)));
+			//Start game for provided players
+			GameState.get().addTask(new GEGameStateItem(param.get(UIPublisher.ParameterType.PLAYERS)));
 		}
 	}
 

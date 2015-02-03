@@ -28,12 +28,8 @@ public class GameworldScreen extends Screen {
 		
     	//TODO: Retrieve actual players
 		final HashMap<Player.Type, Player> players = new HashMap<Player.Type, Player>();
-		players.put(Player.Type.User, new Player(new Information(new Strategy(new ArrayList<Expression>(
-				Arrays.asList(new Expression(Expression.Type.Nice), new Expression(Expression.Type.Optomist), new Expression(Expression.Type.Optomist))
-				)))));
-		players.put(Player.Type.Opponent, new Player(new Information(new Strategy(new ArrayList<Expression>(
-				Arrays.asList(new Expression(Expression.Type.Nice), new Expression(Expression.Type.Selfish), new Expression(Expression.Type.Selfish))
-				)))));
+		players.put(Player.Type.User, new Player().create());
+		players.put(Player.Type.Opponent, new Player().create());
 		
 		//Add click listener
 		btn.addListener(new ListenerStartGame());
