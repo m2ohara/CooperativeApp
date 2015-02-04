@@ -27,6 +27,7 @@ public class LocalGame extends Game {
 		playerStrategy = players.get(Player.Type.User).getInformation().getStrategy().getExpressions();
 		opponentStrategy = players.get(Player.Type.Opponent).getInformation().getStrategy().getExpressions();
 		gameRules = new GameRules();
+		gameStatus.put(statusType.playerExpression, playerStrategy.get(currentRound));
 		
 		//TODO: Persist game data
 	}
@@ -43,8 +44,13 @@ public class LocalGame extends Game {
 		ArrayList<Integer> points = (ArrayList<Integer>)getRoundOutcome(new ArrayList<Expression>(Arrays.asList(playerExp, opponExp)));
 		currentRound++;
 		
-		//Update player information
+		//Update game
 		
+	}
+	
+	private void UpdateGame() {
+		
+		gameStatus.put(statusType.playerExpression, playerStrategy.get(currentRound));
 	}
 
 }

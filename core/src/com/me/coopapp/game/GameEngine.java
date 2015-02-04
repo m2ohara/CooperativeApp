@@ -3,6 +3,8 @@ package com.me.coopapp.game;
 import java.util.HashMap;
 
 import com.me.cooapp.player.Player;
+import com.me.coopapp.gamestate.GameStateItem;
+import com.me.coopapp.strategy.Expression;
 
 public class GameEngine {
 	
@@ -31,6 +33,13 @@ public class GameEngine {
 		this.players = players;
 		game = new LocalGame(players);
 		game.setGame();
+		
+		//Set expression for start round
+	}
+	
+	private void setScreenExpression() {
+		
+		new GameStateItem((Expression)game.gameStatus(Game.statusType.playerExpression));
 	}
 
 }

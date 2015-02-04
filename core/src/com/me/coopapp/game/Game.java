@@ -18,7 +18,8 @@ public class Game implements IGame {
 	protected HashMap<Player.Type, Player> players;
 	protected IGameRules gameRules;
 	protected Map<statusType, Object> gameStatus = new HashMap<statusType, Object>();	
-	public enum statusType {Round, PrevInteractions, Interacting}
+
+	public enum statusType {Round, PrevInteractions, Interacting, playerExpression}
 	
 	public void setGame() {
 		
@@ -49,6 +50,10 @@ public class Game implements IGame {
 		previousInteractions.add(result);
 
 		return result;
+	}
+	
+	public Object gameStatus(statusType type) {
+		return gameStatus.get(type);
 	}
 	
 	public enum Type { Local, Remote}

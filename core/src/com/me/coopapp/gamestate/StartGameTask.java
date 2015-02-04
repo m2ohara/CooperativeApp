@@ -9,13 +9,13 @@ import com.me.coopapp.gamestate.GameStateItem.NextThreadAction;
 
 public class StartGameTask implements IGLGPerform {
 	
+	private HashMap<Type, Player> players;
+	private NextThreadAction isNextAction;
+	
 	public StartGameTask(HashMap<Type, Player> players) {
 		this.players = players;
 		isNextAction = NextThreadAction.YES;
 	}
-
-	private HashMap<Type, Player> players;
-	private NextThreadAction isNextAction;
 	
 	@Override
 	public Object perform(Object object) {

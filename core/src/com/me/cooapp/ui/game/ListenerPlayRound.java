@@ -9,6 +9,7 @@ public class ListenerPlayRound implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		//TODO set game state item task
 		GameEngine.get().getGame().playRound();
 		
 	}
