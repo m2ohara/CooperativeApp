@@ -24,8 +24,8 @@ public class LocalGame extends Game {
 	public void setGame() {
 		
 		rounds = (int) (Math.random() * 10);
-		playerStrategy = players.get(Player.Type.User).getInformation().getStrategy().getExpressions();
-		opponentStrategy = players.get(Player.Type.Opponent).getInformation().getStrategy().getExpressions();
+		playerStrategy = players.get(Player.Type.User).playingStrategy().getExpressions();
+		opponentStrategy = players.get(Player.Type.Opponent).playingStrategy().getExpressions();
 		gameRules = new GameRules();
 		gameStatus.put(statusType.playerExpression, playerStrategy.get(currentRound));
 		

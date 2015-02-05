@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.me.coopapp.ScreenState;
 import com.me.coopapp.game.GameEngine;
 import com.me.coopapp.game.tasks.PlayRound;
 import com.me.coopapp.game.tasks.UpdateGameState;
@@ -21,7 +22,7 @@ public class ListenerPlayRound implements Observer {
 		tasksToPerform.put(new Integer(0), new PlayRound());
 		tasksToPerform.put(new Integer(1), new UpdateGameState());
 		
-		GameState.get().addTask(new GlgGameStateItem(GameEngine.get(), tasksToPerform));
+		GameState.get().addTask(new GlgGameStateItem(GameEngine.get(), tasksToPerform, ScreenState.Types.playGameTexture));
 		
 	}
 

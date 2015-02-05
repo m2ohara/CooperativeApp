@@ -2,15 +2,18 @@ package com.me.coopapp.gamestate;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.me.coopapp.ScreenState;
+
 public class GlgGameStateItem extends GameStateItem {
 	
 	public ConcurrentHashMap<Integer, IGLGPerform> tasksToPerform;
 
-	public GlgGameStateItem(Object item, ConcurrentHashMap<Integer, IGLGPerform> tasks) {
+	public GlgGameStateItem(Object item, ConcurrentHashMap<Integer, IGLGPerform> tasks, ScreenState.Types screen) {
 		super(item);
 		
 		tasksToPerform = tasks;
 		state = NextThreadAction.YES;
+		this.screen = screen;
 		
 	}
 	

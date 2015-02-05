@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.me.cooapp.player.Player;
 import com.me.cooapp.player.Player.Type;
+import com.me.coopapp.ScreenState;
 import com.me.coopapp.game.GameEngine;
 import com.me.coopapp.game.tasks.StartGame;
 import com.me.coopapp.game.tasks.UpdateGameState;
@@ -38,7 +39,7 @@ public class ListenerStartGame implements Observer {
 			tasksToPerform.put(new Integer(0), new StartGame((HashMap<Type, Player>) players));
 			tasksToPerform.put(new Integer(1), new UpdateGameState());
 			
-			GameState.get().addTask(new GlgGameStateItem(GameEngine.get(), tasksToPerform));
+			GameState.get().addTask(new GlgGameStateItem(GameEngine.get(), tasksToPerform, ScreenState.Types.playGameTexture));
 		}
 	}
 
