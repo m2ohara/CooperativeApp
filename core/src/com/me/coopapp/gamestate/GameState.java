@@ -58,6 +58,7 @@ public class GameState implements ITask {
 	
 	private void performGlgAction(GameStateItem item) {
 
+		//TODO: Refactor into GlgGameStateItem
 		if(item instanceof GameStateItem && item.state == NextThreadAction.GLGSET) {
 			((GdxGameStateItem) item).setToStage(stage);
 		}
@@ -65,9 +66,11 @@ public class GameState implements ITask {
 			((DbGameStateItem) item).performDbTransaction();
 		}
 		
-		if(item instanceof GameStateItem && item.state == NextThreadAction.YES) {
+		
+		
+		if(item instanceof GlgGameStateItem && item.state == NextThreadAction.YES) {
 			//Perform next task
-			item.performTask();
+			((GlgGameStateItem)item).performTask();
 		}
 	}
 	

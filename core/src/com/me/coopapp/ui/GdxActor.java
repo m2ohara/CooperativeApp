@@ -147,5 +147,7 @@ public class GdxActor implements IGLContext {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public enum Type {}
 
 }

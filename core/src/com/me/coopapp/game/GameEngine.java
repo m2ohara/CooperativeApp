@@ -37,9 +37,8 @@ public class GameEngine {
 		//Set expression for start round
 	}
 	
-	private void setScreenExpression() {
-		
-		new GameStateItem((Expression)game.gameStatus(Game.statusType.playerExpression));
+	public void setPlayers(HashMap<Player.Type, Player> players) {
+		this.players = players;
 	}
 
 }

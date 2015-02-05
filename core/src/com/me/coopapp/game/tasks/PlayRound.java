@@ -1,11 +1,17 @@
-package com.me.coopapp.gamestate;
+package com.me.coopapp.game.tasks;
 
 import com.me.coopapp.game.GameEngine;
+import com.me.coopapp.gamestate.GameStateItem;
+import com.me.coopapp.gamestate.IGLGPerform;
 import com.me.coopapp.gamestate.GameStateItem.NextThreadAction;
 
-public class PlayRoundTask implements IGLGPerform {
+public class PlayRound implements IGLGPerform {
 	
 	private NextThreadAction isNextAction;
+	
+	public PlayRound() {
+		this.isNextAction = NextThreadAction.YES;
+	}
 
 	@Override
 	public NextThreadAction getIsNextAction() {
@@ -13,7 +19,7 @@ public class PlayRoundTask implements IGLGPerform {
 	}
 
 	@Override
-	public Object perform(Object parameter) {
+	public Object perform() {
 
 		GameEngine.get().getGame().playRound();
 		

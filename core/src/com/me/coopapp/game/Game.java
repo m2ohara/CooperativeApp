@@ -52,7 +52,7 @@ public class Game implements IGame {
 		return result;
 	}
 	
-	public Object gameStatus(statusType type) {
+	public Object getStatus(statusType type) {
 		return gameStatus.get(type);
 	}
 	

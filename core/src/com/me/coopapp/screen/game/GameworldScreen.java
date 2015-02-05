@@ -8,13 +8,13 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.me.cooapp.player.Information;
 import com.me.cooapp.player.Player;
-import com.me.cooapp.ui.game.ListenerStartGame;
 import com.me.coopapp.Screen;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.strategy.Expression;
 import com.me.coopapp.strategy.Strategy;
 import com.me.coopapp.ui.GdxSwitchScreenBtn;
 import com.me.coopapp.ui.UIPublisher;
+import com.me.coopapp.ui.game.ListenerStartGame;
 
 public class GameworldScreen extends Screen {
 	

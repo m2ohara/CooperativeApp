@@ -6,6 +6,7 @@ public class Player {
 	
 	private Strategy playingStrategy;
 	private Information information;
+	private Type type;
 	
 	public Player() {}
 	

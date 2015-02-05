@@ -15,8 +15,8 @@ public class GEGameStateItem extends GameStateItem {
 		super(GameEngine.get());
 	
 		itemDisposer = new Disposer();
-		tasksToPerform.put(new Integer(0), new StartGameTask((HashMap<Type, Player>) players));
-		tasksToPerform.put(new Integer(1), new PlayRoundTask());
+//		tasksToPerform.put(new Integer(0), new StartGameTask((HashMap<Type, Player>) players));
+//		tasksToPerform.put(new Integer(1), new PlayRoundTask());
 		state = NextThreadAction.YES;
 		screen = ScreenState.Types.playGameTexture;
 	}

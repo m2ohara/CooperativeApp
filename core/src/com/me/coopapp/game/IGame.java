@@ -10,5 +10,5 @@ public interface IGame {
 
 	public void playRound();
 	
-	public Object gameStatus(statusType type);
+	public Object getStatus(statusType type);
 }

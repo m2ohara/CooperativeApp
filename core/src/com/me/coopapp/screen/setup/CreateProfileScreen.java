@@ -6,8 +6,8 @@ import com.me.coopapp.ui.GdxIcon;
 import com.me.coopapp.ui.GdxSwitchScreenBtn;
 import com.me.coopapp.ui.GdxTextField;
 import com.me.coopapp.ui.ListenerSetUser;
-import com.me.coopapp.ui.ListenerSetUser.ObservableType;
 import com.me.coopapp.ui.ListenerUpdateUser;
+import com.me.coopapp.ui.ListenerSetUser.ObservableType;
 
 public class CreateProfileScreen extends Screen {
 	

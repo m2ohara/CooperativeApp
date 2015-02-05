@@ -1,10 +1,10 @@
 package com.me.coopapp.screen.game;
 
-import com.me.cooapp.ui.game.ListenerPlayRound;
 import com.me.coopapp.Screen;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.ui.GdxIcon;
 import com.me.coopapp.ui.GdxSwitchScreenBtn;
+import com.me.coopapp.ui.game.ListenerPlayRound;
 
 public class PlayGameScreen extends Screen {
 	
@@ -19,7 +19,7 @@ public class PlayGameScreen extends Screen {
 		new GdxIcon("PlayerChatbox1", 0, 50, ScreenState.Types.playGameTexture);
 		new GdxIcon("OpponentChatBox1", 45, 150, ScreenState.Types.playGameTexture);	
 		
-		new GdxSwitchScreenBtn("PlayGameBtn", 50, -150, ScreenState.Types.playInteractionTexture, ScreenState.Types.playGameTexture).addListener(new ListenerPlayRound());
+		new GdxSwitchScreenBtn("PlayGameBtn", 50, -100, ScreenState.Types.playInteractionTexture, ScreenState.Types.playGameTexture).addListener(new ListenerPlayRound());
 	}
 
 }

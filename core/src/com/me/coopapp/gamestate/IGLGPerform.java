@@ -6,6 +6,6 @@ public interface IGLGPerform {
 	
 	public NextThreadAction getIsNextAction();
 	public void setIsNextAction(NextThreadAction action);
-	public Object perform(Object parameter);
+	public Object perform();
 
 }

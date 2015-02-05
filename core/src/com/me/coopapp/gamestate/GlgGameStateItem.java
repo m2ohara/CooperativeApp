@@ -2,14 +2,15 @@ package com.me.coopapp.gamestate;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-public class GLGameStateItem extends GameStateItem {
+public class GlgGameStateItem extends GameStateItem {
 	
 	public ConcurrentHashMap<Integer, IGLGPerform> tasksToPerform;
 
-	public GLGameStateItem(ConcurrentHashMap<Integer, IGLGPerform> tasks) {
-		super(tasks);
+	public GlgGameStateItem(Object item, ConcurrentHashMap<Integer, IGLGPerform> tasks) {
+		super(item);
 		
 		tasksToPerform = tasks;
+		state = NextThreadAction.YES;
 		
 	}
 	
@@ -21,7 +22,7 @@ public class GLGameStateItem extends GameStateItem {
 			//If next task is to be performed
 			if(task.getIsNextAction() == NextThreadAction.YES) {
 				//Perform
-				task.perform("");
+				task.perform();
 				//Set following action to perform next
 				tasksToPerform.elements().nextElement().setIsNextAction(NextThreadAction.YES);
 				//Remove performed action
@@ -30,5 +31,7 @@ public class GLGameStateItem extends GameStateItem {
 		}
 		
 	}
+	
+	
 
 }
