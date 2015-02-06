@@ -15,6 +15,9 @@ public class GameStateItem {
 	
 	public GameStateItem(Object _item) {
 		item = _item;
+		
+		//Set gamestate item to be disposable
+		itemDisposer = new Disposer(this);
 	}
 	
 	public enum NextThreadAction {
@@ -27,11 +30,16 @@ public class GameStateItem {
 	
 	//Invoked by GdxDisposer
 	public void disposeGSItem() {
-		this.state = NextThreadAction.DISPOSE;
+//		this.state = NextThreadAction.DISPOSE;
+		itemDisposer.dispose();
 	}
 
 	public ScreenState.Types getScreen() {
 		return screen;
+	}
+
+	public Disposer getItemDisposer() {
+		return itemDisposer;
 	}
 
 	public void setScreen(ScreenState.Types screen) {

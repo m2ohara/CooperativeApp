@@ -17,7 +17,7 @@ public class CreateProfileScreen extends Screen {
 	
 	public void SetUI() {
 		
-		new GdxSwitchScreenBtn("PlayGameBtn", 0, -250, ScreenState.Types.gameWorldTexture).addListener(new ListenerUpdateUser());
+		new GdxSwitchScreenBtn("PlayGameBtn", 0, -250, ScreenState.Types.gameWorldTexture, ScreenState.Types.createProfileTexture).addListener(new ListenerUpdateUser());
 		
 		new GdxTextField(0, 80, "Alias", ScreenState.Types.createProfileTexture).addListener(new ListenerSetUser(ObservableType.ALIAS));
 		

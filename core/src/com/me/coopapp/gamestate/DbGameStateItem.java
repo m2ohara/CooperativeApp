@@ -12,8 +12,6 @@ public class DbGameStateItem extends GameStateItem {
 		super(_item);
 		
 		state = NextThreadAction.GLGTRANSACTION;
-		
-		itemDisposer = new Disposer();
 	}
 
 	public ResultSet performDbTransaction() {

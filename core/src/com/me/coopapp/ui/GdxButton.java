@@ -1,7 +1,5 @@
 package com.me.coopapp.ui;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -11,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Disposable;
 import com.me.coopapp.ScreenState;
 
 
@@ -88,27 +85,6 @@ public class GdxButton extends GdxActor {
 			return button;
 		}
 		
-	}
-
-	@Override
-	//Invoked by GdxDisposer
-	public void disposeGdx() {
-		
-		//Remove from stage
-		actor.get().remove();
-		
-		//Remove gdx items
-		buttonAtlas.dispose();
-		skin.dispose();
-		
-	}
-	
-	//Invoked during runtime (after gdx instantiation)
-	public ArrayList<Disposable> getDisposableGdx() {
-		gdxItemsToDispose = new ArrayList<Disposable>();
-		gdxItemsToDispose.add(buttonAtlas);
-		gdxItemsToDispose.add(skin);
-		return gdxItemsToDispose;
 	}
 
 }

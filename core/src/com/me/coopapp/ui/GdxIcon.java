@@ -60,17 +60,5 @@ public class GdxIcon extends GdxActor{
 		}
 		
 	}
-	
-	@Override
-	public void disposeGdx() {
-		
-		//Remove from stage
-		actor.get().remove();
-		
-		//Remove dependent instances
-		txAtlas.dispose();
-		txSkin.dispose();
-		
-	}
 
 }

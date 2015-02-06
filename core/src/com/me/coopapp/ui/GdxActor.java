@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.me.coopapp.ScreenState;
-import com.me.coopapp.dispose.GdxDisposer;
+import com.me.coopapp.dispose.Disposer;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.gamestate.IGLContext;
@@ -21,7 +21,7 @@ public class GdxActor implements IGLContext {
 	protected float yCentreOffset = 0;
 	protected String type;
 	public UIPublisher publisher = new UIPublisher(); 
-	protected GdxDisposer itemDisposer = null;
+	protected Disposer itemDisposer = null;
 	protected ArrayList<Disposable> gdxItemsToDispose;
 	protected ClickListener clickListener;
 
@@ -98,33 +98,18 @@ public class GdxActor implements IGLContext {
 		// Inherited method for creating instance while in Gdx thread
 		
 	}
-
-	@Override
-	public void disposeGdx() {
-		//Remove instance from stage to improve performance
-		actor.get().remove();
-		
-	}
-	
-	@Override
-	public void setDisposer(GdxDisposer disposer) {
-		itemDisposer = disposer;
-	}
-	
-	@Override
-	public GdxDisposer getDisposer() {
-		return itemDisposer;
-	}
 	
 	private void setGdxGameStateItem() {
 		//Add game state item to list for processing
 		GdxGameStateItem item = new GdxGameStateItem(this);
+		itemDisposer = item.getItemDisposer();
 		GameState.get().items.put(item.hashCode(), item);
 	}
 	
 	private void setGdxGameStateItem(ScreenState.Types screen) {
 		//Add game state item to list for processing
 		GdxGameStateItem item = new GdxGameStateItem(this, screen);
+		itemDisposer = item.getItemDisposer();
 		GameState.get().items.put(item.hashCode(), item);
 	}
 	
@@ -141,13 +126,13 @@ public class GdxActor implements IGLContext {
 			publisher.addObserver(observer);
 		}
 	}
-
-	@Override
-	public ArrayList<Disposable> getDisposableGdx() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	public enum Type {}
+
+	@Override
+	public IGdxActor getIGdxActor() {
+		// TODO Auto-generated method stub
+		return actor;
+	}
 
 }

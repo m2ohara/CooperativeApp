@@ -42,7 +42,7 @@ public class GlgGameStateItem extends GameStateItem {
 			}
 		}
 		else {
-			this.disposeGSItem();
+			this.itemDisposer.dispose();
 		}
 		
 	}

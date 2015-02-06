@@ -5,7 +5,6 @@ import java.util.HashMap;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.me.coopapp.ScreenState;
-import com.me.coopapp.gamestate.GameState;
 
 public class GdxSwitchScreenBtn extends GdxButton {
 	
@@ -51,7 +50,7 @@ public class GdxSwitchScreenBtn extends GdxButton {
 		    public void clicked(InputEvent event, float x, float y) {
 		    	
 		    	//Remove all current items from game state
-		    	itemDisposer.disposeAll();
+		    	itemDisposer.disposeGroup();
 		    	
 		    	HashMap<UIPublisher.ParameterType, Object> parameters = new HashMap<UIPublisher.ParameterType, Object>();
 		    	parameters.put(UIPublisher.ParameterType.SCREEN, screenToSwitch);
@@ -63,14 +62,6 @@ public class GdxSwitchScreenBtn extends GdxButton {
 	
 		
 	}
-	
-	@Override
-	public void disposeGdx() {
-		
-		//TO DO: Remove specified actors / items
-//		GameState.get().items.clear();
-//		GameState.stage.clear();
-		
-	}
+
 
 }
