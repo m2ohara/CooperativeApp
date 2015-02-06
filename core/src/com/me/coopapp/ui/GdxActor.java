@@ -7,7 +7,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Disposable;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.dispose.Disposer;
 import com.me.coopapp.gamestate.GameState;
@@ -22,8 +21,7 @@ public class GdxActor implements IGLContext {
 	protected String type;
 	public UIPublisher publisher = new UIPublisher(); 
 	protected Disposer itemDisposer = null;
-	protected ArrayList<Disposable> gdxItemsToDispose;
-	protected ClickListener clickListener;
+	protected ArrayList<ClickListener> clickListeners;
 
 	public GdxActor() {
 		setGdxGameStateItem();
@@ -113,21 +111,25 @@ public class GdxActor implements IGLContext {
 		GameState.get().items.put(item.hashCode(), item);
 	}
 	
-	public void addListener(Observer observer) {
+	public void addListener(ClickListener clickListener) {
+		this.clickListeners = this.clickListeners == null ? new ArrayList<ClickListener>() : clickListeners; 
+		clickListeners.add(clickListener);
+	}
+	
+	public void addListeners(ArrayList<ClickListener> clickListeners) {
+		this.clickListeners = clickListeners;
+	}
+	
+	public void addObserver(Observer observer) {
 		publisher.addObserver(observer);
 	}
 	
-	public void setListener(ClickListener clickListener) {
-		this.clickListener = clickListener;
-	}
 	
-	public void addListener(ArrayList<Observer> observers) {
+	public void addObservers(ArrayList<Observer> observers) {
 		for(Observer observer : observers) {
 			publisher.addObserver(observer);
 		}
 	}
-	
-	public enum Type {}
 
 	@Override
 	public IGdxActor getIGdxActor() {

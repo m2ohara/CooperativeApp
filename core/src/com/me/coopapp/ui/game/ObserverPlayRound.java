@@ -12,7 +12,7 @@ import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GlgGameStateItem;
 import com.me.coopapp.gamestate.IGLGPerform;
 
-public class ListenerPlayRound implements Observer {
+public class ObserverPlayRound implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {

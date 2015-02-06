@@ -6,7 +6,7 @@ import java.util.Observer;
 
 import com.me.coopapp.ScreenState;
 
-public class ListenerSwitchScreen implements Observer {
+public class ObserverSwitchScreen implements Observer {
 
 	@SuppressWarnings("unchecked")
 	@Override

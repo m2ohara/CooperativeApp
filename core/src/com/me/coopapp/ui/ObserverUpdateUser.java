@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import com.me.coopapp.UserState;
 
-public class ListenerUpdateUser implements Observer {
+public class ObserverUpdateUser implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {

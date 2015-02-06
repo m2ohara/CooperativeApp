@@ -16,6 +16,7 @@ public class GdxButton extends GdxActor {
 
 	private TextureAtlas buttonAtlas;
 	private Skin skin = new Skin();
+	protected Boolean isDefaultListenerOn = true;
 	
 	
 	public GdxButton(String _type) {
@@ -47,26 +48,41 @@ public class GdxButton extends GdxActor {
 		actor = new CoopAppButton();
 		actor.set(new TextButton("", style));
 		
-		setListener();
+		setListeners();
 	}
 	
-	public void setListener() {
-		
-		if(clickListener != null) { actor.get().addListener(clickListener);}
-		
-		actor.get().addListener(new ClickListener() {
-		    public void clicked(InputEvent event, float x, float y) {
+	public void setIsDefaultListener(Boolean isDefaultListener) {
+		this.isDefaultListenerOn = isDefaultListener;
+	}
 
-		    	publisher.notifyObservers();
-		    	
-		    	//Remove this button
-		    	itemDisposer.dispose();
-
-		    }
-		  }
-		);
+	public void setListeners() {
+		
+		//Added listeners
+		if(clickListeners != null) { 
+			
+			for(ClickListener listener : clickListeners) {
+				actor.get().addListener(listener);
+			}
+			
+		}
+		
+		//Default listeners
+		if(isDefaultListenerOn) {
+			actor.get().addListener(new ClickListener() {
+			    public void clicked(InputEvent event, float x, float y) {
+	
+			    	publisher.notifyObservers();
+			    	
+			    	//Remove this button
+			    	itemDisposer.dispose();
+	
+			    }
+			  }
+			);
+		}
 	}
 	
+	//Nested class
 	public class CoopAppButton implements IGdxActor {
 		
 		private TextButton button;

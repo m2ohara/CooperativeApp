@@ -4,11 +4,11 @@ import java.util.Observable;
 import java.util.Observer;
 import com.me.coopapp.UserState;
 
-public class ListenerSetUser implements Observer {
+public class ObserverSetUser implements Observer {
 	
 	private ObservableType type;
 	
-	public ListenerSetUser(ObservableType _type) {
+	public ObserverSetUser(ObservableType _type) {
 		type = _type;
 	}
 	

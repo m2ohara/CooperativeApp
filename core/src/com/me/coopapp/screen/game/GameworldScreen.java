@@ -9,7 +9,7 @@ import com.me.coopapp.Screen;
 import com.me.coopapp.ScreenState;
 import com.me.coopapp.ui.GdxSwitchScreenBtn;
 import com.me.coopapp.ui.UIPublisher;
-import com.me.coopapp.ui.game.ListenerStartGame;
+import com.me.coopapp.ui.game.ObserverStartGame;
 
 public class GameworldScreen extends Screen {
 	
@@ -27,8 +27,8 @@ public class GameworldScreen extends Screen {
 		players.put(Player.Type.Opponent, new Player().create());
 		
 		//Add click listener
-		btn.addListener(new ListenerStartGame());
-		btn.setListener(new ClickListener() {
+		btn.addObserver(new ObserverStartGame());
+		btn.addListener(new ClickListener() {
 		    public void clicked(InputEvent event, float x, float y) {
 		    	
 		    	HashMap<UIPublisher.ParameterType, Object> parameters = new HashMap<UIPublisher.ParameterType, Object>();

@@ -17,7 +17,7 @@ public class GdxSwitchScreenBtn extends GdxButton {
 		screenToSwitch = _screenToSwitch;
 		
 		//Add listener for screen switching action
-		addListener(new ListenerSwitchScreen());
+		addObserver(new ObserverSwitchScreen());
 	}
 	
 	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenState.Types _screenToSwitch) {
@@ -27,7 +27,7 @@ public class GdxSwitchScreenBtn extends GdxButton {
 		screenToSwitch = _screenToSwitch;
 		
 		//Add listener for screen switching action
-		addListener(new ListenerSwitchScreen());
+		addObserver(new ObserverSwitchScreen());
 	}
 	
 	public GdxSwitchScreenBtn(String _type, float xCoord, float yCoord, ScreenState.Types _screenToSwitch, ScreenState.Types screen) {
@@ -37,28 +37,34 @@ public class GdxSwitchScreenBtn extends GdxButton {
 		screenToSwitch = _screenToSwitch;
 		
 		//Add listener for screen switching action
-		addListener(new ListenerSwitchScreen());
+		addObserver(new ObserverSwitchScreen());
 	}
 	
-	public void setListener() {
+	public void setListeners() {
 		
 		//Other click triggers
-		if(clickListener != null) { actor.get().addListener(clickListener);}
+		if(clickListeners != null) { 
+			for(ClickListener listener : clickListeners) {
+				actor.get().addListener(listener);
+			}
+		}
 		
 		//Default click triggers
-		actor.get().addListener(new ClickListener() {
-		    public void clicked(InputEvent event, float x, float y) {
-		    	
-		    	//Remove all current items from game state
-		    	itemDisposer.disposeGroup();
-		    	
-		    	HashMap<UIPublisher.ParameterType, Object> parameters = new HashMap<UIPublisher.ParameterType, Object>();
-		    	parameters.put(UIPublisher.ParameterType.SCREEN, screenToSwitch);
-		    	
-		    	publisher.notifyObservers(parameters);
-		    }
-		  }
-		);
+		if(isDefaultListenerOn) {
+			actor.get().addListener(new ClickListener() {
+			    public void clicked(InputEvent event, float x, float y) {
+			    	
+			    	//Remove all current items from game state
+			    	itemDisposer.disposeGroup();
+			    	
+			    	HashMap<UIPublisher.ParameterType, Object> parameters = new HashMap<UIPublisher.ParameterType, Object>();
+			    	parameters.put(UIPublisher.ParameterType.SCREEN, screenToSwitch);
+			    	
+			    	publisher.notifyObservers(parameters);
+			    }
+			  }
+			);
+		}
 	
 		
 	}

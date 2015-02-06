@@ -28,6 +28,6 @@ public class UIPublisher extends Observable {
 		return observers;
 	}
 	
-	public enum ParameterType {SCREEN, PLAYERS}
+	public enum ParameterType {SCREEN, PLAYERS, ACTOR}
 
 }

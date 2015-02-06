@@ -16,7 +16,7 @@ import com.me.coopapp.gamestate.GlgGameStateItem;
 import com.me.coopapp.gamestate.IGLGPerform;
 import com.me.coopapp.ui.UIPublisher;
 
-public class ListenerStartGame implements Observer {
+public class ObserverStartGame implements Observer {
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -26,7 +26,6 @@ public class ListenerStartGame implements Observer {
 		
 		if(param.containsKey(UIPublisher.ParameterType.PLAYERS)) {
 			//Start game for provided players
-//			GameState.get().addTask(new GEGameStateItem());
 			
 			//Set players for the game
 			HashMap<Type, Player> players = (HashMap<Type, Player>)param.get(UIPublisher.ParameterType.PLAYERS);

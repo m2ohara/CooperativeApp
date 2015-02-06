@@ -5,9 +5,9 @@ import com.me.coopapp.ScreenState;
 import com.me.coopapp.ui.GdxIcon;
 import com.me.coopapp.ui.GdxSwitchScreenBtn;
 import com.me.coopapp.ui.GdxTextField;
-import com.me.coopapp.ui.ListenerSetUser;
-import com.me.coopapp.ui.ListenerUpdateUser;
-import com.me.coopapp.ui.ListenerSetUser.ObservableType;
+import com.me.coopapp.ui.ObserverSetUser;
+import com.me.coopapp.ui.ObserverUpdateUser;
+import com.me.coopapp.ui.ObserverSetUser.ObservableType;
 
 public class CreateProfileScreen extends Screen {
 	
@@ -17,9 +17,9 @@ public class CreateProfileScreen extends Screen {
 	
 	public void SetUI() {
 		
-		new GdxSwitchScreenBtn("PlayGameBtn", 0, -250, ScreenState.Types.gameWorldTexture, ScreenState.Types.createProfileTexture).addListener(new ListenerUpdateUser());
+		new GdxSwitchScreenBtn("PlayGameBtn", 0, -250, ScreenState.Types.gameWorldTexture, ScreenState.Types.createProfileTexture).addObserver(new ObserverUpdateUser());
 		
-		new GdxTextField(0, 80, "Alias", ScreenState.Types.createProfileTexture).addListener(new ListenerSetUser(ObservableType.ALIAS));
+		new GdxTextField(0, 80, "Alias", ScreenState.Types.createProfileTexture).addObserver(new ObserverSetUser(ObservableType.ALIAS));
 		
 		new GdxIcon("UploadPhotoIcon", -170, -150, ScreenState.Types.createProfileTexture);
 		new GdxIcon("UploadPhotoIcon", -90, -150, ScreenState.Types.createProfileTexture);

@@ -4,7 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 import com.me.coopapp.UserState;
 
-public class ListenerAddUser implements Observer {
+public class ObserverAddUser implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
