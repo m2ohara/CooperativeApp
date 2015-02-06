@@ -12,11 +12,9 @@ public class GameStateItem {
 	public Object item;
 	public IGLContext glContext;
 	protected Disposer itemDisposer = null;
-//	public ConcurrentHashMap<Integer, IGLGPerform> tasksToPerform;
 	
 	public GameStateItem(Object _item) {
 		item = _item;
-//		tasksToPerform = new ConcurrentHashMap<Integer, IGLGPerform>();
 	}
 	
 	public enum NextThreadAction {
@@ -26,24 +24,6 @@ public class GameStateItem {
 	public void setToStage(Stage stage) {
 		
 	}
-	
-//	public void performTask() {
-//		if(tasksToPerform.size() != 0) {
-//			
-//			IGLGPerform task = tasksToPerform.elements().nextElement();
-//			
-//			//If next task is to be performed
-//			if(task.getIsNextAction() == NextThreadAction.YES) {
-//				//Perform
-//				task.perform("");
-//				//Set following action to perform next
-//				tasksToPerform.elements().nextElement().setIsNextAction(NextThreadAction.YES);
-//				//Remove performed action
-//				tasksToPerform.remove(task);
-//			}
-//		}
-//		
-//	}
 	
 	//Invoked by GdxDisposer
 	public void disposeGSItem() {

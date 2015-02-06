@@ -12,8 +12,8 @@ import com.me.coopapp.ui.GdxIcon;
 
 public class UpdateGameState implements IGLGPerform {
 	
-	private int expressionXCentreOffset = 150;
-	private int expressionYCentreOffset = 150;
+	private int expressionXCentreOffset = -15;
+	private int expressionYCentreOffset = 35;
 	private NextThreadAction isNextAction;
 
 	@Override

@@ -1,9 +1,9 @@
 package com.me.coopapp.ui.game;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.me.cooapp.player.Player;
 import com.me.cooapp.player.Player.Type;
@@ -14,8 +14,6 @@ import com.me.coopapp.game.tasks.UpdateGameState;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GlgGameStateItem;
 import com.me.coopapp.gamestate.IGLGPerform;
-import com.me.coopapp.strategy.Expression;
-import com.me.coopapp.ui.GdxIcon;
 import com.me.coopapp.ui.UIPublisher;
 
 public class ListenerStartGame implements Observer {
@@ -35,9 +33,11 @@ public class ListenerStartGame implements Observer {
 			GameEngine.get().setPlayers(players);
 			
 			//Add tasks for perform during game load
-			ConcurrentHashMap<Integer, IGLGPerform> tasksToPerform = new ConcurrentHashMap<Integer, IGLGPerform>();
-			tasksToPerform.put(new Integer(0), new StartGame((HashMap<Type, Player>) players));
-			tasksToPerform.put(new Integer(1), new UpdateGameState());
+			LinkedHashMap<Integer, IGLGPerform> tasksToPerform = new LinkedHashMap<Integer, IGLGPerform>();
+			IGLGPerform task = new StartGame((HashMap<Type, Player>) players);
+			tasksToPerform.put(new Integer(task.hashCode()), task);
+			task = new UpdateGameState();
+			tasksToPerform.put(new Integer(task.hashCode()), task);
 			
 			GameState.get().addTask(new GlgGameStateItem(GameEngine.get(), tasksToPerform, ScreenState.Types.playGameTexture));
 		}

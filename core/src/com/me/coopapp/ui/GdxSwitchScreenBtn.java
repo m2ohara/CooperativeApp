@@ -68,8 +68,8 @@ public class GdxSwitchScreenBtn extends GdxButton {
 	public void disposeGdx() {
 		
 		//TO DO: Remove specified actors / items
-		GameState.get().items.clear();
-		GameState.stage.clear();
+//		GameState.get().items.clear();
+//		GameState.stage.clear();
 		
 	}
 

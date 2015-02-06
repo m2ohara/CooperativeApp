@@ -1,5 +1,6 @@
 package com.me.coopapp.game;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class LocalGame extends Game {
 		playerStrategy = players.get(Player.Type.User).playingStrategy().getExpressions();
 		opponentStrategy = players.get(Player.Type.Opponent).playingStrategy().getExpressions();
 		gameRules = new GameRules();
+		System.out.println("Players strategy: "+playerStrategy.size());
 		gameStatus.put(statusType.playerExpression, playerStrategy.get(currentRound));
 		
 		//TODO: Persist game data

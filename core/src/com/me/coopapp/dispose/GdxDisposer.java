@@ -1,14 +1,15 @@
 package com.me.coopapp.dispose;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 import com.badlogic.gdx.utils.Disposable;
 import com.me.coopapp.gamestate.GameState;
 import com.me.coopapp.gamestate.GameStateItem;
+import com.me.coopapp.gamestate.GameStateItem.NextThreadAction;
 import com.me.coopapp.gamestate.GdxGameStateItem;
 import com.me.coopapp.gamestate.IGLContext;
-import com.me.coopapp.gamestate.GameStateItem.NextThreadAction;
 import com.me.coopapp.ui.GdxActor;
 
 public class GdxDisposer {
@@ -41,8 +42,7 @@ public class GdxDisposer {
 	
 	public void dispose() {
 		((IGLContext)itemToDispose.item).disposeGdx();
-//		itemToDispose.disposeGSItem();
-		itemToDispose.state = NextThreadAction.DISPOSE;
+		itemToDispose.disposeGSItem();
 	}
 	
 	public void disposeAll() {
@@ -67,6 +67,7 @@ public class GdxDisposer {
 	
 	private void disposeGlgItems() {
 		
+		Collection<GameStateItem> gsItems = GameState.get().items.values();
 		for(GameStateItem item : GameState.get().items.values()) {
 			//Dispose all other GameStateItems 
 			if(item.screen == itemToDispose.screen && !item.equals(itemToDispose)) {
