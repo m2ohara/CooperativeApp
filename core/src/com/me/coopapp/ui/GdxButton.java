@@ -70,8 +70,6 @@ public class GdxButton extends GdxActor {
 		if(isDefaultListenerOn) {
 			actor.get().addListener(new ClickListener() {
 			    public void clicked(InputEvent event, float x, float y) {
-	
-			    	publisher.notifyObservers();
 			    	
 			    	//Remove this button
 			    	itemDisposer.dispose();

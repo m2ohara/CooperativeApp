@@ -31,7 +31,7 @@ public class UpdateGameState implements IGLGPerform {
 		
 		//Get expression to display for next round
 		Expression expression = (Expression)GameEngine.get().getGame().getStatus(Game.statusType.playerExpression);
-		GameState.get().addTask(new GdxGameStateItem(new GdxIcon(expression.getTexture(), expressionXCentreOffset, expressionYCentreOffset, ScreenState.Types.gameWorldTexture)));
+		GameState.get().addTask(new GdxGameStateItem(new GdxIcon(expression.getTexture(), expressionXCentreOffset, expressionYCentreOffset, ScreenState.Types.playGameTexture)));
 		return null;
 	}
 
